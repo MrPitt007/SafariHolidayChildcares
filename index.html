@@ -1,40 +1,44 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Safari Holiday Childcare | South Africa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- Hero Slideshow -->
+  <div class="hero-slideshow">
+    <img src="kid1.jpg.webp" alt="Kids 1" />
+    <img src="kid2.jpg.webp" alt="Kids 2" />
+    <img src="kid3.jpg.png"  alt="Kids 3" />
+    <img src="kid4.jpg.png"  alt="Kids 4" />
+  </div>
 
-/* Hero slideshow at top */
-.hero-slideshow {
-  position: relative;
-  width: 100%;
-  height: 60vh;          /* adjust as you like */
-  min-height: 380px;
-  overflow: hidden;
-}
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#booking">Booking</a>
+    <a href="#safety">Safety</a>
+  </nav>
 
-.hero-slideshow img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: heroSlide 20s infinite ease-in-out;
-}
+  <header>
+    <h1>Safari Holiday Childcare</h1>
+    <p>Trusted childcare for ages 5–12 while parents enjoy their safari holiday</p>
+  </header>
 
-.hero-slideshow img:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow img:nth-child(2) { animation-delay: 5s; }
-.hero-slideshow img:nth-child(3) { animation-delay: 10s; }
-.hero-slideshow img:nth-child(4) { animation-delay: 15s; }
+  <section>
+    <h2>About Our Safari Nanny Service</h2>
+    <p>
+      We provide professional, resort-based nanny services inside South African safari parks.
+      While parents enjoy game drives, spa days, or private dinners, our trained nannies keep
+      children safe, engaged, and happy.
+    </p>
+  </section>
 
-@keyframes heroSlide {
-  0%   { opacity: 0; }
-  5%   { opacity: 1; }
-  25%  { opacity: 1; }
-  30%  { opacity: 0; }
-  100% { opacity: 0; }
-}
+  <!-- Add more sections/footers here as needed -->
 
-/* Keep content above the slideshow if needed */
-nav, header, section, footer {
-  position: relative;
-  z-index: 1;
-}
+</body>
+</html>
+
