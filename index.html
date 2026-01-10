@@ -1,2 +1,159 @@
 
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safari Holiday Childcare</title>
+  <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
+
+  <!-- All CSS is inside a valid <style> block -->
+  <style>
+    :root{
+      --brand:#1c563a; --brand-2:#e1ad3d; --ink:#1a1a1a; --muted:#5a5a5a;
+      --bg:#fff; --bg-alt:#f6f6f6; --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--bg);
+         font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .container{width:min(1100px,92vw);margin:0 auto}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header */
+    .site-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);
+                 backdrop-filter:blur(6px);border-bottom:1px solid #eee}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .nav{display:flex;gap:1rem}
+    .nav a{color:var(--ink);padding:8px 10px;border-radius:10px}
+    .nav a:hover{background:#f0f0f0}
+
+    /* ===== Hero + slideshow ===== */
+    .hero{position:relative;min-height:60vh;isolation:isolate}
+    .slides{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .slide{
+      position:absolute; inset:0;
+      background:center/cover no-repeat #000;
+      opacity:0; transform:scale(1.02);
+      animation:fade 24s infinite; /* 4 slides × 6s each */
+    }
+    .slide:nth-child(1){animation-delay:0s}
+    .slide:nth-child(2){animation-delay:6s}
+    .slide:nth-child(3){animation-delay:12s}
+    .slide:nth-child(4){animation-delay:18s}
+
+    @keyframes fade{
+      0%{opacity:0}
+      6%{opacity:1}
+      25%{opacity:1}
+      31%{opacity:0}
+      100%{opacity:0}
+    }
+
+    .hero-overlay{
+      position:relative; z-index:1; width:100%; height:100%;
+      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
+      display:flex; align-items:center;
+    }
+    .hero-inner{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.4);padding:64px 0}
+    h1{font-size:clamp(2rem,4vw + 1rem,3rem);margin:.2rem 0 1rem;color:#fff}
+    .cta{display:inline-block;padding:.7rem 1rem;border-radius:999px;border:2px solid transparent;
+         font-weight:600;text-decoration:none;margin-right:.6rem}
+    .cta.primary{background:var(--brand);color:#fff}
+    .cta.ghost{background:transparent;color:#fff;border-color:#fff}
+
+    @media (prefers-reduced-motion:reduce){
+      .slide{animation:none;opacity:0}
+      .slide:nth-child(1){opacity:1}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand">Safari Holiday Childcare</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+        <a href="#safety">Safety</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="slides" id="slides"></div>
+    <div class="hero-overlay">
+      <div class="container hero-inner">
+        <h1>Safari Holiday Childcare</h1>
+        <p>Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</p>
+        <a href="#booking" class="cta primary">Get a Quote</a>
+        <a href="#about" class="cta ghost">How it Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal content sections (optional) -->
+  <section id="about" class="container" style="padding:32px 0;">
+    <h2>About</h2>
+    <p>Resort‑based childcare in South African parks. Safe, engaging, age‑appropriate activities.</p>
+  </section>
+
+  <section id="gallery" class="container" style="padding:32px 0;">
+    <h2>Gallery</h2>
+    <p>Photos from recent lodge sessions.</p>
+  </section>
+
+  <section id="booking" class="container" style="padding:32px 0;">
+    <h2>Booking</h2>
+    <p>Share dates, lodge, and children’s ages—we’ll confirm availability and a quote.</p>
+  </section>
+
+  <section id="safety" class="container" style="padding:32px 0;">
+    <h2>Safety</h2>
+    <p>First aid & CPR certified staff, clear handovers, and lodge coordination.</p>
+  </section>
+
+  <!-- Scripts: build slides dynamically with your image paths -->
+  <script>
+    // Use your exact filenames/paths here:
+    const heroImages = [
+      'images/kid1.jpg.webp',
+      'images/kid2.jpg.webp',
+      'images/kid3.jpg.png',
+      'images/kid4.jpg.png',
+    ];
+
+    const slidesEl = document.getElementById('slides');
+    heroImages.forEach(src => {
+      const div = document.createElement('div');
+      div.className = 'slide';
+      div.style.backgroundImage = `url("${src}")`;
+      slidesEl.appendChild(div);
+    });
+
+    // Pause animations if hero not visible (performance)
+    const hero = document.querySelector('.hero');
+    if ('IntersectionObserver' in window && hero){
+      const slides = hero.querySelectorAll('.slide');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          slides.forEach(s => s.style.animationPlayState = e.isIntersecting ? 'running' : 'paused');
+        });
+      }, { threshold: 0.1 });
+      io.observe(hero);
+    }
+
+    // Optional: log any image load issues to console
+    heroImages.forEach(src => {
+      const img = new Image();
+      img.onerror = () => console.warn('Image failed to load:', src);
+      img.src = src;
+    });
+  </script>
+</body>
+</html>
+
