@@ -1,106 +1,40 @@
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Safari Holiday Childcare | South Africa</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-  <!-- Hero Slideshow -->
-  <div class="hero-slideshow">
-    kid1.jpg.webp
-    kid2.jpg.webp
-    kid3.jpg.png
-    kid4.jpg.png
-  </div>
+/* Hero slideshow at top */
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  height: 60vh;          /* adjust as you like */
+  min-height: 380px;
+  overflow: hidden;
+}
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="#booking">Booking</a>
-    <a href="#safety">Safety</a>
-  </nav>
+.hero-slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: heroSlide 20s infinite ease-in-out;
+}
 
-  <header>
-    <h1>Safari Holiday Childcare</h1>
-    <p>Trusted childcare for ages 5–12 while parents enjoy their safari holiday</p>
-  </header>
+.hero-slideshow img:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow img:nth-child(2) { animation-delay: 5s; }
+.hero-slideshow img:nth-child(3) { animation-delay: 10s; }
+.hero-slideshow img:nth-child(4) { animation-delay: 15s; }
 
-  <!-- …the rest of your content… -->
+@keyframes heroSlide {
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }
+  25%  { opacity: 1; }
+  30%  { opacity: 0; }
+  100% { opacity: 0; }
+}
 
-</body>
-</html>
-
-</nav>
-
-<header>
-  <h1>Safari Holiday Childcare</h1>
-  <p>Trusted childcare for ages 5–12 while parents enjoy their safari holiday</p>
-</header>
-
-<section>
-<h2>About Our Safari Nanny Service</h2>
-<p>
-We provide professional, resort-based nanny services inside South African safari parks.
-While parents enjoy game drives, spa days, or private dinners, our trained nannies keep children safe, engaged, and happy.
-</p>
-</section>
-
-<section>
-<h2>Activities for Children (Ages 5–12)</h2>
-<div class="grid">
-  <div class="card">🦁 Guided nature walks (safe zones only)</div>
-  <div class="card">🎨 African arts & crafts</div>
-  <div class="card">📚 Storytelling & cultural games</div>
-  <div class="card">🧩 Educational safari games</div>
-</div>
-</section>
-
-<section id="booking">
-<h2>Book a Nanny</h2>
-
-<!-- Calendly Booking -->
-<iframe src="https://calendly.com/YOUR-CALENDLY-USERNAME"
-width="100%" height="600" frameborder="0"></iframe>
-
-<p style="text-align:center">
-OR book instantly via WhatsApp:
-<br>
-<a class="button" href="https://wa.me/YOUR_NUMBER">Book on WhatsApp</a>
-</p>
-</section>
-
-<section id="safety">
-<h2>Parent Trust & Safety</h2>
-<div class="grid">
-  <div class="card">✔ Background-checked nannies</div>
-  <div class="card">✔ First-Aid & child-care trained</div>
-  <div class="card">✔ Resort-approved staff</div>
-  <div class="card">✔ Emergency communication protocols</div>
-</div>
-</section>
-
-<section>
-<h2>Watch Our Kids in Action</h2>
-<iframe width="100%" height="400"
-src="https://www.youtube.com/embed/VIDEO_ID"
-allowfullscreen></iframe>
-</section>
-
-<section>
-<h2>Languages Supported</h2>
-<p>
-🇬🇧 English • 🇿🇦 Afrikaans • 🇹🇿 Swahili • 🇿🇦 isiZulu
-</p>
-</section>
-
-<footer>
-<p>Safari Holiday Childcare © 2026 | South Africa</p>
-</footer>
-
-</body>
-</html>
-
+/* Keep content above the slideshow if needed */
+nav, header, section, footer {
+  position: relative;
+  z-index: 1;
+}
