@@ -1,14 +1,5 @@
 body {
   
-
-<div class="hero-slideshow">
-    <img src="kid1.jpg.webp" alt="Kids 1">
-    <img src="kid2.jpg.webp" alt="Kids 2">
-    <img src="kid3.jpg.png" alt="Kids 3">
-    <img src="kid4.jpg.png" alt="Kids 4">
-</
-}
-
 .hero-slideshow img {
   position: absolute;
   inset: 0;
@@ -101,6 +92,7 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
 
 
 
