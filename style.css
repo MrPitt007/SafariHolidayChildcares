@@ -1,6 +1,7 @@
 
 
 
+
 /* Base reset & typography */
 * { box-sizing: border-box; }
 html, body {
@@ -42,25 +43,28 @@ html, body {
 .bg-slideshow img:nth-child(2) { animation-delay: 6s; }
 .bg-slideshow img:nth-child(3) { animation-delay: 12s; }
 .bg-slideshow img:nth-child(4) { animation-delay: 18s; }
+
 @keyframes bgSlide {
   0% { opacity: 0; }
-  8% { opacity: 1; }
-  25% { opacity: 1; }
-  33% { opacity: 0; }
+  8% { opacity: 1; }  /* fade in */
+  25% { opacity: 1; } /* hold */
+  33% { opacity: 0; } /* fade out */
   100% { opacity: 0; }
 }
 
 /* Keep content above the background */
-nav, header, section, footer { position: relative; z-index: 1; }
+nav, header, main, section, footer, .top-bar { position: relative; z-index: 1; }
 
-/* Language switcher bar */
-.lang-switch {
-  text-align: center;
-  background: rgba(242,242,242,0.7);
-  color: #111;
+/* Top utility bar */
+.top-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px 12px;
-  font-weight: 600;
-  backdrop-filter: blur(4px);
+  background: rgba(242,242,242,0.75);
+  color: #111;
+  backdrop-filter: blur(3px);
 }
 .lang-switch a {
   color: #0b5fff;
@@ -68,6 +72,8 @@ nav, header, section, footer { position: relative; z-index: 1; }
   padding: 0 6px;
 }
 .lang-switch a.active { text-decoration: underline; }
+.brand-switch label { margin-right: 6px; color: #111; }
+.brand-switch select { padding: 6px; border-radius: 6px; }
 
 /* Navigation */
 .site-nav {
@@ -86,7 +92,7 @@ nav, header, section, footer { position: relative; z-index: 1; }
 }
 .site-nav a:hover { background: rgba(255,255,255,0.12); }
 
-/* Hero header */
+/* Header (hero text) */
 .hero {
   padding: 3rem 1rem 1rem;
   text-align: center;
@@ -124,11 +130,15 @@ nav, header, section, footer { position: relative; z-index: 1; }
 }
 .button:hover { background: #019160; }
 
-/* Video */
+/* Embeds */
+.calendly iframe,
 .video iframe {
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 10px;
 }
+
+/* Center helper */
+.center { text-align: center; }
 
 /* Footer */
 .site-footer {
