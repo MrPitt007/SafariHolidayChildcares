@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +81,7 @@
     }
     .btn-whatsapp:hover{ background:#1eb95a; color:#06280c }
 
-    /* ===== Hero slideshow ===== */
+    /* ===== Hero slideshow (kept) ===== */
     .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
     .hero .slide{
       position:absolute; inset:0;
@@ -181,7 +182,7 @@
     <!-- ===== LEFT SIDEBAR (Dropdown menu) ===== -->
     <aside class="sidebar" aria-label="Sidebar navigation">
       <div class="sidebar-header">
-        <a href="#top" class="brand">Safari Holiday Childcare</a>
+        <a class="brand" href="#top">Safari Holiday Childcare</a>
         <button class="sidebar-toggle" aria-expanded="false" aria-controls="side-menu">Menu</button>
       </div>
 
@@ -198,7 +199,7 @@
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="content" id="top">
-      <!-- Hero -->
+      <!-- Hero (slideshow kept) -->
       <section class="hero" aria-label="Hero slideshow">
         <div class="slide" role="img" aria-label="Smiling children with guide near safari vehicle"></div>
         <div class="slide" role="img" aria-label="Outdoor craft activity under acacia shade"></div>
@@ -230,11 +231,11 @@
       <section id="safety" class="section alt">
         <div class="container grid-2">
           <div>
-            <h2>Safety & Trust</h2>
+            <h2>Safety &amp; Trust</h2>
             <p>We meet rigorous standards so you can relax. From background checks to lodge safety protocols, your child’s wellbeing is our priority.</p>
             <ul class="checklist">
               <li>Enhanced background checks on all staff</li>
-              <li>First aid & CPR certification (renewed annually)</li>
+              <li>First aid &amp; CPR certification (renewed annually)</li>
               <li>Child–carer ratios tailored by age</li>
               <li>Secure check‑in/out with ID verification</li>
               <li>Lodge risk assessments and daily site checks</li>
@@ -253,7 +254,7 @@
               <span><strong>Local contacts:</strong> Lodge manager & nearest clinic posted at check‑in.</span>
             </div>
             <div class="emergency-card">
-              <strong>Allergies & Medication</strong>
+              <strong>Allergies &amp; Medication</strong>
               <span>Please share medical needs during booking. We store details securely and brief your carer.</span>
             </div>
           </div>
@@ -291,17 +292,17 @@
           <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
 
           <div class="calendly-wrapper" aria-label="Calendly booking">
-            <!-- TODO: Replace data-url with your scheduling link -->
+            <!-- Replace data-url with your scheduling link -->
             <div class="calendly-inline-widget"
                  data-url="YOUR_CALENDLY_URL"
                  style="min-width:320px;height:700px;"></div>
           </div>
 
           <div class="booking-actions">
-            <!-- TODO: Replace number with your WhatsApp number (no + or spaces) -->
-            <a class="btn btn-whatsapp"
-               href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability."
-               target="_blank" rel="noopener">💬 WhatsApp us</a>
+            <a class="btn-whatsapp" target="_blank" rel="noopener"
+               href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">
+              💬 WhatsApp us
+            </a>
             <a class="btn btn-outline" href="#contact">Prefer email? Contact us</a>
           </div>
 
@@ -331,11 +332,10 @@
         <div class="container">
           <h2>How it works</h2>
           <div class="yt-embed" aria-label="Intro video">
-            <!-- TODO: Replace VIDEO_ID -->
+            <!-- Replace VIDEO_ID with your YouTube video id -->
             <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                    title="Safari childcare overview"
+                    title="Intro video"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
           </div>
         </div>
@@ -345,33 +345,9 @@
       <section id="contact" class="section alt">
         <div class="container">
           <h2>Contact us</h2>
-          <p>
-            <!-- TODO: Replace email -->
-            Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a>
-          </p>
-          <p>
-            <!-- TODO: Replace phone -->
-            Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a>
-          </p>
-
-          <!-- Optional contact form (uses mailto by default or plug into Formspree/Formspark) -->
-          <form class="emergency-card" action="mailto:hello@safari-childcare.example" method="post" enctype="text/plain">
-            <strong>Quick message</strong>
-            <label>
-              Your name
-              <input type="text" name="name" required style="width:100%; padding:.6rem; margin-top:.3rem; border:1px solid #ddd; border-radius:10px;">
-            </label>
-            <label>
-              Your email
-              <input type="email" name="email" required style="width:100%; padding:.6rem; margin-top:.3rem; border:1px solid #ddd; border-radius:10px;">
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="4" required style="width:100%; padding:.6rem; margin-top:.3rem; border:1px solid #ddd; border-radius:10px;"></textarea>
-            </label>
-            <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send</button>
-            <small class="smallprint">Prefer WhatsApp? Use the button above for fastest replies.</small>
-          </form>
+          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+          <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
         </div>
       </section>
     </main>
@@ -403,9 +379,9 @@
       });
     }
 
-    // Hero slideshow image URLs — TODO: replace with your own images
+    // Hero slideshow image URLs — replace with your own images if needed
     const heroImages = [
-      'https://images.unsplash.com/photo-1548092372-67a2b2705f78?q=80&w=1920&auto=format&fit=crop', // placeholder
+      'https://images.unsplash.com/photo-1548092372-67a2b2705f78?q=80&w=1920&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1519832950132-5c7f1b6fc0a7?q=80&w=1920&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1520975612533-07ea0b42b4fd?q=80&w=1920&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop'
@@ -414,7 +390,7 @@
       el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
     });
 
-    // Respect "reduce motion": pause animation if user prefers reduced motion
+    // Respect "reduce motion"
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     function updateMotion(){
       if (mq.matches){
@@ -427,5 +403,4 @@
     mq.addEventListener?.('change', updateMotion);
     updateMotion();
   </script>
-</body>
-</html>
+</
