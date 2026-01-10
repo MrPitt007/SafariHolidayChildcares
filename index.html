@@ -7,7 +7,7 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
 
-  <!-- Calendly widget styles (correct tag) -->
+  <!-- Calendly widget styles -->
   <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 
   <style>
@@ -91,11 +91,7 @@
       100%{opacity:0}
     }
 
-    /* 3D canvas sits above slides but below overlay/text */
-    .hero-canvas{
-      position:absolute; inset:0; z-index:1; pointer-events:none;
-    }
-
+    .hero-canvas{ position:absolute; inset:0; z-index:1; pointer-events:none; }
     .hero-overlay{
       position:relative; z-index:2; width:100%; height:100%;
       background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
@@ -108,25 +104,21 @@
     .section{ padding:56px 0 }
     .section.alt{ background:var(--bg-alt) }
 
-    /* Safety & Trust */
     .grid-2{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center; }
     .checklist{ margin:.6rem 0; padding-left: 1rem; }
     .checklist li{ margin:.4rem 0; list-style:"✔  "; }
     .trust-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 18px; }
     .trust-item{ background:#fafafa; border:1px solid #eee; border-radius:12px; padding:.7rem 1rem; display:flex; align-items:center; gap:.5rem; }
 
-    /* Reviews */
     .reviews .review-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:12px; }
     .review{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:18px; }
     .stars{ color:#f5b301; letter-spacing:2px; font-size:1.1rem; }
     .review footer{ margin-top:.6rem; color:var(--muted); font-size:.95rem }
 
-    /* Booking (Calendly + WhatsApp) */
     .calendly-wrapper{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0 16px; }
     .booking-actions{ margin: 12px 0 0 }
     .language-panel{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:18px; }
 
-    /* Hire Nanny */
     .nanny-badges{ display:flex; gap:.6rem; flex-wrap:wrap; margin:.6rem 0 1rem; }
     .nanny-badge{ background:#fafafa; border:1px solid #eee; border-radius:999px; padding:.4rem .7rem; font-weight:600; font-size:.95rem; }
 
@@ -147,27 +139,15 @@
     .pricing-card ul{ margin:12px 0; padding-left:18px; }
     .pricing-price{ font-size:1.4rem; font-weight:700; color:var(--brand); margin-top:12px; }
 
-    /* Emergency contact */
     .emergency-fab{
       position:fixed; right:18px; bottom:18px; z-index:1100;
       background:#d32f2f; color:#fff; border:none; border-radius:999px;
       padding:.8rem 1rem; font-weight:700; box-shadow:0 10px 30px rgba(0,0,0,.18); cursor:pointer;
     }
-    .emergency-card{
-      display:flex; flex-direction:column; gap:.4rem;
-      background:var(--panel); border:1px solid #eee; border-radius:16px;
-      box-shadow:var(--shadow); padding:18px; margin-top:12px;
-    }
 
-    /* Video embed */
-    .yt-embed{ position:relative; width:100%; padding-top:56.25%; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#000; }
-    .yt-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-
-    /* Footer */
     .footer{ background:#0f0f0f; color:#d6d6d6; padding:28px 0 16px; margin-top:40px }
     .smallprint{ border-top:1px solid #2a2a2a; margin-top:12px; padding-top:12px; font-size:.9rem; color:#9a9a9a }
 
-    /* ===== Responsive (sidebar collapses) ===== */
     @media (max-width: 960px){
       .layout{ grid-template-columns: 1fr; }
       .sidebar{ position:relative; height:auto; }
@@ -178,18 +158,14 @@
       .trust-items{ grid-template-columns:1fr 1fr }
       .hero{ min-height:56vh }
     }
-
-    /* Accessibility */
     :focus-visible{ outline:3px solid var(--brand-2); outline-offset:2px }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion:reduce){
       .hero .slide{ animation:none; opacity:0 }
       .hero .slide:nth-child(1){ opacity:1 }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
   <div class="layout">
     <!-- ===== LEFT SIDEBAR ===== -->
@@ -199,55 +175,73 @@
         <button class="sidebar-toggle" aria-expanded="false" aria-controls="side-menu">Menu</button>
       </div>
 
-      <!-- Proper links -->
+      <!-- ORDER: Book Now, About, Safety & Trust, Reviews, Hire a Nanny, Pricing, Contact -->
       <nav id="side-menu" class="side-menu" role="navigation">
-        <a class="side-link" href="#booking">Book Now</a>
-        <a class="side-link" href="#reviews">Reviews</a>
-        <a class="side-link" href="#nanny">Hire a Nanny</a>
-        <a class="side-link" href="#safety">Safety &amp; Trust</a>
-        <a class="side-link" href="#about">About</a>
-        <a class="side-link" href="#pricing">Pricing</a>
-        <a class="side-link" href="#contact">Contact</a>
+        <a href="#booking" class="side-link">Book Now</a>
+        <a href="#about" class="side-link">About</a>
+        <a href="#safety" class="side-link">Safety &amp; Trust</a>
+        <a href="#reviews" class="side-link">Reviews</a>
+        <a href="#nanny" class="side-link">Hire a Nanny</a>
+        <a href="#pricing" class="side-link">Pricing</a>
+        <a href="#contact" class="side-link">Contact</a>
       </nav>
     </aside>
 
     <!-- ===== MAIN CONTENT ===== -->
-    <main class="content" id="top">
-      <!-- Hero (slideshow + 3D canvas) -->
+    <main class="content">
+      <!-- Hero stays on top (visual header) -->
       <section class="hero" aria-label="Hero slideshow" id="hero">
-        <!-- Slides (images) -->
         <div class="slide" role="img" aria-label="Slide 1"></div>
         <div class="slide" role="img" aria-label="Slide 2"></div>
         <div class="slide" role="img" aria-label="Slide 3"></div>
         <div class="slide" role="img" aria-label="Slide 4"></div>
-
-        <!-- 3D canvas -->
         <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
-
-        <!-- Overlay & text -->
         <div class="hero-overlay">
           <div class="container hero-inner">
             <h1>Childcare you can trust—so your safari can be unforgettable</h1>
             <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
             <div class="hero-ctas">
-              <a class="btn btn-primary" href="#booking">Book a session</a>
-              <a class="btn btn-outline" href="#safety">See our safety measures</a>
+              <a href="#booking" class="btn btn-primary">Book a session</a>
+              <a href="#safety" class="btn btn-outline">See our safety measures</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- About -->
+      <!-- 1) BOOK NOW -->
+      <section id="booking" class="section">
+        <div class="container">
+          <h2>Book Now</h2>
+          <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
+          <div class="calendly-wrapper" aria-label="Calendly booking">
+            <div class="calendly-inline-widget"
+                 data-url="YOUR_CALENDLY_URL"
+                 style="min-width:320px;height:700px;"></div>
+          </div>
+          <div class="booking-actions">
+            <a id="wa-link" class="btn-whatsapp"
+               href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">
+              💬 WhatsApp us
+            </a>
+            <a href="#contact" class="btn btn-outline">Prefer email? Contact us</a>
+          </div>
+          <div class="language-panel" aria-label="Language support" style="margin-top:14px;">
+            <strong>Languages:</strong> English • Swahili • Afrikaans (ask for others)
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) ABOUT -->
       <section id="about" class="section">
         <div class="container">
-          <h2>About Our Nanny Service (Ages 5–12)</h2>
+          <h2>About</h2>
+          <h3>About Our Nanny Service (Ages 5–12)</h3>
           <p>
             Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within South African safari lodges and holiday resorts. Our service is designed to give parents peace of mind while they enjoy game drives, spa treatments, private dinners, or excursions, knowing their children are safe, supervised, and happily engaged.
           </p>
           <p>
             Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are carefully planned to suit each child’s age, interests, and energy level, ensuring every child feels comfortable, included, and cared for.
           </p>
-
           <h3>What Our Nannies Do</h3>
           <ul class="checklist">
             <li><strong>Supervised care in safe resort areas:</strong> Children remain within approved lodge or resort spaces at all times.</li>
@@ -259,10 +253,319 @@
         </div>
       </section>
 
-      <!-- Safety & Trust -->
+      <!-- 3) SAFETY & TRUST -->
       <section id="safety" class="section alt">
         <div class="container grid-2">
           <div>
             <h2>Safety &amp; Trust</h2>
             <p>We meet rigorous standards so you can relax. From background checks to lodge safety protocols, your child’s wellbeing is our priority.</p>
             <ul class="checklist">
+              <li>Enhanced background checks on all staff</li>
+              <li>First aid &amp; CPR certification (renewed annually)</li>
+              <li>Child–carer ratios tailored by age</li>
+              <li>Secure check‑in/out with ID verification</li>
+              <li>Lodge risk assessments and daily site checks</li>
+            </ul>
+            <div class="trust-items">
+              <div class="trust-item">🩺 First Aid</div>
+              <div class="trust-item">🧑‍🏫 Trained Staff</div>
+              <div class="trust-item">🛡️ Safeguarding</div>
+              <div class="trust-item">📋 Protocols</div>
+            </div>
+          </div>
+          <div>
+            <div class="emergency-card" aria-live="polite">
+              <strong>Emergency readiness</strong>
+              <span>On‑site kits, radio/phone connectivity, and lodge coordination.</span>
+              <span><strong>Local contacts:</strong> Lodge manager & nearest clinic posted at check‑in.</span>
+            </div>
+            <div class="emergency-card">
+              <strong>Allergies &amp; Medication</strong>
+              <span>Please share medical needs during booking. We store details securely and brief your carer.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) REVIEWS -->
+      <section id="reviews" class="section reviews">
+        <div class="container">
+          <h2>Reviews</h2>
+          <div class="review-grid">
+            <article class="review" aria-label="Review from Emma">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <p>“Our kids loved the animal tracking games! We felt completely at ease.”</p>
+              <footer>— Emma • July 2025</footer>
+            </article>
+            <article class="review" aria-label="Review from Daniel">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <p>“Flexible hours and super professional. The best part of our trip.”</p>
+              <footer>— Daniel • Aug 2025</footer>
+            </article>
+            <article class="review" aria-label="Review from Aisha">
+              <div class="stars" aria-label="5 stars">★★★★★</div>
+              <p>“Safety briefing was thorough and the activities were meaningful.”</p>
+              <footer>— Aisha • Sept 2025</footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5) HIRE A NANNY -->
+      <section id="nanny" class="section alt">
+        <div class="container">
+          <h2>Hire a Nanny</h2>
+          <p>For families wanting consistent care across multiple days, book a private nanny.</p>
+          <div class="nanny-badges">
+            <span class="nanny-badge">Daily &amp; multi‑day</span>
+            <span class="nanny-badge">Evenings available</span>
+            <span class="nanny-badge">Sibling discounts</span>
+          </div>
+          <a href="#booking" class="btn btn-primary">Check availability</a>
+        </div>
+      </section>
+
+      <!-- 6) PRICING -->
+      <section id="pricing" class="section alt section-frame">
+        <canvas id="pricing-canvas" class="section-canvas" aria-hidden="true"></canvas>
+        <div class="pricing-layer container">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <h2>Pricing</h2>
+            <div class="pricing-controls" aria-label="Currency selector">
+              <label for="currency" style="font-weight:600;">Currency:</label>
+              <select id="currency" name="currency" style="padding:.5rem .7rem; border:1px solid #ddd; border-radius:8px;">
+                <option value="USD" selected>USD ($)</option>
+                <option value="ZAR">ZAR (R)</option>
+              </select>
+            </div>
+          </div>
+
+          <p>Choose the package that best suits your family’s needs. All services include qualified nannies, safety protocols, and engaging activities for children aged 5–12.</p>
+
+          <div class="pricing-grid" id="pricing-grid">
+            <article class="pricing-card tilt" data-price-usd="50" data-price-zar="925">
+              <h3>Basic</h3>
+              <p>Perfect for short sessions during your safari holiday.</p>
+              <ul>
+                <li>Up to 3 hours of care</li>
+                <li>Age-appropriate activities</li>
+                <li>Snack supervision</li>
+              </ul>
+              <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">50</span> <span class="price-unit">/ session</span></p>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </article>
+
+            <article class="pricing-card tilt" data-price-usd="90" data-price-zar="1665">
+              <h3>Standard</h3>
+              <p>Ideal for half-day coverage while you enjoy excursions.</p>
+              <ul>
+                <li>Up to 6 hours of care</li>
+                <li>Educational activities &amp; games</li>
+                <li>Meal assistance</li>
+              </ul>
+              <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">90</span> <span class="price-unit">/ session</span></p>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </article>
+
+            <article class="pricing-card tilt" data-price-usd="150" data-price-zar="2775">
+              <h3>Premium</h3>
+              <p>For full-day care and evening coverage with bedtime routine.</p>
+              <ul>
+                <li>Up to 10 hours of care</li>
+                <li>Full activity schedule</li>
+                <li>Homework &amp; bedtime support</li>
+              </ul>
+              <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">150</span> <span class="price-unit">/ day</span></p>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </article>
+          </div>
+
+          <p style="margin-top:18px; font-size:.9rem; color:var(--muted);">
+            *Prices are indicative and may vary by lodge location and special requests.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7) CONTACT -->
+      <section id="contact" class="section alt">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+          <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Emergency quick dial -->
+  <button class="emergency-fab" aria-label="Emergency contact button" onclick="alert('Your carer will provide the local emergency contact sheet at check-in.')">
+    Emergency Info
+  </button>
+
+  <!-- Calendly script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+  <!-- Three.js for 3D layers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js"></script>
+
+  <script>
+    // After DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar toggle
+      const toggleBtn = document.querySelector('.sidebar-toggle');
+      const menu = document.getElementById('side-menu');
+      if (toggleBtn && menu){
+        toggleBtn.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', String(open));
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && menu.classList.contains('open')){
+            menu.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Hero slideshow images (5s cadence)
+      const heroImages = [
+        'kid4.jpg.png',
+        'kid1.jpg.webp',
+        'kid2.jpg.webp',
+        'kid3.jpg.png'
+      ];
+      document.querySelectorAll('.hero .slide').forEach((el, i) => {
+        el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
+      });
+
+      // Currency Selector
+      const currencySelect = document.getElementById('currency');
+      const pricingCards = document.querySelectorAll('.pricing-card');
+      function applyCurrency(curr){
+        pricingCards.forEach(card => {
+          const usd = parseFloat(card.dataset.priceUsd);
+          const zar = parseFloat(card.dataset.priceZar);
+          const priceEl = card.querySelector('.pricing-price .price-value');
+          const symbolEl = card.querySelector('.pricing-price .currency-symbol');
+          if (!priceEl || !symbolEl) return;
+          if (curr === 'ZAR'){
+            priceEl.textContent = isFinite(zar) ? zar.toLocaleString('en-ZA') : '';
+            symbolEl.textContent = 'R';
+          } else {
+            priceEl.textContent = isFinite(usd) ? usd.toLocaleString('en-US') : '';
+            symbolEl.textContent = '$';
+          }
+        });
+      }
+      currencySelect?.addEventListener('change', (e) => applyCurrency(e.target.value));
+      applyCurrency(currencySelect?.value || 'USD');
+
+      // Placeholder notice if Calendly/WhatsApp not set
+      const calendlyWidget = document.querySelector('.calendly-inline-widget');
+      const waLink = document.getElementById('wa-link');
+      if (calendlyWidget && calendlyWidget.dataset.url.includes('YOUR_CALENDLY_URL')){
+        console.warn('Calendly URL placeholder detected.');
+      }
+      if (waLink && waLink.href.includes('YOUR_WHATSAPP_NUMBER')){
+        waLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('WhatsApp number coming soon. Please use email or check back later.');
+        });
+      }
+
+      // 3D particles (Hero + Pricing) — respect reduced motion
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function initParticles(canvas, containerEl, density=900, speedMul=1){
+        if (!window.THREE || !canvas || !containerEl) return null;
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+        camera.position.z = 6;
+
+        function setSize(){
+          const r = containerEl.getBoundingClientRect();
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          renderer.setSize(r.width, r.height);
+          camera.aspect = r.width / r.height;
+          camera.updateProjectionMatrix();
+        }
+        setSize();
+        window.addEventListener('resize', setSize);
+
+        const COUNT = density;
+        const positions = new Float32Array(COUNT * 3);
+        for (let i=0;i<COUNT;i++){
+          positions[i*3+0] = (Math.random() - 0.5) * 20;
+          positions[i*3+1] = (Math.random() - 0.5) * 12;
+          positions[i*3+2] = (Math.random() - 0.5) * 14;
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.04, sizeAttenuation:true, transparent:true, opacity:0.75 });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        const mouse = { x:0, y:0 };
+        function onMove(e){
+          const r = containerEl.getBoundingClientRect();
+          mouse.x = (e.clientX - r.left) / r.width  - 0.5;
+          mouse.y = (e.clientY - r.top)  / r.height - 0.5;
+        }
+        containerEl.addEventListener('pointermove', onMove);
+
+        const clock = new THREE.Clock();
+        let raf;
+        function animate(){
+          raf = requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+          points.rotation.y = t * (0.06 * speedMul);
+          points.rotation.x = t * (0.02 * speedMul);
+          camera.position.x += (mouse.x * 1.2 - camera.position.x) * 0.05;
+          camera.position.y += (-mouse.y * 0.8 - camera.position.y) * 0.05;
+          camera.lookAt(0,0,0);
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        function destroy(){
+          cancelAnimationFrame(raf);
+          window.removeEventListener('resize', setSize);
+          containerEl.removeEventListener('pointermove', onMove);
+          renderer.dispose(); geometry.dispose(); material.dispose();
+          const ctx = canvas.getContext('2d'); if (ctx) ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+        return { destroy, resize:setSize };
+      }
+
+      const heroSection = document.getElementById('hero');
+      const heroCanvas  = document.getElementById('hero-canvas');
+      const pricingSection = document.getElementById('pricing');
+      const pricingCanvas  = document.getElementById('pricing-canvas');
+
+      let hero3D = null, pricing3D = null;
+      function enable3D(){
+        hero3D = initParticles(heroCanvas, heroSection, 1200, 1);
+        pricing3D = initParticles(pricingCanvas, pricingSection, 700, 0.6);
+      }
+      function disable3D(){
+        hero3D?.destroy?.(); hero3D = null;
+        pricing3D?.destroy?.(); pricing3D = null;
+      }
+      if (!reduceMotion.matches) enable3D();
+      reduceMotion.addEventListener?.('etTilt(){ card.style.transform = 'rotateX(0) rotateY(0)'; }
+        card.addEventListener('pointermove', setTilt);
+        card.addEventListener('pointerleave', () => { rect = null; resetTilt(); });
+        window.addEventListener('scroll', () => rect = null, { passive:true });
+        window.addEventListener('resize', () => rect = null);
+      });
+      if (reduceMotion.matches){
+        tiltCards.forEach(c => c.style.transform = 'none');
+      }
+      reduceMotion.addEventListener?.('change', e => {
+        if (e.matches){ tiltCards.forEach(c => c.style.transform = 'none'); }
+      });
+    });
+  </script>
+</body>
+</html>
