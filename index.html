@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,19 +85,28 @@
       position:absolute; inset:0;
       background:center/cover no-repeat #000;
       opacity:0; transform:scale(1.02);
-      animation:fade 28s infinite; /* 4 slides × ~7s each */
+      animation:fade 20s infinite; /* 4 slides × 5s each */
     }
+    /* 4 slides: delays staggered every 5s */
     .hero .slide:nth-child(1){ animation-delay:0s }
-    .hero .slide:nth-child(2){ animation-delay:7s }
-    .hero .slide:nth-child(3){ animation-delay:14s }
-    .hero .slide:nth-child(4){ animation-delay:21s }
+    .hero .slide:nth-child(2){ animation-delay:5s }
+    .hero .slide:nth-child(3){ animation-delay:10s }
+    .hero .slide:nth-child(4){ animation-delay:15s }
+
+    /* Fade keyframes tuned for 5-second cadence:
+       - 0–5%: fade in (~0.25s of 5s)
+       - 5–45%: stay visible (~2s of 5s)
+       - 45–55%: fade out (~0.5s of 5s)
+       - remainder: stay hidden
+    */
     @keyframes fade{
       0%{opacity:0}
-      6%{opacity:1}
-      25%{opacity:1}
-      31%{opacity:0}
+      5%{opacity:1}
+      45%{opacity:1}
+      55%{opacity:0}
       100%{opacity:0}
     }
+
     .hero-overlay{
       position:relative; z-index:1; width:100%; height:100%;
       background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
@@ -196,20 +206,20 @@
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="content" id="top">
-      <!-- Hero (slideshow) -->
+      <!-- Hero (slideshow with 4 images, 5s cadence) -->
       <section class="hero" aria-label="Hero slideshow">
-        <div class="slide" role="img" aria-label="Scene 1"></div>
-        <div class="slide" role="img" aria-label="Scene 2"></div>
-        <div class="slide" role="img" aria-label="Scene 3"></div>
-        <div class="slide" role="img" aria-label="Scene 4"></div>
+        <div class="slide" role="img" aria-label="Slide 1"></div>
+        <div class="slide" role="img" aria-label="Slide 2"></div>
+        <div class="slide" role="img" aria-label="Slide 3"></div>
+        <div class="slide" role="img" aria-label="Slide 4"></div>
 
         <div class="hero-overlay">
           <div class="container hero-inner">
             <h1>Childcare you can trust—so your safari can be unforgettable</h1>
             <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
             <div class="hero-ctas">
-              <a class="btn btn-primary" href="#booking">Book a session</a>
-              <a class="btn btn-outline" href="#safety">See our safety measures</a>
+              <a href="#booking" class="btn btn-primary">Book a session</a>
+              <a href="#safety" class="btn btn-outline">See our safety measures</a>
             </div>
           </div>
         </div>
@@ -220,182 +230,3 @@
         <div class="container">
           <h2>What we do</h2>
           <p>We provide on‑site childcare during your safari holiday, blending fun activities with environmental education.
-             Our team is first‑aid certified and trained for lodge settings.</p>
-        </div>
-      </section>
-
-      <!-- Safety & Trust -->
-      <section id="safety" class="section alt">
-        <div class="container grid-2">
-          <div>
-            <h2>Safety &amp; Trust</h2>
-            <p>We meet rigorous standards so you can relax. From background checks to lodge safety protocols, your child’s wellbeing is our priority.</p>
-            <ul class="checklist">
-              <li>Enhanced background checks on all staff</li>
-              <li>First aid &amp; CPR certification (renewed annually)</li>
-              <li>Child–carer ratios tailored by age</li>
-              <li>Secure check‑in/out with ID verification</li>
-              <li>Lodge risk assessments and daily site checks</li>
-            </ul>
-            <div class="trust-items">
-              <div class="trust-item">🩺 First Aid</div>
-              <div class="trust-item">🧑‍🏫 Trained Staff</div>
-              <div class="trust-item">🛡️ Safeguarding</div>
-              <div class="trust-item">📋 Protocols</div>
-            </div>
-          </div>
-          <div>
-            <div class="emergency-card" aria-live="polite">
-              <strong>Emergency readiness</strong>
-              <span>On‑site kits, radio/phone connectivity, and lodge coordination.</span>
-              <span><strong>Local contacts:</strong> Lodge manager & nearest clinic posted at check‑in.</span>
-            </div>
-            <div class="emergency-card">
-              <strong>Allergies &amp; Medication</strong>
-              <span>Please share medical needs during booking. We store details securely and brief your carer.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Reviews -->
-      <section id="reviews" class="section reviews">
-        <div class="container">
-          <h2>Parent reviews</h2>
-          <div class="review-grid">
-            <article class="review" aria-label="Review from Emma">
-              <div class="stars" aria-label="5 stars">★★★★★</div>
-              <p>“Our kids loved the animal tracking games! We felt completely at ease.”</p>
-              <footer>— Emma • July 2025</footer>
-            </article>
-            <article class="review" aria-label="Review from Daniel">
-              <div class="stars" aria-label="5 stars">★★★★★</div>
-              <p>“Flexible hours and super professional. The best part of our trip.”</p>
-              <footer>— Daniel • Aug 2025</footer>
-            </article>
-            <article class="review" aria-label="Review from Aisha">
-              <div class="stars" aria-label="5 stars">★★★★★</div>
-              <p>“Safety briefing was thorough and the activities were meaningful.”</p>
-              <footer>— Aisha • Sept 2025</footer>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Booking -->
-      <section id="booking" class="section">
-        <div class="container">
-          <h2>Book your session</h2>
-          <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
-
-          <div class="calendly-wrapper" aria-label="Calendly booking">
-            <!-- Replace data-url with your scheduling link -->
-            <div class="calendly-inline-widget"
-                 data-url="YOUR_CALENDLY_URL"
-                 style="min-width:320px;height:700px;"></div>
-          </div>
-
-          <div class="booking-actions">
-            <a class="btn-whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
-            <a class="btn btn-outline" href="#contact">Prefer email? Contact us</a>
-          </div>
-
-          <div class="language-panel" aria-label="Language support">
-            <strong>Languages:</strong>
-            <span>English • Swahili • Afrikaans (ask for others)</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Hire a Nanny -->
-      <section id="nanny" class="section alt">
-        <div class="container">
-          <h2>Hire a dedicated nanny</h2>
-          <p>For families wanting consistent care across multiple days, book a private nanny.</p>
-          <div class="nanny-badges">
-            <span class="nanny-badge">Daily &amp; multi‑day</span>
-            <span class="nanny-badge">Evenings available</span>
-            <span class="nanny-badge">Sibling discounts</span>
-          </div>
-          <a class="btn btn-primary" href="#booking">Check availability</a>
-        </div>
-      </section>
-
-      <!-- Video -->
-      <section id="video" class="section">
-        <div class="container">
-          <h2>How it works</h2>
-          <div class="yt-embed" aria-label="Intro video">
-            <!-- Replace VIDEO_ID with your YouTube video id -->
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                    title="How it works video" loading="lazy" allowfullscreen></iframe>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="section alt">
-        <div class="container">
-          <h2>Contact us</h2>
-          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
-          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
-          <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Emergency quick dial -->
-  <button class="emergency-fab" aria-label="Emergency contact button" onclick="alert('Your carer will provide the local emergency contact sheet at check-in.')">
-    Emergency Info
-  </button>
-
-  <!-- Calendly script -->
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-  <script>
-    // Sidebar toggle for mobile
-    const toggleBtn = document.querySelector('.sidebar-toggle');
-    const menu = document.getElementById('side-menu');
-    if (toggleBtn && menu){
-      toggleBtn.addEventListener('click', () => {
-        const open = menu.classList.toggle('open');
-        toggleBtn.setAttribute('aria-expanded', String(open));
-      });
-      // Collapse menu when a link is clicked (mobile)
-      menu.addEventListener('click', (e) => {
-        if (e.target.closest('a') && menu.classList.contains('open')){
-          menu.classList.remove('open');
-          toggleBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // Hero slideshow image URLs — using the files you provided.
-    // Ensure these files are alongside index.html or adjust the paths.
-    const heroImages = [
-      'kid1.jpg.webp',
-      'kid2.jpg.webp',
-      'kid3.jpg.png',
-      'kid4.jpg.png'
-    ];
-    document.querySelectorAll('.hero .slide').forEach((el, i) => {
-      el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
-    });
-
-    // Respect "reduce motion"
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function updateMotion(){
-      if (mq.matches){
-        document.querySelectorAll('.hero .slide').forEach((el, i) => {
-          el.style.animation = 'none';
-          el.style.opacity = i === 0 ? '1' : '0';
-        });
-      }
-    }
-    mq.addEventListener?.('change', updateMotion);
-    updateMotion();
-  </script>
-</body>
-</html>
-
