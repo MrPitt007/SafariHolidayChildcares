@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,3 +116,241 @@
   <!-- ===== Header ===== -->
   <header class="site-header">
     <div class="container nav-wrap">
+      <a href="#home" class="brand">Safari Holiday Childcare</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <!-- Gallery removed from nav -->
+        <a href="#booking" id="navBooking">Booking</a>
+        <a href="#safety">Safety</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#video">Video</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero (background slideshow stays) ===== -->
+  <section class="hero" id="home" aria-label="Hero slideshow">
+    <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
+    <div class="slide" style="background-image:url('kid4.jpg.png')"></div>
+
+    <div class="hero-overlay">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Safari Holiday Childcare</h1>
+        <p class="hero-sub">Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</p>
+        <div class="hero-ctas">
+          <a href="#booking" class="btn btn-primary">Get a Quote</a>
+          <a href="#safety" class="btn btn-ghost">How it Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Booking (MIDDLE OF PAGE) ===== -->
+  <section id="booking" class="section alt" aria-label="Booking">
+    <div class="container">
+      <h2 class="booking-title">Booking</h2>
+      <p class="booking-intro">Choose a time to speak with us or book directly.</p>
+
+      <!-- Calendly live calendar -->
+      <div class="language-panel">
+        <h3>Calendly Live Calendar</h3>
+        <p>Pick a time that suits your itinerary—no emails needed.</p>
+      </div>
+      <div class="calendly-wrapper">
+        <div class="calendly-inline-widget" data-url="CALENDLY_URL" style="min-width:320px;height:720px;"></div>
+      </div>
+
+      <!-- WhatsApp instant booking -->
+      <div class="language-panel">
+        <h3>WhatsApp Instant Booking</h3>
+        <p>Prefer chat? Book instantly via WhatsApp.</p>
+        <div class="booking-actions">
+          <a id="waBookingBtn" class="btn-whatsapp" href="#" target="_blank" rel="noopener">🟢 Book via WhatsApp</a>
+        </div>
+      </div>
+
+      <p class="booking-note">By booking you agree we may use your details to arrange childcare and communicate with you.</p>
+    </div>
+  </section>
+
+  <!-- ===== Safety & Trust ===== -->
+  <section id="safety" class="section" aria-label="Safety & Trust">
+    <div class="container">
+      <h2>Safety &amp; Trust</h2>
+      <div class="trust-items" aria-label="Trust badges">
+        <div class="trust-item">🛡️ First Aid &amp; CPR</div>
+        <div class="trust-item">✅ Background‑checked</div>
+        <div class="trust-item">🏕️ Resort‑based service</div>
+        <div class="trust-item">⭐ 5+ years experience</div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <p>Safety underpins everything we do. Our nannies are vetted, trained, and work closely with lodge staff.</p>
+          <ul class="checklist">
+            <li>Verified ID &amp; background checks</li>
+            <li>First aid &amp; CPR certification</li>
+            <li>Secure sign‑in/out handovers</li>
+            <li>Child‑safe indoor lodge areas</li>
+          </ul>
+
+          <!-- Resort-friendly language -->
+          <div class="language-panel">
+            <h3>Resort-Friendly Language</h3>
+            <p>We use polite, lodge‑ready wording with clear handover and safety terms:</p>
+            <ul class="checklist">
+              <li>“Coordinator” and “handover” instead of technical jargon</li>
+              <li>Clear sign‑in/out &amp; allergy notes</li>
+              <li>Location‑safe phrasing: “indoor lodge activity areas”</li>
+              <li>Contactable during drives via WhatsApp or lodge reception</li>
+            </ul>
+          </div>
+
+          <!-- Emergency contact visibility -->
+          <div class="emergency-card" id="contact">
+            <h3>Emergency Contact</h3>
+            <p>If you need immediate assistance, call or WhatsApp us right away.</p>
+            <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+              <a id="callHotline" class="btn btn-outline" href="tel:+27">📞 Call Hotline</a>
+              <a id="waHotline" class="btn-whatsapp" href="#" target="_blank" rel="noopener">🟢 WhatsApp Hotline</a>
+            </div>
+            <small style="color:var(--muted)">Available during game drive hours and evenings.</small>
+          </div>
+        </div>
+        <div><!-- right column intentionally left without gallery images --></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Reviews ===== -->
+  <section id="reviews" class="section" aria-label="Testimonials & Reviews">
+    <div class="container">
+      <h2>Testimonials &amp; Reviews</h2>
+      <p>What recent families say about our childcare during their safari stays.</p>
+      <div class="reviews">
+        <div class="review-grid">
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>Absolutely brilliant! Our two kids loved their activity sessions. We enjoyed game drives knowing they were safe and happy.</p>
+            <footer>— Parent, Kruger Lodge · <time datetime="2025-08-12">Aug 12, 2025</time></footer>
+          </article>
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>Professional and caring. Crafts, reading, and WhatsApp updates—made our anniversary dinner stress‑free.</p>
+            <footer>— Family, Sabi Sand · <time datetime="2025-11-03">Nov 3, 2025</time></footer>
+          </article>
+          <article class="review">
+            <div class="stars" aria-label="4.5 out of 5 stars">★★★★☆</div>
+            <p>Super friendly and organized. The kids loved the nature journals. We’ll book again next year.</p>
+            <footer>— Couple, Madikwe · <time datetime="2025-09-21">Sep 21, 2025</time></footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Video (BOTTOM OF PAGE) ===== -->
+  <section id="video" class="section alt" aria-label="Video">
+    <div class="container">
+      <h2>Video</h2>
+      <p>A quick look at lodge‑based activities and how we keep children engaged.</p>
+      <div class="yt-embed">
+        <iframe id="ytFrame" src="" title="Safari childcare video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Emergency FAB -->
+  <button id="emergencyFab" class="emergency-fab" title="Emergency contact">🚨 Emergency</button>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div>&copy; <span id="year"></span> Safari Holiday Childcare</div>
+      <div class="smallprint">All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Calendly widget script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Minimal JS: config & helpers -->
+  <script>
+    // ==== CONFIGURE THESE ====
+    const WA_NUMBER = '27XXXXXXXXX';                // WhatsApp (no +)
+    const EMERGENCY_PHONE = '+27 00 000 0000';      // Emergency phone
+    const CALENDLY_URL = 'https://calendly.com/yourname/intro-15m'; // Calendly link
+    const YOUTUBE_VIDEO_ID = 'YOUTUBE_VIDEO_ID';    // YouTube ID
+    // =========================
+
+    // Footer year
+    document.addEventListener('DOMContentLoaded', () => {
+      const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+    });
+
+    // Calendly URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const w = document.querySelector('.calendly-inline-widget');
+      if (w && CALENDLY_URL) w.setAttribute('data-url', CALENDLY_URL);
+    });
+
+    // WhatsApp URLs
+    function waUrl(prefill){
+      const text = prefill || 'Hi Safari Holiday Childcare, we want to book childcare during our safari. Dates: [enter dates], Lodge: [enter lodge]. Children: [ages].';
+      return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const waBtn = document.getElementById('waBookingBtn');
+      if (waBtn && WA_NUMBER !== '27XXXXXXXXX') waBtn.href = waUrl();
+
+      const waHot = document.getElementById('waHotline');
+      if (waHot && WA_NUMBER !== '27XXXXXXXXX') waHot.href = waUrl('Emergency help request—please contact us ASAP.');
+
+      const call = document.getElementById('callHotline');
+      if (call) call.href = `tel:${EMERGENCY_PHONE.replace(/\s+/g,'')}`;
+    });
+
+    // Header Booking: open WhatsApp AND scroll to Booking
+    document.addEventListener('DOMContentLoaded', () => {
+      const navBooking = document.getElementById('navBooking');
+      if(navBooking){
+        navBooking.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (WA_NUMBER && WA_NUMBER !== '27XXXXXXXXX') window.open(waUrl(), '_blank', 'noopener');
+          const target = document.querySelector('#booking');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    });
+
+    // Emergency FAB scroll to card
+    document.addEventListener('DOMContentLoaded', () => {
+      const fab = document.getElementById('emergencyFab');
+      if (fab){
+        fab.addEventListener('click', () => {
+          const target = document.querySelector('#contact');
+          if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      }
+    });
+
+    // YouTube embed at bottom
+    document.addEventListener('DOMContentLoaded', () => {
+      const yt = document.getElementById('ytFrame');
+      if (yt && YOUTUBE_VIDEO_ID) yt.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`;
+    });
+
+    // Performance: pause hero slideshow when off-screen
+    const hero = document.querySelector('.hero');
+    if ('IntersectionObserver' in window && hero){
+      const slides = hero.querySelectorAll('.slide');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => slides.forEach(s => s.style.animationPlayState = e.isIntersecting ? 'running' : 'paused'));
+      }, { threshold: 0.1 });
+      io.observe(hero);
+    }
+  </script>
+</body>
+</html>
