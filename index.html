@@ -9,65 +9,28 @@
   <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
 
   <!-- Calendly widget styles -->
-  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
 
   <style>
     :root{
       --brand:#1c563a; --brand-2:#e1ad3d; --ink:#141414; --muted:#5e5e5e;
       --bg:#ffffff; --bg-alt:#f6f6f6; --panel:#ffffff;
       --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
-      --sidebar:#f8f8f8; --sidebar-border:#e6e6e6;
     }
     *{ box-sizing:border-box }
     html{ scroll-behavior:smooth }
     body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
-    h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
-    h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
-    p{ margin:0 0 1rem; color:var(--muted) }
+    .container{ width:min(1100px,92vw); margin:0 auto }
 
-    /* ===== Layout with left sidebar ===== */
-    .layout{
-      display:grid;
-      grid-template-columns: 260px 1fr;
-      min-height:100vh;
-    }
-    .sidebar{
-      position:sticky; top:0;
-      height:100vh; overflow:auto;
-      background:var(--sidebar);
-      border-right:1px solid var(--sidebar-border);
-      padding:14px;
-    }
-    .sidebar-header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:.6rem; margin-bottom:.6rem;
-    }
-    .brand{
-      color:var(--brand); font-weight:800; text-decoration:none;
-    }
-    .sidebar-toggle{
-      display:none; /* shown on small screens */
-      border:1px solid var(--sidebar-border); background:#fff;
-      padding:.45rem .7rem; border-radius:10px; cursor:pointer;
-    }
-    .side-menu{
-      display:flex; flex-direction:column; gap:.4rem;
-    }
-    .side-link{
-      display:flex; align-items:center; gap:.6rem;
-      text-decoration:none; color:var(--ink);
-      background:#fff; border:1px solid var(--sidebar-border);
-      border-radius:10px; padding:.6rem .8rem; font-weight:600;
-    }
-    .side-link:hover{ background:#f1f5f3 }
+    /* Header */
+    .site-header{ position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.92); backdrop-filter:blur(6px); border-bottom:1px solid #eee; }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
+    .brand{ color:var(--brand); text-decoration:none; font-weight:700 }
+    .nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap }
+    .nav a{ color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:10px }
+    .nav a:hover{ background:#f0f0f0 }
 
-    .content{
-      /* ensure content doesn't hide behind sticky header (none now) */
-    }
-    .container{ width:min(1100px, 92vw); margin:0 auto }
-
-    /* ===== Buttons ===== */
+    /* Buttons */
     .btn{ display:inline-block; padding:.75rem 1rem; border-radius:999px; border:2px solid transparent; font-weight:600; text-decoration:none; }
     .btn-primary{ background:var(--brand); color:#fff }
     .btn-primary:hover{ background:#15432d }
@@ -80,39 +43,28 @@
     }
     .btn-whatsapp:hover{ background:#1eb95a; color:#06280c }
 
-    /* ===== Hero slideshow ===== */
+    /* Hero slideshow */
     .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
-    .hero .slide{
-      position:absolute; inset:0;
-      background:center/cover no-repeat #000;
-      opacity:0; transform:scale(1.02);
-      animation:fade 28s infinite; /* 4 slides × ~7s each */
-    }
-    .hero .slide:nth-child(1){ animation-delay:0s }
-    .hero .slide:nth-child(2){ animation-delay:7s }
-    .hero .slide:nth-child(3){ animation-delay:14s }
-    .hero .slide:nth-child(4){ animation-delay:21s }
-    @keyframes fade{
-      0%{opacity:0}
-      6%{opacity:1}
-      25%{opacity:1}
-      31%{opacity:0}
-      100%{opacity:0}
-    }
-    .hero-overlay{
-      position:relative; z-index:1; width:100%; height:100%;
-      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
-      display:flex; align-items:center;
-    }
+    .hero .slide{ position:absolute; inset:0; background:center/cover no-repeat #000; opacity:0; transform:scale(1.02); animation:fade 28s infinite; }
+    .hero .slide:nth-child(1){ animation-delay:0s } .hero .slide:nth-child(2){ animation-delay:7s } .hero .slide:nth-child(3){ animation-delay:14s } .hero .slide:nth-child(4){ animation-delay:21s }
+    @keyframes fade{ 0%{opacity:0} 6%{opacity:1} 25%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
+    .hero-overlay{ position:relative; z-index:1; width:100%; height:100%; background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25)); display:flex; align-items:center; }
     .hero-inner{ color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.4); padding:64px 0 }
+    .hero-title{ margin:.2rem 0 1rem; font-size:clamp(2rem,4vw + 1rem,3rem) }
+    .hero-sub{ color:#fff; margin-bottom:1.2rem }
     .hero-ctas{ display:flex; gap:.8rem; flex-wrap:wrap }
 
-    /* ===== Sections ===== */
+    /* Sections */
     .section{ padding:56px 0 }
     .section.alt{ background:var(--bg-alt) }
 
+    /* Gallery */
+    .gallery-grid{ margin-top:12px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .gallery-item img{ width:100%; height:260px; object-fit:cover; border-radius:12px; box-shadow:var(--shadow); }
+
     /* Safety & Trust */
     .grid-2{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center; }
+    .media-card img{ width:100%; height:100%; object-fit:cover; border-radius: var(--radius); box-shadow: var(--shadow); }
     .checklist{ margin:.6rem 0; padding-left: 1rem; }
     .checklist li{ margin:.4rem 0; list-style:"✔  "; }
     .trust-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 18px; }
@@ -124,16 +76,14 @@
     .stars{ color:#f5b301; letter-spacing:2px; font-size:1.1rem; }
     .review footer{ margin-top:.6rem; color:var(--muted); font-size:.95rem }
 
-    /* Booking (Calendly + WhatsApp) */
+    /* Calendly & WhatsApp (Booking) */
     .calendly-wrapper{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0 16px; }
-    .booking-actions{ margin: 12px 0 0 }
+    .booking-actions{ margin:12px 0 0 }
+
+    /* Resort-friendly language */
     .language-panel{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:18px; }
 
-    /* Hire Nanny */
-    .nanny-badges{ display:flex; gap:.6rem; flex-wrap:wrap; margin:.6rem 0 1rem; }
-    .nanny-badge{ background:#fafafa; border:1px solid #eee; border-radius:999px; padding:.4rem .7rem; font-weight:600; font-size:.95rem; }
-
-    /* Emergency contact */
+    /* Emergency contact visibility */
     .emergency-fab{
       position:fixed; right:18px; bottom:18px; z-index:1100;
       background:#d32f2f; color:#fff; border:none; border-radius:999px;
@@ -153,30 +103,276 @@
     .footer{ background:#0f0f0f; color:#d6d6d6; padding:28px 0 16px; margin-top:40px }
     .smallprint{ border-top:1px solid #2a2a2a; margin-top:12px; padding-top:12px; font-size:.9rem; color:#9a9a9a }
 
-    /* ===== Responsive (sidebar collapses) ===== */
-    @media (max-width: 960px){
-      .layout{ grid-template-columns: 1fr; }
-      .sidebar{ position:relative; height:auto; }
-      .sidebar-toggle{ display:inline-block; }
-      .side-menu{ display:none; }
-      .side-menu.open{ display:flex; }
+    /* Responsive */
+    @media (max-width:960px){
       .grid-2, .reviews .review-grid { grid-template-columns:1fr; }
       .trust-items{ grid-template-columns:1fr 1fr }
+      .gallery-grid{ grid-template-columns: 1fr 1fr; }
       .hero{ min-height:56vh }
     }
-
-    /* Accessibility */
     :focus-visible{ outline:3px solid var(--brand-2); outline-offset:2px }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion:reduce){
-      .hero .slide{ animation:none; opacity:0 }
-      .hero .slide:nth-child(1){ opacity:1 }
-    }
+    @media (prefers-reduced-motion:reduce){ .hero .slide{ animation:none; opacity:0 } .hero .slide:nth-child(1){ opacity:1 } }
   </style>
 </head>
 <body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">Safari Holiday Childcare</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking" id="navBooking">Booking</a>
+        <a href="#safety">Safety</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#video">Video</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="layout">
-    <!-- ===== LEFT SIDEBAR (Dropdown menu) ===== -->
-    <aside class="sidebar" aria-label="Sidebar navigation">
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home" aria-label="Hero slideshow">
+    <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
+    <div class="slide" style="background-image:url('kid4.jpg.png')"></div>
+
+    <div class="hero-overlay">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Safari Holiday Childcare</h1>
+        <p class="hero-sub">Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#booking">Get a Quote</a>
+          <a class="btn btn-outline" href="#safety">How it Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section id="gallery" class="section alt" aria-label="Gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <p>A few moments from our lodge sessions.</p>
+      <div class="gallery-grid">
+        <figure class="gallery-item"><img src="kid1.jpg.webp" alt="Child enjoying lodge activity 1"></figure>
+        <figure class="gallery-item"><img src="kid2.jpg.webp" alt="Child enjoying lodge activity 2"></figure>
+        <figure class="gallery-item"><img src="kid3.jpg.png"  alt="Child enjoying lodge activity 3"></figure>
+        <figure class="gallery-item"><img src="kid4.jpg.png"  alt="Child enjoying lodge activity 4"></figure>
+        <figure class="gallery-item"><img src="kid2.jpg.webp" alt="Lodge craft time"></figure>
+        <figure class="gallery-item"><img src="kid1.jpg.webp" alt="Reading time at lodge"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING (MIDDLE OF PAGE) ===== -->
+  <section id="booking" class="section alt" aria-label="Booking">
+    <div class="container">
+      <h2 class="booking-title">Booking</h2>
+      <p class="booking-intro">Choose a time to speak with us or book directly.</p>
+
+      <!-- FEATURE 1: Calendly live calendar -->
+      <div class="language-panel">
+        <h3>Calendly Live Calendar</h3>
+        <p>Pick a time that suits your itinerary—no emails needed.</p>
+      </div>
+      <div class="calendly-wrapper">
+        <div class="calendly-inline-widget" data-url="" style="min-width:320px;height:720px;"></div>
+      </div>
+
+      <!-- FEATURE 2: WhatsApp instant booking -->
+      <div class="language-panel">
+        <h3>WhatsApp Instant Booking</h3>
+        <p>Prefer chat? Book instantly via WhatsApp.</p>
+        <div class="booking-actions">
+          <a id="waBookingBtn" class="btn-whatsapp" href="#" target="_blank" rel="noopener">🟢 Book via WhatsApp</a>
+        </div>
+      </div>
+
+      <p class="booking-note">By booking you agree we may use your details to arrange childcare and communicate with you.</p>
+    </div>
+  </section>
+
+  <!-- ===== Safety & Trust ===== -->
+  <section id="safety" class="section" aria-label="Safety & Trust">
+    <div class="container">
+      <h2>Safety &amp; Trust</h2>
+      <div class="trust-items" aria-label="Trust badges">
+        <div class="trust-item">🛡️ First Aid &amp; CPR</div>
+        <div class="trust-item">✅ Background‑checked</div>
+        <div class="trust-item">🏕️ Resort‑based service</div>
+        <div class="trust-item">⭐ 5+ years experience</div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <p>Safety underpins everything we do. Our nannies are vetted, trained, and work closely with lodge staff.</p>
+          <ul class="checklist">
+            <li>Verified ID &amp; background checks</li>
+            <li>First aid &amp; CPR certification</li>
+            <li>Secure sign‑in/out handovers</li>
+            <li>Child‑safe indoor lodge areas</li>
+          </ul>
+
+          <!-- FEATURE 3: Resort-friendly language -->
+          <div class="language-panel">
+            <h3>Resort-Friendly Language</h3>
+            <p>We use polite, lodge-ready wording with clear handover and safety terms:</p>
+            <ul class="checklist">
+              <li>“Coordinator” and “handover” instead of technical jargon</li>
+              <li>Clear sign‑in/out &amp; allergy notes</li>
+              <li>Location-safe phrasing: “indoor lodge activity areas”</li>
+              <li>Contactable during drives via WhatsApp or lodge reception</li>
+            </ul>
+          </div>
+
+          <!-- FEATURE 4: Emergency contact visibility -->
+          <div class="emergency-card" id="contact">
+            <h3>Emergency Contact</h3>
+            <p>If you need immediate assistance, call or WhatsApp us right away.</p>
+            <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+              <a id="callHotline" class="btn btn-primary" href="tel:">📞 Call Hotline</a>
+              <a id="waHotline" class="btn-whatsapp" href="#" target="_blank" rel="noopener">🟢 WhatsApp Hotline</a>
+            </div>
+            <small style="color:var(--muted)">Available during game drive hours and evenings.</small>
+          </div>
+        </div>
+        <div class="media-card">
+          <img src="kid3.jpg.png" alt="Indoor lodge activity area">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Reviews ===== -->
+  <section id="reviews" class="section" aria-label="Testimonials & Reviews">
+    <div class="container">
+      <h2>Testimonials &amp; Reviews</h2>
+      <p>What recent families say about our childcare during their safari stays.</p>
+      <div class="reviews">
+        <div class="review-grid">
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>Absolutely brilliant! Our two kids loved their activity sessions. We enjoyed game drives knowing they were safe and happy.</p>
+            <footer>— Parent, Kruger Lodge · <time datetime="2025-08-12">Aug 12, 2025</time></footer>
+          </article>
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>Professional and caring. Crafts, reading, and WhatsApp updates—made our anniversary dinner stress‑free.</p>
+            <footer>— Family, Sabi Sand · <time datetime="2025-11-03">Nov 3, 2025</time></footer>
+          </article>
+          <article class="review">
+            <div class="stars" aria-label="4.5 out of 5 stars">★★★★☆</div>
+            <p>Super friendly and organized. The kids loved the nature journals. We’ll book again next year.</p>
+            <footer>— Couple, Madikwe · <time datetime="2025-09-21">Sep 21, 2025</time></footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Video (BOTTOM OF PAGE) ===== -->
+  <section id="video" class="section alt" aria-label="Video">
+    <div class="container">
+      <h2>Video</h2>
+      <p>A quick look at lodge‑based activities and how we keep children engaged.</p>
+      <div class="yt-embed">
+        <iframe id="ytFrame" src="" title="Safari childcare video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Emergency FAB -->
+  <button id="emergencyFab" class="emergency-fab" title="Emergency contact">🚨 Emergency</button>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div>&copy; <span id="year"></span> Safari Holiday Childcare</div>
+      <div class="smallprint">All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Calendly widget script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Minimal JS: config & helpers -->
+  <script>
+    // ==== CONFIGURE THESE ====
+    const WA_NUMBER = '27XXXXXXXXX';                // WhatsApp number (no +)
+    const EMERGENCY_PHONE = '+27 00 000 0000';      // Emergency phone shown on page
+    const CALENDLY_URL = 'https://calendly.com/yourname/intro-15m'; // Calendly link
+    const YT_ID = 'YOUTUBE_VIDEO_ID';               // YouTube video ID
+    // =========================
+
+    // Footer year
+    document.addEventListener('DOMContentLoaded', () => {
+      const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+    });
+
+    // Calendly: inject your URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const w = document.querySelector('.calendly-inline-widget');
+      if (w && CALENDLY_URL) w.setAttribute('data-url', CALENDLY_URL);
+    });
+
+    // Build WhatsApp URL (used in booking and emergency)
+    function waUrl(prefill){
+      const text = prefill || 'Hi Safari Holiday Childcare, we want to book childcare during our safari. Dates: [enter dates], Lodge: [enter lodge]. Children: [ages].';
+      return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+
+    // Header Booking: open WhatsApp & scroll to booking (middle)
+    document.addEventListener('DOMContentLoaded', () => {
+      const navBooking = document.getElementById('navBooking');
+      if(navBooking){
+        navBooking.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (WA_NUMBER && WA_NUMBER !== '27XXXXXXXXX') window.open(waUrl(), '_blank', 'noopener');
+          const target = document.querySelector('#booking');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    });
+
+    // Booking section button
+    document.addEventListener('DOMContentLoaded', () => {
+      const waBtn = document.getElementById('waBookingBtn');
+      if (waBtn){ waBtn.href = (WA_NUMBER && WA_NUMBER !== '27XXXXXXXXX') ? waUrl() : '#'; }
+    });
+
+    // Emergency contact: set tel + WhatsApp and show FAB actions
+    document.addEventListener('DOMContentLoaded', () => {
+      const call = document.getElementById('callHotline');
+      const waHot = document.getElementById('waHotline');
+      if (call) call.href = `tel:${EMERGENCY_PHONE.replace(/\s+/g,'')}`;
+      if (waHot) waHot.href = waUrl('Emergency help request—please contact us ASAP.');
+
+      const fab = document.getElementById('emergencyFab');
+      if (fab){
+        fab.addEventListener('click', () => {
+          // Scroll to Contact card inside Safety section
+          const target = document.querySelector('#contact');
+          if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      }
+    });
+
+    // YouTube embed at bottom
+    document.addEventListener('DOMContentLoaded', () => {
+      const yt = document.getElementById('ytFrame');
+      if (yt && YT_ID) yt.src = `https://www.youtube.com/embed/${YT_ID}`;
+    });
+
+    // Performance: pause hero slideshow when off-screen
+    const hero = document.querySelector('.hero');
+    if ('IntersectionObserver' in window && hero){
+      const slides = hero.querySelectorAll('.slide');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => slides.forEach(s => s.style.animationPlayState = e.isIntersecting ? 'running' : 'paused'));
+      }, { threshold: 0.1 });
+      io.observe(hero);
+    }
+  </script>
+</body>
+</html>
