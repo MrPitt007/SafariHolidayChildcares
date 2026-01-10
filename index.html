@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,134 +7,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Safari Holiday Childcare</title>
 
-  <style>
-    /* Basic theme */
-    :root{
-      --brand:#1c563a; --brand-2:#e1ad3d; --ink:#1a1a1a; --muted:#5a5a5a;
-      --bg:#fff; --bg-alt:#f6f6f6; --shadow:0 10px 30px rgba(0,0,0,.08);
-    }
-    html{scroll-behavior:smooth}
-    body{margin:0;color:var(--ink);background:#fff;
-         font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    .container{width:min(1100px,92vw);margin:0 auto}
-    h1{font-size:clamp(2rem,4vw + 1rem,3rem);margin:.2rem 0 1rem}
-
-    /* Header */
-    .site-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);
-                 backdrop-filter:blur(6px);border-bottom:1px solid #eee}
-    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .nav a{color:var(--ink);text-decoration:none;margin:0 .5rem}
-    .nav-toggle{display:none}
-
-    /* ===== Hero with background slideshow ===== */
-    .hero{position:relative;min-height:60vh;isolation:isolate}
-    .slides{position:absolute;inset:0;z-index:0;overflow:hidden}
-    .slide{
-      position:absolute; inset:0;
-      background: center/cover no-repeat #000;
-      opacity:0; transform:scale(1.02);
-      animation:fade 24s infinite;
-    }
-    /* Stagger (4 slides × 6s) */
-    .slide:nth-child(1){animation-delay:0s}
-    .slide:nth-child(2){animation-delay:6s}
-    .slide:nth-child(3){animation-delay:12s}
-    .slide:nth-child(4){animation-delay:18s}
-
-    @keyframes fade{
-      0%{opacity:0}
-      6%{opacity:1}
-      25%{opacity:1}
-      31%{opacity:0}
-      100%{opacity:0}
-    }
-
-    /* Overlay content */
-    .hero-overlay{
-      position:relative; z-index:1; width:100%; height:100%;
-      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
-      display:flex; align-items:center;
-    }
-    .hero-inner{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.4);padding:64px 0}
-    .btn{display:inline-block;padding:.7rem 1rem;border-radius:999px;border:2px solid transparent;font-weight:600;text-decoration:none}
-    .btn-primary{background:var(--brand);color:#fff}
-    .btn-ghost{background:transparent;color:#fff;border-color:#fff;margin-left:.5rem}
-
-    /* Reduce motion: show first slide */
-    @media (prefers-reduced-motion:reduce){
-      .slide{animation:none;opacity:0}
-      .slide:nth-child(1){opacity:1}
-    }
-  </style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header -->
+  <!-- ===== Header ===== -->
   <header class="site-header">
     <div class="container nav-wrap">
-      #homeSafari Holiday Childcare</a>
-      <nav class="nav">
-        #homeHome</a>
-        #galleryGallery</a>
-        #bookingBooking</a>
-        #safetySafety</a>
+      <a class="brand" href="#home">Safari Holiday Childcare</a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#home">
+          <span data-lang="en">Home</span>
+          <span data-lang="af">Tuis</span>
+          <span data-lang="sv">Hem</span>
+        </a>
+        <a href="#video">
+          <span data-lang="en">Video</span>
+          <span data-lang="af">Video</span>
+          <span data-lang="sv">Video</span>
+        </a>
+        <a href="gallery.html">
+          <span data-lang="en">Gallery</span>
+          <span data-lang="af">Galery</span>
+          <span data-lang="sv">Galleri</span>
+        </a>
+        <a href="#booking">
+          <span data-lang="en">Booking</span>
+          <span data-lang="af">Bespreking</span>
+          <span data-lang="sv">Bokning</span>
+        </a>
+        <a href="#safety">
+          <span data-lang="en">Safety</span>
+          <span data-lang="af">Veiligheid</span>
+          <span data-lang="sv">Säkerhet</span>
+        </a>
+
+        <!-- Language switch -->
+        <span class="lang-switch" role="group" aria-label="Language switch">
+          <label for="langSwitch">Lang:</label>
+          <select id="langSwitch" aria-label="Select language">
+            <option value="en">EN</option>
+            <option value="af">AF</option>
+            <option value="sv">SV</option>
+          </select>
+        </span>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="slides" id="slides">
-      <!-- Slides created by JS with your image paths -->
-    </div>
+  <!-- ===== Hero (background slideshow) ===== -->
+  <section class="hero" id="home" aria-label="Hero slideshow">
+    <!-- Slides are static DIVs with background images; your files are next to index.html -->
+    <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
+    <div class="slide" style="background-image:url('kid4.jpg.png')"></div>
 
     <div class="hero-overlay">
       <div class="container hero-inner">
-        <h1>Safari Holiday Childcare</h1>
-        <p>Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</p>
-        #bookingGet a Quote</a>
-        #aboutHow it Works</a>
+        <h1 class="hero-title">
+          <span data-lang="en">Safari Holiday Childcare</span>
+          <span data-lang="af">Safari Vakansie Kinderopvang</span>
+          <span data-lang="sv">Safari Barnpassning</span>
+        </h1>
+
+        <p class="hero-sub">
+          <span data-lang="en">Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</span>
+          <span data-lang="af">Betroubare kinderoppas vir ouderdomme <strong>5–12</strong> terwyl ouers hul safari‑vakansie geniet.</span>
+          <span data-lang="sv">Trygg barnpassning för barn <strong>5–12</strong> medan föräldrarna njuter av sin safari.</span>
+        </p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#booking">
+            <span data-lang="en">Get a Quote</span>
+            <span data-lang="af">Kry ’n Kwotasie</span>
+            <span data-lang="sv">Få en offert</span>
+          </a>
+          <a class="btn btn-ghost" href="#video">
+            <span data-lang="en">How it Works</span>
+            <span data-lang="af">Hoe dit Werk</span>
+            <span data-lang="sv">Så fungerar det</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <script>
-    // --- Configure your image paths here ---
-    const heroImages = [
-      'images/kid1.jpg.webp',
-      'images/kid2.jpg.webp',
-      'images/kid3.jpg.png',
-      'images/kid4.jpg.png',
-    ];
-
-    // Build slide elements
-    const slidesEl = document.getElementById('slides');
-    heroImages.forEach(src => {
-      const div = document.createElement('div');
-      div.className = 'slide';
-      div.style.backgroundImage = `url("${src}")`;
-      slidesEl.appendChild(div);
-    });
-
-    // Optional performance: pause animation when hero not visible
-    const hero = document.querySelector('.hero');
-    if ('IntersectionObserver' in window && hero){
-      const slides = hero.querySelectorAll('.slide');
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          slides.forEach(s => s.style.animationPlayState = e.isIntersecting ? 'running' : 'paused');
-        });
-      }, { threshold: 0.1 });
-      io.observe(hero);
-    }
-
-    // Debug helper: log missing images
-    // (Open DevTools > Console to see any 404s)
-    heroImages.forEach(src => {
-      const img = new Image();
-      img.onload = () => { /* OK */ };
-      img.onerror = () => console.warn('Image failed to load:', src);
-      img.src = src;
-    });
-  </script>
-</body>
-</html>
+  <!-- ===== Safari Video Section ===== -->
+  <section id="video" class="video-section" aria-label="Safari video">
+    <div class="container video-wrap">
+      <div class="video-frame">
+        <!-- Place safari.mp4 next to index.html. Add safari.webm if you have it. -->
+        <video controls playsinline muted preload="metadata" poster="kid4.jpg.png" aria-label="Safari family video highlight">
+          <source src="safari.webm" type="video/webm" />
+          <source src="safari.mp4"  type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
