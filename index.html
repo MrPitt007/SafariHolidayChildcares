@@ -8,7 +8,7 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
 
-  <!-- Calendly widget styles (valid tag) -->
+  <!-- Calendly widget styles (correct tag) -->
   <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 
   <style>
@@ -20,7 +20,8 @@
     }
     *{ box-sizing:border-box }
     html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    body{ margin:0; color:var(--ink); background:var(--bg);
+          font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
     h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
     h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
     h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
@@ -103,7 +104,7 @@
     .grid-2{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center; }
     .checklist{ margin:.6rem 0; padding-left: 1rem; }
     .checklist li{ margin:.4rem 0; list-style:"✔  "; }
-    .trust-items{ display:grid; grid-template-columns:repeat(4,1; }
+    .trust-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 18px; }
     .trust-item{ background:#fafafa; border:1px solid #eee; border-radius:12px; padding:.7rem 1rem; display:flex; align-items:center; gap:.5rem; }
 
     /* Reviews */
@@ -178,19 +179,19 @@
     <!-- ===== LEFT SIDEBAR (Dropdown menu) ===== -->
     <aside class="sidebar" aria-label="Sidebar navigation">
       <div class="sidebar-header">
-        #topSafari Holiday Childcare</a>
+        <a class="brand" href="#top">Safari Holiday Childcare</a>
         <button class="sidebar-toggle" aria-expanded="false" aria-controls="side-menu">Menu</button>
       </div>
 
-      <!-- Ordered + separated "Hire a Nanny" and "Pricing" -->
+      <!-- Proper links (fixed) -->
       <nav id="side-menu" class="side-menu" role="navigation">
-        #bookingBook Now</a>
-        #reviewsReviews</a>
-        #nannyHire a Nanny</a>
-        #safetySafety &amp; Trust</a>
-        #aboutAbout</a>
-        #pricingPricing</a>
-        #contactContact</a>
+        <a class="side-link" href="#booking">Book Now</a>
+        <a class="side-link" href="#reviews">Reviews</a>
+        <a class="side-link" href="#nanny">Hire a Nanny</a>
+        <a class="side-link" href="#safety">Safety &amp; Trust</a>
+        <a class="side-link" href="#about">About</a>
+        <a class="side-link" href="#pricing">Pricing</a>
+        <a class="side-link" href="#contact">Contact</a>
       </nav>
     </aside>
 
@@ -198,7 +199,6 @@
     <main class="content" id="top">
       <!-- Hero (slideshow) -->
       <section class="hero" aria-label="Hero slideshow">
-        <!-- exactly 4 slides -->
         <div class="slide" role="img" aria-label="Slide 1"></div>
         <div class="slide" role="img" aria-label="Slide 2"></div>
         <div class="slide" role="img" aria-label="Slide 3"></div>
@@ -209,8 +209,8 @@
             <h1>Childcare you can trust—so your safari can be unforgettable</h1>
             <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
             <div class="hero-ctas">
-              #bookingBook a session</a>
-              #safetySee our safety measures</a>
+              <a class="btn btn-primary" href="#booking">Book a session</a>
+              <a class="btn btn-outline" href="#safety">See our safety measures</a>
             </div>
           </div>
         </div>
@@ -310,8 +310,8 @@
           </div>
 
           <div class="booking-actions">
-            https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.💬 WhatsApp us</a>
-            #contactPrefer email? Contact us</a>
+            <a class="btn-whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
+            <a class="btn" href="#contact">Prefer email? Contact us</a>
           </div>
 
           <div class="language-panel" aria-label="Language support" style="margin-top:14px;">
@@ -331,7 +331,7 @@
             <span class="nanny-badge">Evenings available</span>
             <span class="nanny-badge">Sibling discounts</span>
           </div>
-          #bookingCheck availability</a>
+          <a class="btn btn-primary" href="#booking">Check availability</a>
         </div>
       </section>
 
@@ -364,7 +364,7 @@
                 <li>Snack supervision</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">50</span> <span class="price-unit">/ session</span></p>
-              #bookingBook Now</a>
+              <a class="btn btn-outline" href="#booking">Book Now</a>
             </article>
 
             <!-- Standard Package -->
@@ -377,7 +377,7 @@
                 <li>Meal assistance</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">90</span> <span class="price-unit">/ session</span></p>
-              #bookingBook Now</a>
+              <a class="btn btn-outline" href="#booking">Book Now</a>
             </article>
 
             <!-- Premium Package -->
@@ -390,7 +390,7 @@
                 <li>Homework &amp; bedtime support</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">150</span> <span class="price-unit">/ day</span></p>
-              #bookingBook Now</a>
+              <a class="btn btn-outline" href="#booking">Book Now</a>
             </article>
 
           </div>
@@ -405,8 +405,8 @@
       <section id="contact" class="section alt">
         <div class="container">
           <h2>Contact us</h2>
-          <p>Email: mailto:hello@safari-childcare.examplehello@safari-childcare.example</a></p>
-          <p>Phone: tel:+10000000000+1 (000) 000‑0000</a></p>
+          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
           <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
         </div>
       </section>
@@ -418,8 +418,8 @@
     Emergency Info
   </button>
 
-  <!-- Calendly script (valid tag) -->
-  https://assets.calendly.com/assets/external/widget.js</script>
+  <!-- Calendly script (correct tag) -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <script>
     // Run JS after DOM is ready
@@ -451,7 +451,7 @@
       const heroSection = document.querySelector('.hero');
       let slides = heroSection.querySelectorAll('.slide');
 
-      // Ensure we have exactly as many slides as images
+      // Ensure we have exactly 4 slides
       const count = heroImages.length;
       if (slides.length < count){
         for(let i = slides.length; i < count; i++){
@@ -461,7 +461,6 @@
         }
         slides = heroSection.querySelectorAll('.slide');
       } else if (slides.length > count){
-        // Remove extra slides (rare case)
         for(let i = slides.length - 1; i >= count; i--){
           slides[i].remove();
         }
