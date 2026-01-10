@@ -1,41 +1,45 @@
 
-/* === Full-screen background slideshow === */
-.bg-slideshow {
-  position: fixed;        /* sit behind everything */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;            /* behind page content */
+
+/* Hero slideshow at top */
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  height: 60vh;          /* adjust as you like */
+  min-height: 380px;
   overflow: hidden;
-  background: #000;       /* avoids white flashes */
 }
 
-.bg-slideshow img {
+.hero-slideshow img {
   position: absolute;
-  inset: 0;               /* top/right/bottom/left: 0 */
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* fill screen neatly */
+  object-fit: cover;
   opacity: 0;
-  animation: bgSlide 20s infinite ease-in-out;
+  animation: heroSlide 20s infinite ease-in-out;
 }
 
-/* Staggered delays for 4 images (5s each) */
-.bg-slideshow img:nth-child(1) { animation-delay: 0s; }
-.bg-slideshow img:nth-child(2) { animation-delay: 5s; }
-.bg-slideshow img:nth-child(3) { animation-delay: 10s; }
-.bg-slideshow img:nth-child(4) { animation-delay: 15s; }
+/* Staggered start times (4 images → 5s each) */
+.hero-slideshow img:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow img:nth-child(2) { animation-delay: 5s; }
+.hero-slideshow img:nth-child(3) { animation-delay: 10s; }
+.hero-slideshow img:nth-child(4) { animation-delay: 15s; }
 
-@keyframes bgSlide {
+@keyframes heroSlide {
   0%   { opacity: 0; }
-  5%   { opacity: 1; }  /* fade in */
-  25%  { opacity: 1; }  /* stay visible */
-  30%  { opacity: 0; }  /* fade out */
+  5%   { opacity: 1; }
+  25%  { opacity: 1; }
+  30%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
-/* Optional: make text readable over photos */
+/* Keep page content above the slideshow if needed */
+nav, header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: make text more readable over photos */
 header h1, header p, nav a {
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
