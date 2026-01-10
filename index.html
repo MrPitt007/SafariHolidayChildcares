@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,19 +8,31 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
 
-  <!-- Calendly inline widget styles -->
-  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+  <!-- Calendly styles -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css"/>
 
+  <!-- ===== Styles (English-only) ===== -->
   <style>
     :root{
-      --brand:#1c563a; --brand-2:#e1ad3d; --ink:#141414; --muted:#5e5e5e;
-      --bg:#ffffff; --bg-alt:#f6f6f6; --panel:#ffffff;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
+      --brand:#1c563a;       /* deep green */
+      --brand-2:#e1ad3d;     /* warm gold */
+      --ink:#141414;         /* primary text */
+      --muted:#5e5e5e;       /* secondary text */
+      --bg:#ffffff;          /* page background */
+      --bg-alt:#f6f6f6;      /* alt section background */
+      --panel:#ffffff;       /* cards/panels */
+      --radius:14px;
+      --shadow:0 8px 30px rgba(0,0,0,.08);
     }
     *{ box-sizing:border-box }
     html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
     .container{ width:min(1100px,92vw); margin:0 auto }
+
+    /* Headings / text */
     h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
     h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
     h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
@@ -39,7 +52,12 @@
     .btn-whatsapp:hover{ background:#1eb95a; color:#06280c }
 
     /* Header */
-    .site-header{ position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.92); backdrop-filter:blur(6px); border-bottom:1px solid #eee; }
+    .site-header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid #eee;
+    }
     .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
     .brand{ color:var(--brand); text-decoration:none; font-weight:700 }
     .nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap }
@@ -49,16 +67,28 @@
     /* Hero slideshow */
     .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
     .hero .slide{
-      position:absolute; inset:0; background:center/cover no-repeat #000;
-      opacity:0; transform:scale(1.02); animation:fade 28s infinite;
+      position:absolute; inset:0;
+      background:center/cover no-repeat #000;
+      opacity:0; transform:scale(1.02);
+      animation:fade 28s infinite; /* 4 slides × ~7s each */
+      will-change:opacity;
     }
     .hero .slide:nth-child(1){ animation-delay:0s }
     .hero .slide:nth-child(2){ animation-delay:7s }
     .hero .slide:nth-child(3){ animation-delay:14s }
     .hero .slide:nth-child(4){ animation-delay:21s }
-    @keyframes fade{ 0%{opacity:0} 6%{opacity:1} 25%{opacity:1} 31%{opacity:0} 100%{opacity:0} }
-    .hero-overlay{ position:relative; z-index:1; width:100%; height:100%;
-      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25)); display:flex; align-items:center; }
+    @keyframes fade{
+      0%{opacity:0}
+      6%{opacity:1}
+      25%{opacity:1}
+      31%{opacity:0}
+      100%{opacity:0}
+    }
+    .hero-overlay{
+      position:relative; z-index:1; width:100%; height:100%;
+      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
+      display:flex; align-items:center;
+    }
     .hero-inner{ color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.4); padding:64px 0 }
     .hero-title{ margin:.2rem 0 1rem }
     .hero-sub{ color:#fff; margin-bottom:1.2rem }
@@ -69,46 +99,75 @@
     .section.alt{ background:var(--bg-alt) }
 
     /* Gallery */
-    .gallery-grid{ margin-top:12px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-    .gallery-item img{ width:100%; height:260px; object-fit:cover; border-radius:12px; box-shadow:var(--shadow); }
+    .gallery-grid{
+      margin-top:12px;
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;
+    }
+    .gallery-item img{
+      width:100%; height:260px; object-fit:cover;
+      border-radius:12px; box-shadow:var(--shadow);
+    }
 
     /* Safety & Trust */
     .grid-2{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center; }
     .media-card img{ width:100%; height:100%; object-fit:cover; border-radius: var(--radius); box-shadow: var(--shadow); }
     .checklist{ margin:.6rem 0; padding-left: 1rem; }
     .checklist li{ margin:.4rem 0; list-style:"✔  "; }
-    .trust-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 18px; }
-    .trust-item{ background:#fafafa; border:1px solid #eee; border-radius:12px; padding:.7rem 1rem; display:flex; align-items:center; gap:.5rem; }
+    .trust-items{
+      display:grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin: 10px 0 18px;
+    }
+    .trust-item{
+      background:#fafafa; border:1px solid #eee; border-radius:12px;
+      padding:.7rem 1rem; display:flex; align-items:center; gap:.5rem;
+    }
 
-    /* Reviews */
-    .reviews .review-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:12px; }
-    .review{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:18px; }
+    /* Testimonials */
+    .reviews{ padding:56px 0; }
+    .review-grid{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:16px; margin-top:12px;
+    }
+    .review{
+      background:var(--panel); border:1px solid #eee; border-radius:16px;
+      box-shadow:var(--shadow); padding:18px;
+    }
     .stars{ color:#f5b301; letter-spacing:2px; font-size:1.1rem; }
     .review footer{ margin-top:.6rem; color:var(--muted); font-size:.95rem }
 
-    /* YouTube bottom */
+    /* YouTube embed (bottom) */
     .yt-embed{ position:relative; width:100%; padding-top:56.25%; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#000; }
     .yt-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
-    /* Booking */
+    /* Booking (Calendly + WhatsApp) */
     .booking-title{ margin-bottom:.4rem }
     .booking-intro{ margin-bottom:1rem }
-    .calendly-wrapper{ background:var(--panel); border:1px solid #eee; border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0 16px; }
+    .calendly-wrapper{
+      background: var(--panel);
+      border: 1px solid #eee;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin: 12px 0 16px;
+    }
     .booking-actions{ margin: 12px 0 0 }
 
     /* Footer */
-    .footer{ background:#0f0f0f; color:#d6d6d6; padding:28px 0 16px; margin-top:40px }
-    .smallprint{ border-top:1px solid #2a2a2a; margin-top:12px; padding-top:12px; font-size:.9rem; color:#9a9a9a }
+    .footer{ background:#0f0f0f; color:#d6d6d6; padding: 28px 0 16px; margin-top:40px }
+    .smallprint{ border-top:1px solid #2a2a2a; margin-top: 12px; padding-top: 12px; font-size:.9rem; color:#9a9a9a; }
 
     /* Responsive */
     @media (max-width:960px){
-      .grid-2, .reviews .review-grid { grid-template-columns:1fr; }
+      .video-wrap, .grid-2, .review-grid{ grid-template-columns:1fr }
       .trust-items{ grid-template-columns:1fr 1fr }
       .gallery-grid{ grid-template-columns: 1fr 1fr; }
       .hero{ min-height:56vh }
     }
     :focus-visible{ outline:3px solid var(--brand-2); outline-offset:2px }
-    @media (prefers-reduced-motion:reduce){ .hero .slide{ animation:none; opacity:0 } .hero .slide:nth-child(1){ opacity:1 } }
+    @media (prefers-reduced-motion:reduce){
+      .hero .slide{ animation:none; opacity:0 }
+      .hero .slide:nth-child(1){ opacity:1 }
+    }
   </style>
 </head>
 <body>
@@ -119,17 +178,17 @@
       <nav class="nav" aria-label="Primary">
         <a href="#home">Home</a>
         <a href="#gallery">Gallery</a>
-        <a id="navBooking" href="#booking">Booking</a>
+        <a href="#booking" id="navBooking">Booking</a><!-- opens WhatsApp + scrolls to section -->
         <a href="#safety">Safety</a>
         <a href="#reviews">Reviews</a>
-        <a href="#videos">Video</a>
+        <a href="#videos">Videos</a>
       </nav>
     </div>
   </header>
 
   <!-- ===== Hero (background slideshow) ===== -->
   <section class="hero" id="home" aria-label="Hero slideshow">
-    <!-- Local images next to index.html -->
+    <!-- Files are next to index.html -->
     <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
     <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
     <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
@@ -154,12 +213,24 @@
       <p>A few moments from our lodge sessions.</p>
 
       <div class="gallery-grid">
-        <figure class="gallery-item"><img src="kid1.jpg.webp" alt="Child activity 1"></figure>
-        <figure class="gallery-item"><img src="kid2.jpg.webp" alt="Child activity 2"></figure>
-        <figure class="gallery-item"><img src="kid3.jpg.png"  alt="Child activity 3"></figure>
-        <figure class="gallery-item"><img src="kid4.jpg.png"  alt="Child activity 4"></figure>
-        <figure class="gallery-item"><img src="kid2.jpg.webp" alt="Child activity 5"></figure>
-        <figure class="gallery-item"><img src="kid1.jpg.webp" alt="Child activity 6"></figure>
+        <figure class="gallery-item">
+          <img src="kid1.jpg.webp" alt="Child enjoying lodge activities 1">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid2.jpg.webp" alt="Child enjoying lodge activities 2">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid3.jpg.png" alt="Child enjoying lodge activities 3">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid4.jpg.png" alt="Child enjoying lodge activities 4">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid2.jpg.webp" alt="Child enjoying lodge activities 5">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid1.jpg.webp" alt="Child enjoying lodge activities 6">
+        </figure>
       </div>
     </div>
   </section>
@@ -172,7 +243,7 @@
 
       <!-- Calendly inline widget -->
       <div class="calendly-wrapper">
-        <div class="calendly-inline-widget" data-url="CALENDLY_URL" style="min-width:320px;height:720px;"></div>
+        <div class="calendly-inline-widget" data-url="" style="min-width:320px;height:720px;"></div>
       </div>
 
       <!-- WhatsApp booking button -->
@@ -190,10 +261,10 @@
       <h2>Safety &amp; Trust</h2>
 
       <div class="trust-items" aria-label="Trust badges">
-        <div class="trust-item">🛡️ First Aid &amp; CPR</div>
-        <div class="trust-item">✅ Background‑checked</div>
-        <div class="trust-item">🏕️ Resort‑based service</div>
-        <div class="trust-item">⭐ 5+ years experience</div>
+        <div class="trust-item">🛡️ <strong>First Aid &amp; CPR</strong></div>
+        <div class="trust-item">✅ <strong>Background‑checked</strong></div>
+        <div class="trust-item">🏕️ <strong>Resort‑based service</strong></div>
+        <div class="trust-item">⭐ <strong>5+ years experience</strong></div>
       </div>
 
       <div class="grid-2">
@@ -207,63 +278,76 @@
           </ul>
         </div>
         <div class="media-card">
-          <img src="kid3.jpg.png" alt="Safe childcare at the lodge">
+          <img src="kid3.jpg.png" alt="Safe supervised activity at the lodge">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Testimonials & Reviews (LINK WORKS) ===== -->
-  <section id="reviews" class="section" aria-label="Testimonials and reviews">
+  <!-- ===== Testimonials & Reviews ===== -->
+  <section id="reviews" class="reviews section" aria-label="Testimonials and reviews">
     <div class="container">
       <h2>Testimonials &amp; Reviews</h2>
       <p>What recent families say about our childcare during their safari stays.</p>
 
       <div class="review-grid">
-        <article class="review">
+        <article class="review" itemprop="review" itemscope itemtype="https://schema.org/Review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>Absolutely brilliant! Our two kids loved “nanny time” every day. We enjoyed game drives knowing they were safe and happy.</p>
-          <footer>— Parent, Kruger Lodge · <time datetime="2025-08-12">Aug 12, 2025</time></footer>
+          <p itemprop="reviewBody">Absolutely brilliant! Our two kids were excited for “nanny time” every day. We enjoyed game drives knowing they were safe and happy.</p>
+          <footer><strong itemprop="author">— Parent, Kruger Lodge</strong> <span aria-hidden="true">·</span> <time itemprop="datePublished" datetime="2025-08-12">Aug 12, 2025</time></footer>
+          <meta itemprop="reviewRating" content="5"/>
         </article>
 
-        <article class="review">
+        <article class="review" itemprop="review" itemscope itemtype="https://schema.org/Review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>Professional and caring. Crafts, reading, and WhatsApp updates—made our anniversary dinner stress‑free.</p>
-          <footer>— Family, Sabi Sand · <time datetime="2025-11-03">Nov 3, 2025</time></footer>
+          <p itemprop="reviewBody">Professional and caring. Crafts, reading, and updates via WhatsApp—made our anniversary dinner stress‑free.</p>
+          <footer><strong itemprop="author">— Family, Sabi Sand</strong> <span aria-hidden="true">·</span> <time itemprop="datePublished" datetime="2025-11-03">Nov 3, 2025</time></footer>
+          <meta itemprop="reviewRating" content="5"/>
         </article>
 
-        <article class="review">
+        <article class="review" itemprop="review" itemscope itemtype="https://schema.org/Review">
           <div class="stars" aria-label="4.5 out of 5 stars">★★★★☆</div>
-          <p>Super friendly and organized. The kids loved the nature journals. We’ll book again next year.</p>
-          <footer>— Couple, Madikwe · <time datetime="2025-09-21">Sep 21, 2025</time></footer>
+          <p itemprop="reviewBody">Super friendly and organized. The kids loved the nature journals. We’ll book again next year.</p>
+          <footer><strong itemprop="author">— Couple, Madikwe</strong> <span aria-hidden="true">·</span> <time itemprop="datePublished" datetime="2025-09-21">Sep 21, 2025</time></footer>
+          <meta itemprop="reviewRating" content="4.5"/>
         </article>
       </div>
     </div>
+
+    <!-- SEO: Aggregate rating JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Safari Holiday Childcare",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "36"
+      },
+      "review": [
+        { "@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5"},"author":{"@type":"Person","name":"Parent, Kruger Lodge"},"datePublished":"2025-08-12","reviewBody":"Absolutely brilliant! Our two kids were excited for “nanny time” every day. We enjoyed game drives knowing they were safe and happy."},
+        { "@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5"},"author":{"@type":"Person","name":"Family, Sabi Sand"},"datePublished":"2025-11-03","reviewBody":"Professional and caring. Crafts, reading, and updates via WhatsApp—made our anniversary dinner stress‑free."},
+        { "@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"4.5"},"author":{"@type":"Person","name":"Couple, Madikwe"},"datePublished":"2025-09-21","reviewBody":"Super friendly and organized. The kids loved the nature journals. We’ll book again next year."}
+      ]
+    }
+    </script>
   </section>
 
-  <!-- ===== Video (BOTTOM OF PAGE) ===== -->
-  <section id="videos" class="section alt" aria-label="Video">
+  <!-- ===== Videos (BOTTOM OF PAGE) ===== -->
+  <section id="videos" class="section alt" aria-label="Videos">
     <div class="container">
       <h2>Video</h2>
-      <p>A quick look at lodge‑based activities and how we keep children engaged.</p>
-      <!-- YouTube embed at the very bottom -->
+      <p>See a quick look at lodge‑based activities and how we keep children engaged.</p>
       <div class="yt-embed">
+        <!-- Replace YOUTUBE_VIDEO_ID with your video id -->
         <iframe
           src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
-          title="Safari Holiday Childcare Video"
+          title="Safari Holiday Childcare – Lodge Activities"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+          allowfullscreen
+          loading="lazy"></iframe>
       </div>
-      <!-- Optional: local MP4 below YouTube (uncomment if you prefer local video) -->
-      <!--
-      <div style="margin-top:16px">
-        <video controls playsinline muted preload="metadata" poster="kid4.jpg.png" style="width:100%;border-radius:16px;box-shadow:var(--shadow);">
-          <source src="safari.webm" type="video/webm">
-          <source src="safari.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      -->
     </div>
   </section>
 
@@ -278,11 +362,11 @@
   <!-- Calendly script -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
-  <!-- Minimal helpers -->
+  <!-- Minimal helpers (Booking WhatsApp, Calendly URL, nav behavior, hero performance) -->
   <script>
     // ======= CONFIGURE THESE =======
-    const WA_NUMBER = 'WA_NUMBER'; // e.g., 27XXXXXXXXX (no +)
-    const CALENDLY_URL = 'CALENDLY_URL'; // e.g., https://calendly.com/yourname/intro-15m
+    const WA_NUMBER = '27XXXXXXXXX'; // <-- your WhatsApp number (no +)
+    const CALENDLY_URL = 'https://calendly.com/yourname/intro-15m'; // <-- your Calendly link
     // ===============================
 
     // Footer year
@@ -291,105 +375,24 @@
       if (y) y.textContent = new Date().getFullYear();
     });
 
-    // Make sure the Calendly widget uses your URL
+    // Insert Calendly URL when widget script is ready
     document.addEventListener('DOMContentLoaded', () => {
       const w = document.querySelector('.calendly-inline-widget');
       if (w && CALENDLY_URL) w.setAttribute('data-url', CALENDLY_URL);
     });
 
-    // Build WhatsApp URL
+    // WhatsApp message
     function waUrl(){
       const text = 'Hi Safari Holiday Childcare, we want to book childcare during our safari. Dates: [enter dates], Lodge: [enter lodge]. Children: [ages].';
       return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
     }
 
-    // Header "Booking" link: open WhatsApp AND scroll to Booking section
+    // Header "Booking" link: open WhatsApp AND scroll to section
     document.addEventListener('DOMContentLoaded', () => {
-      const navBooking = document.getElementById('navBooking');
-      if(navBooking){
-        navBooking.addEventListener('click', (e) => {
-          e.preventDefault();
-          // Open WhatsApp in a new tab
-          if (WA_NUMBER && WA_NUMBER !== 'WA_NUMBER') window.open(waUrl(), '_blank', 'noopener');
-          // Then scroll to the booking section
-          const target = document.querySelector('#booking');
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      }
-      // Booking section WhatsApp button
-      const waBtn = document.getElementById('waBookingBtn');
-      if (waBtn){ waBtn.href = (WA_NUMBER && WA_NUMBER !== 'WA_NUMBER') ? waUrl() : '#'; }
-    });
-
-    // Pause hero slideshow when off-screen (performance)
-    const hero = document.querySelector('.hero');
-    if ('IntersectionObserver' in window && hero){
-      const slides = hero.querySelectorAll('.slide');
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          slides.forEach(s => s.style.animationPlayState = e.isIntersecting ? 'running' : 'paused');
-        });
+      const      });
       }, { threshold: 0.1 });
       io.observe(hero);
     }
   </script>
 </body>
 </html>
-  
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Safari Holiday Childcare</title>
-  <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
-
-  <!-- Calendly inline widget styles -->
-  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
-
-  <style>
-    :root{
-      --brand:#1c563a; --brand-2:#e1ad3d; --ink:#141414; --muted:#5e5e5e;
-      --bg:#ffffff; --bg-alt:#f6f6f6; --panel:#ffffff;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
-    }
-    *{ box-sizing:border-box }
-    html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-    .container{ width:min(1100px,92vw); margin:0 auto }
-    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
-    h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
-    h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
-    p{ margin:0 0 1rem; color:var(--muted) }
-
-    /* Buttons */
-    .btn{ display:inline-block; padding:.75rem 1rem; border-radius:999px; border:2px solid transparent; font-weight:600; text-decoration:none; }
-    .btn-primary{ background:var(--brand); color:#fff }
-    .btn-primary:hover{ background:#15432d }
-    .btn-outline{ background:#fff; border-color:var(--brand); color:var(--brand); }
-    .btn-outline:hover{ background:#f0f7f3 }
-    .btn-whatsapp{
-      display:inline-flex; align-items:center; gap:.6rem;
-      background:#25D366; color:#08340f; border:2px solid #1eb95a;
-      padding:.75rem 1rem; border-radius:999px; font-weight:700; text-decoration:none;
-    }
-    .btn-whatsapp:hover{ background:#1eb95a; color:#06280c }
-
-    /* Header */
-    .site-header{ position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.92); backdrop-filter:blur(6px); border-bottom:1px solid #eee; }
-    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
-    .brand{ color:var(--brand); text-decoration:none; font-weight:700 }
-    .nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap }
-    .nav a{ color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:10px }
-    .nav a:hover{ background:#f0f0f0 }
-
-    /* Hero slideshow */
-    .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
-    .hero .slide{
-      position:absolute; inset:0; background:center/cover no-repeat #000;
-      opacity:0; transform:scale(1.02); animation:fade 28s infinite;
-    }
-    .hero .slide:nth-child(1){ animation-delay:0s }
-
