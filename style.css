@@ -1,54 +1,275 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safari Holiday Childcare</title>
 
-<!-- ===== Content: Booking ===== -->
-<section id="booking" class="section alt" aria-label="Booking">
-  <div class="container">
-    <!-- Booking title (multilingual) -->
-    <h2 class="booking-title">
-      <span data-lang="en">Booking</span>
-      <span data-lang="af">Bespreking</span>
-      <span data-lang="sv">Bokning</span>
-    </h2>
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 
-    <!-- Short line above the calendar (multilingual) -->
-    <p class="booking-intro">
-      <span data-lang="en">Choose a time to speak with us or book directly via Calendly.</span>
-      <span data-lang="af">Kies ’n tyd om met ons te praat of bespreek direk via Calendly.</span>
-      <span data-lang="sv">Välj en tid för samtal eller boka direkt via Calendly.</span>
-    </p>
+  <!-- Calendly (for inline widget) -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand">Safari Holiday Childcare</a>
 
-    <!-- Calendly inline widget -->
-    <div class="calendly-wrapper">
-      <!-- Replace the data-url with YOUR Calendly scheduling link -->
-      <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/YOUR-USERNAME/YOUR-EVENT"
-        style="min-width:320px;height:720px;">
+      <nav class="nav" aria-label="Primary">
+        <a href="#home">
+          <span data-lang="en">Home</span>
+          <span data-lang="af">Tuis</span>
+        </a>
+        <a href="#gallery">
+          <span data-lang="en">Gallery</span>
+          <span data-lang="af">Galery</span>
+        </a>
+        <a href="#booking">
+          <span data-lang="en">Booking</span>
+          <span data-lang="af">Bespreking</span>
+        </a>
+        <a href="#safety">
+          <span data-lang="en">Safety</span>
+          <span data-lang="af">Veiligheid</span>
+        </a>
+        <a href="#videos">
+          <span data-lang="en">Videos</span>
+          <span data-lang="af">Video’s</span>
+        </a>
+
+        <!-- Language switch -->
+        <span class="lang-switch" role="group" aria-label="Language switch">
+          <label for="langSwitch">Lang:</label>
+          <select id="langSwitch" aria-label="Select language">
+            <option value="en">EN</option>
+            <option value="af">AF</option>
+          </select>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO (background slideshow) ===== -->
+  <section class="hero" id="home" aria-label="Hero slideshow">
+    <!-- Your images are in the same folder as index.html -->
+    <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
+    <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
+    <div class="slide" style="background-image:url('kid4.jpg.png')"></div>
+
+    <div class="hero-overlay">
+      <div class="container hero-inner">
+        <h1 class="hero-title">
+          <span data-lang="en">Safari Holiday Childcare</span>
+          <span data-lang="af">Safari Vakansie Kinderopvang</span>
+        </h1>
+
+        <p class="hero-sub">
+          <span data-lang="en">Trusted childcare for ages <strong>5–12</strong> while parents enjoy their safari holiday.</span>
+          <span data-lang="af">Betroubare kinderoppas vir ouderdomme <strong>5–12</strong> terwyl ouers hul safari‑vakansie geniet.</span>
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#booking" class="btn btn-primary">
+            <span data-lang="en">Get a Quote</span>
+            <span data-lang="af">Kry ’n Kwotasie</span>
+          </a>
+          <a href="#safety" class="btn btn-ghost">
+            <span data-lang="en">How it Works</span>
+            <span data-lang="af">Hoe dit Werk</span>
+          </a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- WhatsApp booking button -->
-    <div class="booking-actions">
-      <a
-        class="btn btn-whatsapp"
-        href="https://wa.me/1234567890?text=Hi%20Safari%20Holiday%20Childcare%2C%20we%20want%20to%20book%20childcare%20during%20our%20safari.%20Dates%3A%20%5Benter%20dates%5D%2C%20Lodge%3A%20%5Benter%20lodge%5D.%20Children%3A%20%5Bages%5D."
-        target="_blank" rel="noopener">
-        <!-- You can swap this emoji for an SVG icon -->
-        🟢 WhatsApp
-        <span data-lang="en">Book via WhatsApp</span>
-        <span data-lang="af">Bespreek via WhatsApp</span>
-        <span data-lang="sv">Boka via WhatsApp</span>
-      </a>
+  <!-- ===== STEP 2️⃣ – Safari Image Gallery ===== -->
+  <section id="gallery" class="section alt" aria-label="Safari image gallery">
+    <div class="container">
+      <h2>
+        <span data-lang="en">Gallery</span>
+        <span data-lang="af">Galery</span>
+      </h2>
+      <p>
+        <span data-lang="en">A few moments from our lodge sessions.</span>
+        <span data-lang="af">’n Paar oomblikke van ons losiesessies.</span>
+      </p>
+
+      <div class="gallery-grid">
+        <!-- Use your existing images; add more if you have them -->
+        <figure class="gallery-item">
+          <img src="kid1.jpg.webp" alt="Child enjoying lodge activity" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid2.jpg.webp" alt="Crafts and reading time at lodge" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid3.jpg.png" alt="Safe, supervised play indoors" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid4.jpg.png" alt="Nature journal fun" loading="lazy">
+        </figure>
+        <!-- Duplicate to fill grid or add your own files -->
+        <figure class="gallery-item">
+          <img src="kid2.jpg.webp" alt="Lodge play area" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="kid1.jpg.webp" alt="Creative activities" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 3️⃣ – Safety & Trust ===== -->
+  <section id="safety" class="section" aria-label="Safety and trust">
+    <div class="container">
+      <h2>
+        <span data-lang="en">Safety & Trust</span>
+        <span data-lang="af">Veiligheid & Vertroue</span>
+      </h2>
+
+      <div class="trust-items" aria-label="Trust badges">
+        <div class="trust-item">🛡️ <strong>First Aid & CPR</strong></div>
+        <div class="trust-item">✅ <strong>Background-checked</strong></div>
+        <div class="trust-item">🏕️ <strong>Resort-based service</strong></div>
+        <div class="trust-item">⭐ <strong>5+ years experience</strong></div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <p>
+            <span data-lang="en">Safety underpins everything we do. Our nannies are vetted, trained and work closely with lodge staff.</span>
+            <span data-lang="af">Veiligheid is die kern van ons diens. Ons nannies is nagegaan, opgelei en werk nou saam met losiepersoneel.</span>
+          </p>
+          <ul class="checklist">
+            <li>
+              <span data-lang="en">Verified ID & background checks</span>
+              <span data-lang="af">Geverifieerde ID & agtergrondkontroles</span>
+            </li>
+            <li>
+              <span data-lang="en">First aid & CPR certification</span>
+              <span data-lang="af">Eerste‑hulp & KPR‑sertifikate</span>
+            </li>
+            <li>
+              <span data-lang="en">Secure sign‑in/out handovers</span>
+              <span data-lang="af">Veilige aan‑/afteken‑oorhandigings</span>
+            </li>
+            <li>
+              <span data-lang="en">Child‑safe indoor lodge areas</span>
+              <span data-lang="af">Kind‑veilige binnenshuise losie‑areas</span>
+            </li>
+          </ul>
+        </div>
+        <div class="media-card">
+          <!-- Use any image as an illustration; poster also works -->
+          <img src="kid3.jpg.png" alt="Safety procedures at lodge">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 4️⃣ – Videos ===== -->
+  <section id="videos" class="video-section" aria-label="Safari videos">
+    <div class="container video-wrap">
+      <div class="video-frame">
+        <!-- Replace with your files (same folder) -->
+        <video controls playsinline muted preload="metadata" poster="kid4.jpg.png" aria-label="Safari lodge activities">
+          <source src="safari.webm" type="video/webm" />
+          <source src="safari.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-caption" data-lang="en">Short clip from a family‑friendly lodge activity.</div>
+        <div class="video-caption" data-lang="af">Kort video van ’n gesinsvriendelike losie‑aktiwiteit.</div>
+      </div>
+
+      <aside class="video-panel">
+        <h2>
+          <span data-lang="en">See It In Action</span>
+          <span data-lang="af">Sien Dit In Aksie</span>
+        </h2>
+        <p data-lang="en">How we keep children safe, engaged, and smiling while parents enjoy game drives & dinners.</p>
+        <p data-lang="af">Hoe ons kinders veilig, besig en gelukkig hou terwyl ouers wildritte & etes geniet.</p>
+        <div style="margin-top:.6rem">
+          <a href="#booking" class="btn btn-outline">
+            <span data-lang="en">Check Availability</span>
+            <span data-lang="af">Kontroleer Beskikbaarheid</span>
+          </a>
+        </div>
+      </aside>
     </div>
 
-    <!-- Optional privacy note -->
-    <p class="booking-note">
-      <span data-lang="en">By booking you agree we may use your details to arrange childcare and communicate with you.</span>
-      <span data-lang="af">Deur te bespreek stem jy toe dat ons jou besonderhede mag gebruik om kinderoppas te reël en met jou te kommunikeer.</span>
-      <span data-lang="sv">Genom att boka godkänner du att vi använder dina uppgifter för att ordna barnpassning och kommunicera med dig.</span>
-    </p>
-  </div>
-</section>
+    <!-- Optional: a second video card -->
+    <div class="container video-wrap" style="margin-top:18px">
+      <div class="video-frame">
+        <video controls playsinline muted preload="metadata" poster="kid2.jpg.webp" aria-label="Learning & play indoors">
+          <source src="safari2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-caption" data-lang="en">Learning & play time indoors at the lodge.</div>
+        <div class="video-caption" data-lang="af">Leerspeletjies en binnenshuise pret by die losie.</div>
+      </div>
+      <aside class="video-panel">
+        <h2>
+          <span data-lang="en">Lodge Activities</span>
+          <span data-lang="af">Losie‑Aktiwiteite</span>
+        </h2>
+        <p data-lang="en">Age‑appropriate crafts, reading, puzzles, and quiet corners.</p>
+        <p data-lang="af">Ouderdomstoepaslike kunsvlyt, lees, legkaarte en stilhoekies.</p>
+      </aside>
+    </div>
+  </section>
 
-<!-- Calendly embed script (place once at the end of body or keep here) -->
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <!-- ===== STEP 1️⃣ – Booking (Calendly + WhatsApp) ===== -->
+  <section id="booking" class="section alt" aria-label="Booking">
+    <div class="container">
+      <h2 class="booking-title">
+        <span data-lang="en">Booking</span>
+        <span data-lang="af">Bespreking</span>
+      </h2>
+
+      <p class="booking-intro">
+        <span data-lang="en">Choose a time to speak with us or book directly via Calendly.</span>
+        <span data-lang="af">Kies ’n tyd om met ons te praat of bespreek direk via Calendly.</span>
+      </p>
+
+      <!-- Calendly inline widget -->
+      <div class="calendly-wrapper">
+        <div class="calendly-inline-widget" data-url="CALENDLY_URL" style="min-width:320px;height:720px;"></div>
+      </div>
+
+      <!-- WhatsApp booking button: href is set by script.js based on selected language -->
+      <div class="booking-actions">
+        <a class="btn-whatsapp" href="#" target="_blank" rel="noopener">
+          🟢 WhatsApp
+          <span data-lang="en">Book via WhatsApp</span>
+          <span data-lang="af">Bespreek via WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Optional privacy note -->
+      <p class="booking-note">
+        <span data-lang="en">By booking you agree we may use your details to arrange childcare and communicate with you.</span>
+        <span data-lang="af">Deur te bespreek stem jy toe dat ons jou besonderhede mag gebruik om kinderoppas te reël en met jou te kommunikeer.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div>&copy; <span id="year"></span> Safari Holiday Childcare</div>
+      <div class="smallprint" data-lang="en">All rights reserved.</div>
+      <div class="smallprint" data-lang="af">Alle regte voorbehou.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
