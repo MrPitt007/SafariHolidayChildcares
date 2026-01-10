@@ -1,5 +1,5 @@
              
-    
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -397,3 +397,203 @@
             </article>
 
             <!-- Premium Package -->
+            <article class="pricing-card" data-price-usd="150" data-price-zar="2775">
+              <h3>Premium</h3>
+              <p>For full-day care and evening coverage with bedtime routine.</p>
+              <ul>
+                <li>Up to 10 hours of care</li>
+                <li>Full activity schedule</li>
+                <li>Homework &amp; bedtime support</li>
+              </ul>
+              <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">150</span> <span class="price-unit">/ day</span></p>
+              <a class="btn btn-primary" href="#booking">Book Now</a>
+            </article>
+          </div>
+
+          <p style="margin-top:18px; font-size:.9rem; color:var(--muted);">*Prices are indicative and may vary by lodge location and special requests.</p>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section alt">
+        <div class="container">
+          <h2>Contact us</h2>
+          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+          <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Emergency quick dial -->
+  <button class="emergency-fab" aria-label="Emergency contact button" onclick="alert('Your carer will provide the local emergency contact sheet at check-in.')">
+    Emergency Info
+  </button>
+
+  <!-- Calendly script (correct tag) -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <!-- Three.js for 3D layer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js" defer></script>
+
+  <script>
+    // Run JS after DOM is ready + after Three.js is available
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar toggle for mobile
+      const toggleBtn = document.querySelector('.sidebar-toggle');
+      const menu = document.getElementById('side-menu');
+      if (toggleBtn && menu){
+        toggleBtn.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', String(open));
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && menu.classList.contains('open')){
+            menu.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // ===== Hero slideshow images (5s cadence) =====
+      const heroImages = [
+        'kid4.jpg.png',  // giraffe feeding
+        'kid1.jpg.webp', // kids with guide
+        'kid2.jpg.webp', // kids walking
+        'kid3.jpg.png'   // family on vehicle
+      ];
+      const heroSection = document.querySelector('.hero');
+      const slides = heroSection.querySelectorAll('.slide');
+      slides.forEach((el, i) => { el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`; });
+
+      // Respect "reduce motion" for slideshow (animation controlled by CSS)
+      // If user prefers reduced motion, CSS already stops additional animations for slides except first
+
+      // ===== Currency Selector (USD/ZAR) =====
+      const currencySelect = document.getElementById('currency');
+      const pricingCards = document.querySelectorAll('.pricing-card');
+      function applyCurrency(curr){
+        pricingCards.forEach(card => {
+          const usd = parseFloat(card.dataset.priceUsd);
+          const zar = parseFloat(card.dataset.priceZar);
+          const priceEl = card.querySelector('.pricing-price .price-value');
+          const symbolEl = card.querySelector('.pricing-price .currency-symbol');
+          if (!priceEl || !symbolEl) return;
+          if (curr === 'ZAR'){
+            priceEl.textContent = isFinite(zar) ? zar.toLocaleString('en-ZA') : '';
+            symbolEl.textContent = 'R';
+          } else {
+            priceEl.textContent = isFinite(usd) ? usd.toLocaleString('en-US') : '';
+            symbolEl.textContent = '$';
+          }
+        });
+      }
+      currencySelect?.addEventListener('change', (e) => applyCurrency(e.target.value));
+      applyCurrency(currencySelect?.value || 'USD');
+
+      // ===== 3D PARTICLE LAYER over Hero (WebGL / Three.js) =====
+      const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const canvas = document.getElementById('hero-canvas');
+
+      function init3D(){
+        if (!window.THREE || !canvas) return;
+
+        // Size to hero section
+        const heroRect = heroSection.getBoundingClientRect();
+        canvas.width  = heroRect.width;
+        canvas.height = heroRect.height;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(heroRect.width, heroRect.height, false);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, heroRect.width / heroRect.height, 0.1, 100);
+        camera.position.z = 6;
+
+        // Particles
+        const COUNT = 1200;
+        const positions = new Float32Array(COUNT * 3);
+        for (let i=0;i<COUNT;i++){
+          positions[i*3+0] = (Math.random() - 0.5) * 20; // x
+          positions[i*3+1] = (Math.random() - 0.5) * 12; // y
+          positions[i*3+2] = (Math.random() - 0.5) * 14; // z
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+          color: 0xffffff, size: 0.04, sizeAttenuation: true, transparent: true, opacity: 0.75
+        });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // Mouse parallax
+        const mouse = { x:0, y:0 };
+        heroSection.addEventListener('pointermove', (e) => {
+          const rect = heroSection.getBoundingClientRect();
+          mouse.x = (e.clientX - rect.left) / rect.width  - 0.5;
+          mouse.y = (e.clientY - rect.top)  / rect.height - 0.5;
+        });
+
+        let raf;
+        const clock = new THREE.Clock();
+        function animate(){
+          raf = requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+          points.rotation.y = t * 0.06;
+          points.rotation.x = t * 0.02;
+
+          // gentle camera parallax
+          camera.position.x += (mouse.x * 1.2 - camera.position.x) * 0.05;
+          camera.position.y += (-mouse.y * 0.8 - camera.position.y) * 0.05;
+          camera.lookAt(0,0,0);
+
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize to hero
+        function onResize(){
+          const r = heroSection.getBoundingClientRect();
+          renderer.setSize(r.width, r.height, false);
+          camera.aspect = r.width / r.height;
+          camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', onResize);
+
+        // Handle reduce motion toggle
+        function stop3D(){
+          cancelAnimationFrame(raf);
+          renderer.dispose();
+          geometry.dispose();
+          material.dispose();
+          window.removeEventListener('resize', onResize);
+          const ctx = canvas.getContext('2d');
+          if (ctx){ ctx.clearRect(0,0,canvas.width,canvas.height); }
+        }
+
+        return { stop3D, onResize };
+      }
+
+      let threeController = null;
+
+      function enable3D(){
+        if (mqReduce.matches) return; // respect reduce motion
+        if (!threeController) threeController = init3D();
+      }
+      function disable3D(){
+        if (threeController && threeController.stop3D){
+          threeController.stop3D();
+          threeController = null;
+        }
+      }
+
+      // Start (if allowed)
+      enable3D();
+      // React to preference changes
+      mqReduce.addEventListener?.('change', (e) => { e.matches ? disable3D() : enable3D(); });
+    });
+  </script>
+</body>
+</html>
