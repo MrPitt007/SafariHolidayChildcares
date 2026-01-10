@@ -1,124 +1,54 @@
 
-/* ========= Improved Theme ========= */
-:root{
-  --brand:#1c563a;       /* deep green */
-  --brand-2:#e1ad3d;     /* warm gold */
-  --ink:#141414;         /* primary text */
-  --muted:#5e5e5e;       /* secondary text */
-  --bg:#ffffff;          /* page background */
-  --bg-alt:#f6f6f6;      /* alt section background */
-  --panel:#ffffff;       /* cards/panels */
-  --radius:14px;
-  --shadow:0 8px 30px rgba(0,0,0,.08);
-}
-*{ box-sizing:border-box }
-html{ scroll-behavior:smooth }
-body{
-  margin:0; color:var(--ink); background:var(--bg);
-  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
-.container{ width:min(1100px,92vw); margin:0 auto }
 
-/* Headings / text */
-h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
-h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
-h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
-p{ margin:0 0 1rem; color:var(--muted) }
+<!-- ===== Content: Booking ===== -->
+<section id="booking" class="section alt" aria-label="Booking">
+  <div class="container">
+    <!-- Booking title (multilingual) -->
+    <h2 class="booking-title">
+      <span data-lang="en">Booking</span>
+      <span data-lang="af">Bespreking</span>
+      <span data-lang="sv">Bokning</span>
+    </h2>
 
-/* Buttons */
-.btn{ display:inline-block; padding:.75rem 1rem; border-radius:999px; border:2px solid transparent; font-weight:600; text-decoration:none; }
-.btn-primary{ background:var(--brand); color:#fff }
-.btn-primary:hover{ background:#15432d }
-.btn-ghost{ background:transparent; color:#fff; border-color:#fff }
-.btn-ghost:hover{ background:rgba(255,255,255,.12) }
-.btn-outline{ background:#fff; border-color:var(--brand); color:var(--brand); }
-.btn-outline:hover{ background:#f0f7f3 }
+    <!-- Short line above the calendar (multilingual) -->
+    <p class="booking-intro">
+      <span data-lang="en">Choose a time to speak with us or book directly via Calendly.</span>
+      <span data-lang="af">Kies ’n tyd om met ons te praat of bespreek direk via Calendly.</span>
+      <span data-lang="sv">Välj en tid för samtal eller boka direkt via Calendly.</span>
+    </p>
 
-/* ========= Header ========= */
-.site-header{
-  position:sticky; top:0; z-index:1000;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid #eee;
-}
-.nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
-.brand{ color:var(--brand); text-decoration:none; font-weight:700 }
-.nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap }
-.nav a{ color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:10px }
-.nav a:hover{ background:#f0f0f0 }
+    <!-- Calendly inline widget -->
+    <div class="calendly-wrapper">
+      <!-- Replace the data-url with YOUR Calendly scheduling link -->
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/YOUR-USERNAME/YOUR-EVENT"
+        style="min-width:320px;height:720px;">
+      </div>
+    </div>
 
-/* Language switch */
-.lang-switch{
-  display:flex; align-items:center; gap:.5rem; margin-left:.5rem;
-  padding:2px 8px; border:1px solid #e5e5e5; border-radius:10px; background:#fff;
-}
-.lang-switch label{ font-size:.9rem; color:#666 }
-.lang-switch select{ border:none; background:transparent; outline:none; font:inherit; }
+    <!-- WhatsApp booking button -->
+    <div class="booking-actions">
+      <a
+        class="btn btn-whatsapp"
+        href="https://wa.me/1234567890?text=Hi%20Safari%20Holiday%20Childcare%2C%20we%20want%20to%20book%20childcare%20during%20our%20safari.%20Dates%3A%20%5Benter%20dates%5D%2C%20Lodge%3A%20%5Benter%20lodge%5D.%20Children%3A%20%5Bages%5D."
+        target="_blank" rel="noopener">
+        <!-- You can swap this emoji for an SVG icon -->
+        🟢 WhatsApp
+        <span data-lang="en">Book via WhatsApp</span>
+        <span data-lang="af">Bespreek via WhatsApp</span>
+        <span data-lang="sv">Boka via WhatsApp</span>
+      </a>
+    </div>
 
-/* ========= Hero (background slideshow) ========= */
-.hero{
-  position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000;
-}
-.hero .slide{
-  position:absolute; inset:0;
-  background: center/cover no-repeat #000;
-  opacity:0; transform:scale(1.02);
-  animation:fade 28s infinite; /* 4 slides × ~7s each */
-  will-change:opacity;
-}
-.hero .slide:nth-child(1){ animation-delay:0s }
-.hero .slide:nth-child(2){ animation-delay:7s }
-.hero .slide:nth-child(3){ animation-delay:14s }
-.hero .slide:nth-child(4){ animation-delay:21s }
+    <!-- Optional privacy note -->
+    <p class="booking-note">
+      <span data-lang="en">By booking you agree we may use your details to arrange childcare and communicate with you.</span>
+      <span data-lang="af">Deur te bespreek stem jy toe dat ons jou besonderhede mag gebruik om kinderoppas te reël en met jou te kommunikeer.</span>
+      <span data-lang="sv">Genom att boka godkänner du att vi använder dina uppgifter för att ordna barnpassning och kommunicera med dig.</span>
+    </p>
+  </div>
+</section>
 
-@keyframes fade{
-  0%{opacity:0}
-  6%{opacity:1}
-  25%{opacity:1}
-  31%{opacity:0}
-  100%{opacity:0}
-}
-
-.hero-overlay{
-  position:relative; z-index:1; width:100%; height:100%;
-  background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
-  display:flex; align-items:center;
-}
-.hero-inner{ color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.4); padding:64px 0 }
-.hero-title{ margin:.2rem 0 1rem }
-.hero-sub{ color:#fff; margin-bottom:1.2rem }
-.hero-ctas{ display:flex; gap:.8rem; flex-wrap:wrap }
-
-/* ========= Sections ========= */
-.section{ padding:56px 0 }
-.section.alt{ background:var(--bg-alt) }
-
-/* ========= Safari Video Section ========= */
-.video-section{ padding:56px 0; background:var(--bg-alt) }
-.video-wrap{ display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center; }
-.video-frame{ position:relative; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#000; }
-.video-frame video{ width:100%; height:100%; display:block; }
-.video-caption{ font-size:.95rem; color:var(--muted); margin-top:.5rem }
-.video-panel{ background:var(--panel); border:1px solid #eee; border-radius:16px; padding:22px; box-shadow:var(--shadow) }
-
-/* Footer */
-.footer{ background:#0f0f0f; color:#d6d6d6; padding: 28px 0 16px; margin-top:40px }
-.smallprint{ border-top:1px solid #2a2a2a; margin-top: 12px; padding-top: 12px; font-size:.9rem; color:#9a9a9a; }
-
-/* Responsive */
-@media (max-width:960px){
-  .video-wrap{ grid-template-columns:1fr }
-  .hero{ min-height:56vh }
-}
-
-/* Accessibility */
-:focus-visible{ outline:3px solid var(--brand-2); outline-offset:2px }
-
-/* Reduced motion: show first slide only */
-@media (prefers-reduced-motion:reduce){
-  .hero .slide{ animation:none; opacity:0 }
-  .hero .slide:nth-child(1){ opacity:1 }
-}
-
-
-
+<!-- Calendly embed script (place once at the end of body or keep here) -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
