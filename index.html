@@ -1,4 +1,5 @@
-
+             
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
 
-  <!-- Calendly widget styles -->
+  <!-- Calendly widget styles (valid tag) -->
   <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 
   <style>
@@ -19,8 +20,7 @@
     }
     *{ box-sizing:border-box }
     html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg);
-          font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
     h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
     h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
     h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
@@ -103,7 +103,7 @@
     .grid-2{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center; }
     .checklist{ margin:.6rem 0; padding-left: 1rem; }
     .checklist li{ margin:.4rem 0; list-style:"✔  "; }
-    .trust-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 18px; }
+    .trust-items{ display:grid; grid-template-columns:repeat(4,1; }
     .trust-item{ background:#fafafa; border:1px solid #eee; border-radius:12px; padding:.7rem 1rem; display:flex; align-items:center; gap:.5rem; }
 
     /* Reviews */
@@ -175,22 +175,22 @@
 <body>
 
   <div class="layout">
-    <!-- ===== LEFT SIDEBAR ===== -->
+    <!-- ===== LEFT SIDEBAR (Dropdown menu) ===== -->
     <aside class="sidebar" aria-label="Sidebar navigation">
       <div class="sidebar-header">
-        <a class="brand" href="#top">Safari Holiday Childcare</a>
+        #topSafari Holiday Childcare</a>
         <button class="sidebar-toggle" aria-expanded="false" aria-controls="side-menu">Menu</button>
       </div>
 
-      <!-- Ordered as requested + Pricing button -->
+      <!-- Ordered + separated "Hire a Nanny" and "Pricing" -->
       <nav id="side-menu" class="side-menu" role="navigation">
-        <a class="side-link" href="#booking">Book Now</a>
-        <a class="side-link" href="#reviews">Reviews</a>
-        <a class="side-link" href="#nanny">Hire a Nanny</a>
-        <a class="side-link" href="#safety">Safety &amp; Trust</a>
-        <a class="side-link" href="#about">About</a>
-        <a class="side-link" href="#pricing">Pricing</a>
-        <a class="side-link" href="#contact">Contact</a>
+        #bookingBook Now</a>
+        #reviewsReviews</a>
+        #nannyHire a Nanny</a>
+        #safetySafety &amp; Trust</a>
+        #aboutAbout</a>
+        #pricingPricing</a>
+        #contactContact</a>
       </nav>
     </aside>
 
@@ -198,6 +198,7 @@
     <main class="content" id="top">
       <!-- Hero (slideshow) -->
       <section class="hero" aria-label="Hero slideshow">
+        <!-- exactly 4 slides -->
         <div class="slide" role="img" aria-label="Slide 1"></div>
         <div class="slide" role="img" aria-label="Slide 2"></div>
         <div class="slide" role="img" aria-label="Slide 3"></div>
@@ -208,8 +209,8 @@
             <h1>Childcare you can trust—so your safari can be unforgettable</h1>
             <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
             <div class="hero-ctas">
-              <a class="btn btn-primary" href="#booking">Book a session</a>
-              <a class="btn btn-outline" href="#safety">See our safety measures</a>
+              #bookingBook a session</a>
+              #safetySee our safety measures</a>
             </div>
           </div>
         </div>
@@ -309,10 +310,8 @@
           </div>
 
           <div class="booking-actions">
-            <a class="btn-whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">
-              💬 WhatsApp us
-            </a>
-            <a class="btn btn-outline" href="#contact">Prefer email? Contact us</a>
+            https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.💬 WhatsApp us</a>
+            #contactPrefer email? Contact us</a>
           </div>
 
           <div class="language-panel" aria-label="Language support" style="margin-top:14px;">
@@ -332,7 +331,7 @@
             <span class="nanny-badge">Evenings available</span>
             <span class="nanny-badge">Sibling discounts</span>
           </div>
-          <a class="btn btn-primary" href="#booking">Check availability</a>
+          #bookingCheck availability</a>
         </div>
       </section>
 
@@ -365,7 +364,7 @@
                 <li>Snack supervision</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">50</span> <span class="price-unit">/ session</span></p>
-              <a class="btn btn-primary" href="#booking">Book Now</a>
+              #bookingBook Now</a>
             </article>
 
             <!-- Standard Package -->
@@ -378,7 +377,7 @@
                 <li>Meal assistance</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">90</span> <span class="price-unit">/ session</span></p>
-              <a class="btn btn-primary" href="#booking">Book Now</a>
+              #bookingBook Now</a>
             </article>
 
             <!-- Premium Package -->
@@ -391,7 +390,7 @@
                 <li>Homework &amp; bedtime support</li>
               </ul>
               <p class="pricing-price"><span class="currency-symbol">$</span><span class="price-value">150</span> <span class="price-unit">/ day</span></p>
-              <a class="btn btn-primary" href="#booking">Book Now</a>
+              #bookingBook Now</a>
             </article>
 
           </div>
@@ -406,8 +405,8 @@
       <section id="contact" class="section alt">
         <div class="container">
           <h2>Contact us</h2>
-          <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
-          <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+          <p>Email: mailto:hello@safari-childcare.examplehello@safari-childcare.example</a></p>
+          <p>Phone: tel:+10000000000+1 (000) 000‑0000</a></p>
           <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
         </div>
       </section>
@@ -419,68 +418,100 @@
     Emergency Info
   </button>
 
-  <!-- Calendly script -->
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <!-- Calendly script (valid tag) -->
+  https://assets.calendly.com/assets/external/widget.js</script>
 
   <script>
-    // Sidebar toggle for mobile
-    const toggleBtn = document.querySelector('.sidebar-toggle');
-    const menu = document.getElementById('side-menu');
-    if (toggleBtn && menu){
-      toggleBtn.addEventListener('click', () => {
-        const open = menu.classList.toggle('open');
-        toggleBtn.setAttribute('aria-expanded', String(open));
-      });
-      menu.addEventListener('click', (e) => {
-        if (e.target.closest('a') && menu.classList.contains('open')){
-          menu.classList.remove('open');
-          toggleBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // ===== Hero slideshow images (5s cadence, files in repo root) =====
-    const heroImages = [
-      'kid4.jpg.png',  // giraffe feeding
-      'kid1.jpg.webp', // kids with guide
-      'kid2.jpg.webp', // kids walking
-      'kid3.jpg.png'   // family on vehicle
-    ];
-    const heroSection = document.querySelector('.hero');
-    let slides = heroSection.querySelectorAll('.slide');
-    for(let i = slides.length; i < heroImages.length; i++){
-      const div = document.createElement('div');
-      div.className = 'slide';
-      heroSection.prepend(div);
-    }
-    slides = heroSection.querySelectorAll('.slide');
-    slides.forEach((el, i) => {
-      el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
-    });
-
-    // Respect "reduce motion"
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function updateMotion(){
-      if (mq.matches){
-        slides.forEach((el, i) => {
-          el.style.animation = 'none';
-          el.style.opacity = i === 0 ? '1' : '0';
+    // Run JS after DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar toggle for mobile
+      const toggleBtn = document.querySelector('.sidebar-toggle');
+      const menu = document.getElementById('side-menu');
+      if (toggleBtn && menu){
+        toggleBtn.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', String(open));
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && menu.classList.contains('open')){
+            menu.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+          }
         });
       }
-    }
-    mq.addEventListener?.('change', updateMotion);
-    updateMotion();
 
-    // ===== Currency Selector (USD/ZARtContent = 'R';
-        } else {
-          priceEl.textContent = isFinite(usd) ? usd.toLocaleString('en-US') : '';
-          symbolEl.textContent = '$';
+      // ===== Hero slideshow images (5s cadence, files in repo root) =====
+      const heroImages = [
+        'kid4.jpg.png',  // giraffe feeding
+        'kid1.jpg.webp', // kids with guide
+        'kid2.jpg.webp', // kids walking
+        'kid3.jpg.png'   // family on vehicle
+      ];
+
+      const heroSection = document.querySelector('.hero');
+      let slides = heroSection.querySelectorAll('.slide');
+
+      // Ensure we have exactly as many slides as images
+      const count = heroImages.length;
+      if (slides.length < count){
+        for(let i = slides.length; i < count; i++){
+          const div = document.createElement('div');
+          div.className = 'slide';
+          heroSection.prepend(div);
         }
-      });
-    }
+        slides = heroSection.querySelectorAll('.slide');
+      } else if (slides.length > count){
+        // Remove extra slides (rare case)
+        for(let i = slides.length - 1; i >= count; i--){
+          slides[i].remove();
+        }
+        slides = heroSection.querySelectorAll('.slide');
+      }
 
-    currencySelect.addEventListener('change', (e) => applyCurrency(e.target.value));
-    applyCurrency(currencySelect.value); // initialize on load
+      // Inject background images
+      slides.forEach((el, i) => {
+        const src = heroImages[i];
+        el.style.backgroundImage = `url("${src}")`;
+      });
+
+      // Respect "reduce motion"
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function updateMotion(){
+        if (mq.matches){
+          slides.forEach((el, i) => {
+            el.style.animation = 'none';
+            el.style.opacity = i === 0 ? '1' : '0';
+          });
+        }
+      }
+      mq.addEventListener?.('change', updateMotion);
+      updateMotion();
+
+      // ===== Currency Selector (USD/ZAR) =====
+      const currencySelect = document.getElementById('currency');
+      const pricingCards = document.querySelectorAll('.pricing-card');
+
+      function applyCurrency(curr){
+        pricingCards.forEach(card => {
+          const usd = parseFloat(card.dataset.priceUsd);
+          const zar = parseFloat(card.dataset.priceZar);
+          const priceEl = card.querySelector('.pricing-price .price-value');
+          const symbolEl = card.querySelector('.pricing-price .currency-symbol');
+          if (!priceEl || !symbolEl) return;
+
+          if (curr === 'ZAR'){
+            priceEl.textContent = isFinite(zar) ? zar.toLocaleString('en-ZA') : '';
+            symbolEl.textContent = 'R';
+          } else {
+            priceEl.textContent = isFinite(usd) ? usd.toLocaleString('en-US') : '';
+            symbolEl.textContent = '$';
+          }
+        });
+      }
+
+      currencySelect?.addEventListener('change', (e) => applyCurrency(e.target.value));
+      applyCurrency(currencySelect?.value || 'USD'); // initialize
+    });
   </script>
 </body>
 </html>
