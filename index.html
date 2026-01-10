@@ -7,80 +7,59 @@
   <title>Safari Holiday Childcare</title>
 
   <style>
-    :root{ --brand:#1c563a; --brand-2:#e1ad3d; --ink:#1a1a1a; --muted:#5a5a5a; --bg:#fff; --bg-alt:#f6f6f6; --shadow:0 10px 30px rgba(0,0,0,.08); }
+    /* ========= Improved Theme ========= */
+    :root{
+      --brand:#1c563a;       /* deep green */
+      --brand-2:#e1ad3d;     /* warm gold */
+      --ink:#141414;         /* primary text */
+      --muted:#5e5e5e;       /* secondary text */
+      --bg:#ffffff;          /* page background */
+      --bg-alt:#f6f6f6;      /* alt section background */
+      --panel:#ffffff;       /* cards/panels */
+      --radius:14px;
+      --shadow:0 8px 30px rgba(0,0,0,.08);
+    }
+    *{ box-sizing:border-box }
     html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-    .container{ width:min(1100px,92vw); margin:0 auto; }
-
-    /* Header */
-    .site-header{ position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.92); backdrop-filter:blur(6px); border-bottom:1px solid #eee; }
-    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
-    .brand{ color:var(--brand); text-decoration:none; font-weight:700; }
-    .nav{ display:flex; gap:1rem; }
-    .nav a{ color:var(--ink); text-decoration:none; padding:6px 8px; border-radius:10px; }
-    .nav a:hover{ background:#f0f0f0; }
-
-    /* HERO slideshow (CSS only) */
-    .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
-    .hero .slide{
-      position:absolute; inset:0;
-      background-position:center; background-size:cover;
-      opacity:0; transform:scale(1.02);
-      animation:fade 28s infinite; /* 4 slides × 7s each */
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
-    .hero .slide:nth-child(1){ animation-delay:0s; }
-    .hero .slide:nth-child(2){ animation-delay:7s; }
-    .hero .slide:nth-child(3){ animation-delay:14s; }
-    .hero .slide:nth-child(4){ animation-delay:21s; }
+    .container{ width:min(1100px,92vw); margin:0 auto }
 
-    @keyframes fade{
-      0%{opacity:0} 6%{opacity:1} 25%{opacity:1} 31%{opacity:0} 100%{opacity:0}
+    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
+    h1{ font-size:clamp(2rem,4vw + 1rem,3rem) }
+    h2{ font-size:clamp(1.5rem,1.5vw + 1rem,2rem) }
+    p{ margin:0 0 1rem; color:var(--muted) }
+
+    /* Buttons */
+    .btn{ display:inline-block; padding:.75rem 1rem; border-radius:999px; border:2px solid transparent; font-weight:600; text-decoration:none; }
+    .btn-primary{ background:var(--brand); color:#fff }
+    .btn-primary:hover{ background:#15432d }
+    .btn-ghost{ background:transparent; color:#fff; border-color:#fff }
+    .btn-ghost:hover{ background:rgba(255,255,255,.12) }
+    .btn-outline{ background:#fff; border-color:var(--brand); color:var(--brand); }
+    .btn-outline:hover{ background:#f0f7f3 }
+
+    /* ========= Header ========= */
+    .site-header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid #eee;
     }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
+    .brand{ color:var(--brand); text-decoration:none; font-weight:700 }
+    .nav{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap }
+    .nav a{ color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:10px }
+    .nav a:hover{ background:#f0f0f0 }
 
-    .hero-overlay{ position:relative; z-index:1; width:100%; height:100%;
-      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
-      display:flex; align-items:center; }
-    .hero-inner{ color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.4); padding:64px 0; }
-    .hero-title{ font-size:clamp(2rem,4vw + 1rem,3rem); margin:.2rem 0 1rem; }
-    .hero-sub{ color:#fff; margin-bottom:1.2rem; }
-    .hero-ctas{ display:flex; gap:.8rem; flex-wrap:wrap; }
-    .btn{ display:inline-block; padding:.7rem 1rem; border-radius:999px; border:2px solid transparent; font-weight:600; text-decoration:none; }
-    .btn-primary{ background:var(--brand); color:#fff; }
-    .btn-ghost{ background:transparent; color:#fff; border-color:#fff; }
-
-    .section{ padding:48px 0; }
-    .section.alt{ background:var(--bg-alt); }
-    h2{ font-size:1.6rem; margin:0 0 .6rem; }
-
-    @media (prefers-reduced-motion:reduce){
-      .hero .slide{ animation:none; opacity:0; }
-      .hero .slide:nth-child(1){ opacity:1; }
+    /* Language switch */
+    .lang-switch{
+      display:flex; align-items:center; gap:.5rem; margin-left:.5rem;
+      padding:2px 8px; border:1px solid #e5e5e5; border-radius:10px; background:#fff;
     }
-  </style>
-</head>
-<body>
+    .lang-switch label{ font-size:.9rem; color:#666 }
+    .lang-switch select{ border:none; background:transparent; outline:none; font:inherit; }
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#home" class="brand">Safari Holiday Childcare</a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="#booking">Booking</a>
-        <a href="#safety">Safety</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO (background slideshow) -->
-  <section id="home" class="hero" aria-label="Hero">
-    <!-- IMPORTANT: files are in the SAME folder as index.html -->
-    <div class="slide" style="background-image:url('kid1.jpg.webp')"></div>
-    <div class="slide" style="background-image:url('kid2.jpg.webp')"></div>
-    <div class="slide" style="background-image:url('kid3.jpg.png')"></div>
-    <div class="slide" style="background-image:url('kid4.jpg.png')"></div>
-
-    <div class="hero-overlay">
-      <div class="container hero-inner">
-        <h1 class="hero-title">Safari Holiday Childcare</h1>
+    /* ========= Hero (background slideshow) ========= */
