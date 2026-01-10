@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +12,35 @@
 <body>
 
   <!-- Full‑screen Background Slideshow (behind all content) -->
-  <div class="bg-slideshow">
-    <img src="kid1.jpg.webp" alt="Kids 1" />
-    <img src="kid2.jpg.webp" alt="Kids 2" />
-    <img src="kid3.jpg.png"  alt="Kids 3" />
-    <img src="kid4.jpg.png"  alt="Kids 4" />
+  <div class="bg-slideshow" aria-hidden="true">
+    <img src="kid1.jpg.webp" alt="Kids enjoying guided activities" />
+    <img src="kid2.jpg.webp" alt="Children walking on a safe nature trail" />
+    <img src="kid3.jpg.png"  alt="Family on a safari vehicle" />
+    <img src="kid4.jpg.png"  alt="Family enjoying a safari experience" />
   </div>
 
-  <!-- Language Switcher -->
-  <div class="lang-switch">
-    <span>🌍 <span data-i18n="label_language">Language</span>:</span>
-    <a href="#en" data-lang="en" class="active">English</a> |
-    <a href="#af" data-lang="af">Afrikaans</a> |
-    <a href="#zu" data-lang="zu">isiZulu</a> |
-    <a href="#sw" data-lang="sw">Swahili</a>
+  <!-- Top utility bar: Language + Brand selector -->
+  <div class="top-bar">
+    <div class="lang-switch">
+      <span>🌍 <span data-i18n="label_language">Language</span>:</span>
+      <a href="#" data-lang="en" class="active">English</a> |
+      <a href="#" data-lang="af">Afrikaans</a> |
+      <a href="#" data-lang="zu">isiZulu</a> |
+      <a href="#" data-lang="sw">Swahili</a>
+    </div>
+
+    <div class="brand-switch">
+      <label for="brandSelect">🏷 Brand:</label>
+      <select id="brandSelect">
+        <option value="Safari Kids Nanny Services">Safari Kids Nanny Services</option>
+        <option value="Safari Holiday Childcare" selected>Safari Holiday Childcare</option>
+        <option value="Safari Family Care">Safari Family Care</option>
+        <option value="__custom">Custom…</option>
+      </select>
+    </div>
   </div>
 
-  <!-- Site navigation -->
+  <!-- Main navigation -->
   <nav class="site-nav" aria-label="Main">
     <a href="index.html" data-i18n="nav_home">Home</a>
     <a href="gallery.html" data-i18n="nav_gallery">Gallery</a>
@@ -37,87 +50,90 @@
 
   <!-- Hero header -->
   <header class="hero">
-    <h1 data-i18n="title">Safari Holiday Childcare</h1>
+    <h1 id="brand">Safari Holiday Childcare</h1>
     <p data-i18n="tagline">
       Trusted childcare for ages 5–12 while parents enjoy their safari holiday
     </p>
   </header>
 
-  <!-- About -->
-  <section class="wrap">
-    <h2 data-i18n="about_h2">About Our Safari Nanny Service</h2>
-    <p data-i18n="about_p">
-      We provide professional, resort-based nanny services inside South African safari parks.
-      While parents enjoy game drives, spa days, or private dinners, our trained nannies keep
-      children safe, engaged, and happy.
-    </p>
-  </section>
+  <main>
+    <!-- About -->
+    <section class="wrap">
+      <h2 data-i18n="about_h2">About Our Safari Nanny Service</h2>
+      <p data-i18n="about_p">
+        We provide professional, resort‑based nanny services inside South African safari parks.
+        While parents enjoy game drives, spa days, or private dinners, our trained nannies keep
+        children safe, engaged, and happy.
+      </p>
+    </section>
 
-  <!-- Activities -->
-  <section class="wrap">
-    <h2 data-i18n="activities_h2">Activities for Children (Ages 5–12)</h2>
-    <div class="grid">
-      <div class="card" data-i18n="act_1">🦁 Guided nature walks (safe zones only)</div>
-      <div class="card" data-i18n="act_2">🎨 African arts &amp; crafts</div>
-      <div class="card" data-i18n="act_3">📚 Storytelling &amp; cultural games</div>
-      <div class="card" data-i18n="act_4">🧩 Educational safari games</div>
-    </div>
-  </section>
+    <!-- Activities -->
+    <section class="wrap">
+      <h2 data-i18n="activities_h2">Activities for Children (Ages 5–12)</h2>
+      <div class="grid">
+        <div class="card" data-i18n="act_1">🦁 Guided nature walks (safe zones only)</div>
+        <div class="card" data-i18n="act_2">🎨 African arts &amp; crafts</div>
+        <div class="card" data-i18n="act_3">📚 Storytelling &amp; cultural games</div>
+        <div class="card" data-i18n="act_4">🧩 Educational safari games</div>
+      </div>
+    </section>
 
-  <!-- Booking -->
-  <section id="booking" class="wrap">
-    <h2 data-i18n="booking_h2">Book a Nanny</h2>
+    <!-- Booking -->
+    <section id="booking" class="wrap">
+      <h2 data-i18n="booking_h2">Book a Nanny</h2>
 
-    <!-- Calendly Booking -->
-    <iframe
-      src="https://calendly.com/YOUR-CALENDLY-USERNAME"
-      width="100%" height="600" frameborder="0">
-    </iframe>
+      <!-- Calendly Booking -->
+      <div class="calendly">
+        <iframe
+          src="https://calendly.com/YOUR-CALENDLY-USERNAME"
+          width="100%" height="600" frameborder="0"
+          title="Book a nanny via Calendly">
+        </iframe>
+      </div>
 
-    <p style="text-align:center; margin-top:1rem;">
-      <span data-i18n="booking_or">OR book instantly via WhatsApp:</span><br />
-      <a class="button" href="https://wa.me/YOUR_NUMBER" data-i18n="booking_btn">
-        Book on WhatsApp
-      </a>
-    </p>
-  </section>
+      <p class="center" style="margin-top:1rem;">
+        <span data-i18n="booking_or">OR book instantly via WhatsApp:</span><br />
+        <a class="button" href="https://wa.me/YOUR_NUMBER" data-i18n="booking_btn">Book on WhatsApp</a>
+      </p>
+    </section>
 
-  <!-- Safety -->
-  <section id="safety" class="wrap">
-    <h2 data-i18n="safety_h2">Parent Trust &amp; Safety</h2>
-    <div class="grid">
-      <div class="card" data-i18n="safe_1">✔ Background-checked nannies</div>
-      <div class="card" data-i18n="safe_2">✔ First-Aid &amp; child-care trained</div>
-      <div class="card" data-i18n="safe_3">✔ Resort-approved staff</div>
-      <div class="card" data-i18n="safe_4">✔ Emergency communication protocols</div>
-    </div>
-  </section>
+    <!-- Trust & Safety -->
+    <section id="safety" class="wrap">
+      <h2 data-i18n="safety_h2">Parent Trust &amp; Safety</h2>
+      <div class="grid">
+        <div class="card" data-i18n="safe_1">✔ Background‑checked nannies</div>
+        <div class="card" data-i18n="safe_2">✔ First‑Aid &amp; child‑care trained</div>
+        <div class="card" data-i18n="safe_3">✔ Resort‑approved staff</div>
+        <div class="card" data-i18n="safe_4">✔ Emergency communication protocols</div>
+      </div>
+    </section>
 
-  <!-- Video -->
-  <section class="wrap">
-    <h2 data-i18n="video_h2">Watch Our Kids in Action</h2>
-    <div class="video">
-      <iframe
-        width="100%" height="400"
-        src="https://www.youtube.com/embed/VIDEO_ID"
-        title="YouTube video"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
+    <!-- Video -->
+    <section class="wrap">
+      <h2 data-i18n="video_h2">Watch Our Kids in Action</h2>
+      <div class="video">
+        <iframe
+          width="100%" height="400"
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="Kids activities video"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
 
-  <!-- Languages list (static text example) -->
-  <section class="wrap">
-    <h2 data-i18n="langs_h2">Languages Supported</h2>
-    <p data-i18n="langs_list">🇬🇧 English • 🇿🇦 Afrikaans • 🇹🇿 Swahili • 🇿🇦 isiZulu</p>
-  </section>
+    <!-- Languages list -->
+    <section class="wrap">
+      <h2 data-i18n="langs_h2">Languages Supported</h2>
+      <p data-i18n="langs_list">🇬🇧 English • 🇿🇦 Afrikaans • 🇹🇿 Swahili • 🇿🇦 isiZulu</p>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <p data-i18n="footer">Safari Holiday Childcare © 2026 | South Africa</p>
   </footer>
 
-  <!-- Simple Language Switcher logic -->
+  <!-- Language + Brand logic -->
   <script>
     const dict = {
       en: {
@@ -126,10 +142,9 @@
         nav_gallery: "Gallery",
         nav_booking: "Booking",
         nav_safety: "Safety",
-        title: "Safari Holiday Childcare",
         tagline: "Trusted childcare for ages 5–12 while parents enjoy their safari holiday",
         about_h2: "About Our Safari Nanny Service",
-        about_p: "We provide professional, resort-based nanny services inside South African safari parks. While parents enjoy game drives, spa days, or private dinners, our trained nannies keep children safe, engaged, and happy.",
+        about_p: "We provide professional, resort‑based nanny services inside South African safari parks. While parents enjoy game drives, spa days, or private dinners, our trained nannies keep children safe, engaged, and happy.",
         activities_h2: "Activities for Children (Ages 5–12)",
         act_1: "🦁 Guided nature walks (safe zones only)",
         act_2: "🎨 African arts & crafts",
@@ -139,9 +154,9 @@
         booking_or: "OR book instantly via WhatsApp:",
         booking_btn: "Book on WhatsApp",
         safety_h2: "Parent Trust & Safety",
-        safe_1: "✔ Background-checked nannies",
-        safe_2: "✔ First-Aid & child-care trained",
-        safe_3: "✔ Resort-approved staff",
+        safe_1: "✔ Background‑checked nannies",
+        safe_2: "✔ First‑Aid & child‑care trained",
+        safe_3: "✔ Resort‑approved staff",
         safe_4: "✔ Emergency communication protocols",
         video_h2: "Watch Our Kids in Action",
         langs_h2: "Languages Supported",
@@ -154,27 +169,26 @@
         nav_gallery: "Galery",
         nav_booking: "Bespreking",
         nav_safety: "Veiligheid",
-        title: "Safari Vakansie Kinderoppas",
-        tagline: "Betroubare kinderoppas vir ouderdomme 5–12 terwyl ouers hul safari-vakansie geniet",
-        about_h2: "Oor Ons Safari-Kinderoppasdiens",
-        about_p: "Ons bied professionele, oordgebaseerde oppasdienste in Suid-Afrikaanse wildparke. Terwyl ouers wildritte, spa-dae of privaat etes geniet, hou ons opgeleide oppassers kinders veilig, besig en gelukkig.",
+        tagline: "Betroubare kinderoppas vir ouderdomme 5–12 terwyl ouers hul safari‑vakansie geniet",
+        about_h2: "Oor Ons Safari‑Kinderoppasdiens",
+        about_p: "Ons bied professionele, oordgebaseerde oppasdienste in Suid‑Afrikaanse wildparke. Terwyl ouers wildritte, spa‑dae of privaat etes geniet, hou ons opgeleide oppassers kinders veilig, besig en gelukkig.",
         activities_h2: "Aktiwiteite vir Kinders (Ouderdomme 5–12)",
         act_1: "🦁 Begeleide natuurstappies (slegs veilige sones)",
         act_2: "🎨 Afrikaanse kuns en handwerk",
         act_3: "📚 Storievertelling en kulturele speletjies",
-        act_4: "🧩 Opvoedkundige safari-speletjies",
+        act_4: "🧩 Opvoedkundige safari‑speletjies",
         booking_h2: "Bespreek ’n Oppas",
         booking_or: "OF bespreek dadelik via WhatsApp:",
         booking_btn: "Bespreek op WhatsApp",
         safety_h2: "Ouervertroue & Veiligheid",
-        safe_1: "✔ Agtergrond-geverifieerde oppassers",
-        safe_2: "✔ Eerste Hulp & kinderorg-opleiding",
-        safe_3: "✔ Oord-goedgekeurde personeel",
+        safe_1: "✔ Agtergrond‑geverifieerde oppassers",
+        safe_2: "✔ Eerste Hulp & kinderorg‑opleiding",
+        safe_3: "✔ Oord‑goedgekeurde personeel",
         safe_4: "✔ Noodkommunikasieprosedures",
         video_h2: "Kyk hoe ons kinders pret het",
         langs_h2: "Tale Ondersteun",
         langs_list: "🇬🇧 Engels • 🇿🇦 Afrikaans • 🇹🇿 Swahili • 🇿🇦 isiZulu",
-        footer: "Safari Vakansie Kinderoppas © 2026 | Suid-Afrika"
+        footer: "Safari Vakansie Kinderoppas © 2026 | Suid‑Afrika"
       },
       zu: {
         label_language: "Ulimi",
@@ -182,21 +196,20 @@
         nav_gallery: "Igalari",
         nav_booking: "Ukubhuka",
         nav_safety: "Ukuphepha",
-        title: "Ukunakekelwa Kwezingane KweSafari",
-        tagline: "Ukunakekelwa kwezingane okuthembekile kweminyaka emi‑5–12 ngenkathi abazali bejabulela i‑safari yabo",
-        about_h2: "Mayelana Nesevisi Yethu Yokunakekela Izingane eSafari",
-        about_p: "Sinikeza ukunakekelwa kwezingane okuhlelekile ema-resort ngaphakathi kwamapaki ezilwane aseNingizimu Afrika. Ngesikhathi abazali bejabulela ama-game drive, izinsuku ze-spa noma izidlo zangasese, onakekeli bethu abaqeqeshiwe bagcina izingane ziphephile, zijabule futhi zibambelekile.",
+        tagline: "Ukunakekelwa okuthembekile kwezingane kweminyaka emi‑5–12 ngenkathi abazali bejabulela i‑safari yabo",
+        about_h2: "Mayelana Nesevisi Yokunakekelwa eSafari",
+        about_p: "Sinikeza ukunakekelwa kwezingane okuhlelekile ema‑resort ngaphakathi kwamapaki ezilwane eNingizimu Afrika. Ngesikhathi abazali bejabulela ama‑game drive, izinsuku ze‑spa noma izidlo zangasese, onakekeli bethu abaqeqeshiwe bagcina izingane ziphephile, zijabule futhi zibambelekile.",
         activities_h2: "Imisebenzi Yezingane (Iminyaka 5–12)",
         act_1: "🦁 Ukuhambahamba kwemvelo okuqondisiwe (izindawo eziphephile kuphela)",
-        act_2: "🎨 Ubuciko nobuciko base-Afrika",
+        act_2: "🎨 Ubuciko nobuciko base‑Afrika",
         act_3: "📚 Ukuxoxa izindaba nemidlalo yamasiko",
-        act_4: "🧩 Imidlalo ye-safari yokufundisa",
+        act_4: "🧩 Imidlalo ye‑safari yokufundisa",
         booking_h2: "Bhuka Umnakekeli",
         booking_or: "NOMA bhuka ngokushesha ku‑WhatsApp:",
         booking_btn: "Bhuka ku‑WhatsApp",
         safety_h2: "Ukwethemba Kwabazali & Ukuphepha",
         safe_1: "✔ Abanakekeli abaqinisekisiwe",
-        safe_2: "✔ Ukuqeqeshwa kwe-First‑Aid & ukunakekelwa kwezingane",
+        safe_2: "✔ Ukuqeqeshwa kwe‑First‑Aid & ukunakekelwa kwezingane",
         safe_3: "✔ Abasebenzi abagunyaziwe yi‑resort",
         safe_4: "✔ Izinhlelo zokuxhumana eziphuthumayo",
         video_h2: "Buka Izingane Zethu Zenzenjani",
@@ -210,10 +223,9 @@
         nav_gallery: "Picha",
         nav_booking: "Kuweka Nafasi",
         nav_safety: "Usalama",
-        title: "Huduma ya Malezi ya Watoto Safari",
         tagline: "Huduma salama ya watoto wa miaka 5–12 wakati wazazi wanaburudika kwenye safari yao",
         about_h2: "Kuhusu Huduma Yetu ya Walezi wa Safari",
-        about_p: "Tunatoa huduma ya walezi wa watoto katika vituo vya mapumziko ndani ya hifadhi za taifa za Afrika Kusini. Wakati wazazi wakifurahia safari, spa, au chakula cha jioni cha faragha, walezi wetu waliofunzwa huwafanya watoto kuwa salama, wenye furaha, na wanaojihusisha.",
+        about_p: "Tunatoa huduma ya walezi wa watoto katika vituo vya mapumziko ndani ya hifadhi za Afrika Kusini. Wakati wazazi wakifurahia safari, spa, au chakula cha jioni cha faragha, walezi wetu waliofunzwa huwafanya watoto kuwa salama, wenye furaha, na wanaojihusisha.",
         activities_h2: "Shughuli za Watoto (Miaka 5–12)",
         act_1: "🦁 MatembezI ya asili yenye mwongozo (maeneo salama tu)",
         act_2: "🎨 Sanaa na ufundi wa Kiafrika",
@@ -240,16 +252,14 @@
         const key = el.getAttribute("data-i18n");
         if (pack[key]) el.textContent = pack[key];
       });
-      // Update active state
       document.querySelectorAll(".lang-switch a").forEach(a => {
         a.classList.toggle("active", a.dataset.lang === lang);
       });
-      // Persist choice
       localStorage.setItem("lang", lang);
       document.documentElement.lang = lang;
     }
 
-    // Click handlers
+    // Language click handler
     document.addEventListener("click", (e) => {
       const btn = e.target.closest(".lang-switch a[data-lang]");
       if (!btn) return;
@@ -257,7 +267,30 @@
       applyLang(btn.dataset.lang);
     });
 
-    // Initial language: saved or default to English
+    // Brand selector
+    const brandEl = document.getElementById("brand");
+    const brandSelect = document.getElementById("brandSelect");
+
+    function setBrand(name) {
+      brandEl.textContent = name;
+      localStorage.setItem("brandName", name);
+    }
+
+    brandSelect.addEventListener("change", () => {
+      const val = brandSelect.value;
+      if (val === "__custom") {
+        const custom = prompt("Enter custom brand name:");
+        if (custom && custom.trim()) setBrand(custom.trim());
+        // revert dropdown to custom text
+        brandSelect.value = "__custom";
+      } else {
+        setBrand(val);
+      }
+    });
+
+    // Initial setup
+    const savedBrand = localStorage.getItem("brandName") || brandSelect.value;
+    setBrand(savedBrand);
     applyLang(localStorage.getItem("lang") || "en");
   </script>
 
