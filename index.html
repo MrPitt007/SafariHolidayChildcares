@@ -1,4 +1,6 @@
 
+
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +80,7 @@
     }
     .btn-whatsapp:hover{ background:#1eb95a; color:#06280c }
 
-    /* ===== Hero slideshow (kept) ===== */
+    /* ===== Hero slideshow ===== */
     .hero{ position:relative; min-height:60vh; isolation:isolate; overflow:hidden; background:#000; }
     .hero .slide{
       position:absolute; inset:0;
@@ -179,29 +181,29 @@
     <!-- ===== LEFT SIDEBAR (Dropdown menu) ===== -->
     <aside class="sidebar" aria-label="Sidebar navigation">
       <div class="sidebar-header">
-        <a class="brand" href="#top">Safari Holiday Childcare</a>
+        <a href="#top" class="brand">Safari Holiday Childcare</a>
         <button class="sidebar-toggle" aria-expanded="false" aria-controls="side-menu">Menu</button>
       </div>
 
+      <!-- Ordered exactly as requested -->
       <nav id="side-menu" class="side-menu" role="navigation">
-        <a class="side-link" href="#about">About</a>
-        <a class="side-link" href="#safety">Safety &amp; Trust</a>
-        <a class="side-link" href="#reviews">Reviews</a>
         <a class="side-link" href="#booking">Book Now</a>
+        <a class="side-link" href="#reviews">Reviews</a>
         <a class="side-link" href="#nanny">Hire a Nanny</a>
-        <a class="side-link" href="#video">How it works</a>
+        <a class="side-link" href="#safety">Safety &amp; Trust</a>
+        <a class="side-link" href="#about">About</a>
         <a class="side-link" href="#contact">Contact</a>
       </nav>
     </aside>
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="content" id="top">
-      <!-- Hero (slideshow kept) -->
+      <!-- Hero (slideshow) -->
       <section class="hero" aria-label="Hero slideshow">
-        <div class="slide" role="img" aria-label="Smiling children with guide near safari vehicle"></div>
-        <div class="slide" role="img" aria-label="Outdoor craft activity under acacia shade"></div>
-        <div class="slide" role="img" aria-label="Kids learning about wildlife footprints"></div>
-        <div class="slide" role="img" aria-label="Safe play area at lodge with carers"></div>
+        <div class="slide" role="img" aria-label="Scene 1"></div>
+        <div class="slide" role="img" aria-label="Scene 2"></div>
+        <div class="slide" role="img" aria-label="Scene 3"></div>
+        <div class="slide" role="img" aria-label="Scene 4"></div>
 
         <div class="hero-overlay">
           <div class="container hero-inner">
@@ -296,10 +298,7 @@
           </div>
 
           <div class="booking-actions">
-            <a class="btn-whatsapp" target="_blank" rel="noopener"
-               href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">
-              💬 WhatsApp us
-            </a>
+            <a class="btn-whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
             <a class="btn btn-outline" href="#contact">Prefer email? Contact us</a>
           </div>
 
@@ -331,9 +330,7 @@
           <div class="yt-embed" aria-label="Intro video">
             <!-- Replace VIDEO_ID with your YouTube video id -->
             <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                    title="Intro video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                    title="How it works video" loading="lazy" allowfullscreen></iframe>
           </div>
         </div>
       </section>
@@ -376,12 +373,13 @@
       });
     }
 
-    // Hero slideshow image URLs — replace with your own images if needed
+    // Hero slideshow image URLs — using the files you provided.
+    // Ensure these files are alongside index.html or adjust the paths.
     const heroImages = [
-      'https://images.unsplash.com/photo-1548092372-67a2b2705f78?q=80&w=1920&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519832950132-5c7f1b6fc0a7?q=80&w=1920&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1520975612533-07ea0b42b4fd?q=80&w=1920&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop'
+      'kid1.jpg.webp',
+      'kid2.jpg.webp',
+      'kid3.jpg.png',
+      'kid4.jpg.png'
     ];
     document.querySelectorAll('.hero .slide').forEach((el, i) => {
       el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
@@ -400,4 +398,5 @@
     mq.addEventListener?.('change', updateMotion);
     updateMotion();
   </script>
-</
+</body>
+</html>
