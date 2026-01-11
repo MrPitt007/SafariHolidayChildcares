@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Safari Holiday Childcare</title>
-<meta name="description" content="Trusted childcare for ages 5–12 at safari lodges. Flexible hours, play‑based learning, and safety first." />
+<meta name="description" content="Trusted childcare for ages 5–12 at safari lodges. Flexible hours, play‑based learning, and safety first.">
 
 <style>
   :root{
@@ -20,7 +20,7 @@
   a{color:#a5f3fc;text-decoration:none}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* Top nav */
+  /* ===== Nav ===== */
   nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
   .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
   .brand a{color:var(--text);font-weight:800;font-size:15px}
@@ -32,7 +32,7 @@
   .btn.primary{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
   .btn.ghost{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.18)}
 
-  /* Hero */
+  /* ===== Hero ===== */
   .hero{position:relative;min-height:var(--heroH);display:flex;align-items:center;overflow:hidden;background:#000}
   .hero .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px;position:relative;z-index:2;width:100%}
   .hero .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
@@ -43,14 +43,14 @@
   .cube{position:relative;width:220vmax;height:140vmax;transform-style:preserve-3d;animation:spin 60s linear infinite}
   .face{position:absolute;top:50%;left:50%;width:110vmax;height:80vmax;transform:translate(-50%,-50%);background-size:cover;background-position:center;backface-visibility:hidden;filter:saturate(1.02) contrast(1.03)}
   .front{transform:translate(-50%,-50%) translateZ(var(--cubeZ));background-image:url('kid1.jpg.webp')}
-  .right{transform:translate(-50%,-50%) rotateY( 90deg) translateZ(var(--cubeZ));background-image:url('kid2.jpg.webp')}
+  .right{transform:translate(-50%,-50%) rotateY(90deg) translateZ(var(--cubeZ));background-image:url('kid2.jpg.webp')}
   .back {transform:translate(-50%,-50%) rotateY(180deg) translateZ(var(--cubeZ));background-image:url('kid3.jpg.png')}
   .left {transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));background-image:url('kid4.jpg.jpg')}
   @keyframes spin{0%{transform:rotateX(0) rotateY(0)}25%{transform:rotateX(0) rotateY(-90deg)}50%{transform:rotateX(0) rotateY(-180deg)}75%{transform:rotateX(0) rotateY(-270deg)}100%{transform:rotateX(0) rotateY(-360deg)}}
   @media (prefers-reduced-motion:reduce){.cube{animation:none}}
   .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.62))}
 
-  /* Sections */
+  /* ===== Sections ===== */
   section{scroll-margin-top:80px}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
   .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
@@ -59,6 +59,7 @@
   .small{color:var(--muted);font-size:14px}
   .grid{display:grid;gap:18px}
   @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(3,1fr)}}
+  .route-section[hidden]{display:none !important}
 
   /* Forms & booking */
   .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
@@ -83,13 +84,10 @@
   .tools .row{grid-template-columns:1fr 1fr 1fr}
   @media (max-width:900px){.tools .row{grid-template-columns:1fr}}
   .calc-total{font-size:18px;font-weight:800;color:#a7f3d0;margin-top:8px}
-
-  /* SPA routing visibility */
-  .route-section[hidden]{display:none !important}
 </style>
 </head>
 
-<body id="top">
+<body>
   <!-- ===== NAV ===== -->
   <nav role="navigation" aria-label="Primary">
     <div class="nav-inner">
@@ -104,14 +102,13 @@
         <a href="#contact" data-link>Contact</a>
       </div>
       <div class="spacer"></div>
-      <a href="#booking" class="btn ghost" data-link>Book Now</a>
-      <a class="btn primary" target="_blank" rel="noopener"
-         href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">WhatsApp</a>
+      <a class="btn ghost" href="#booking" data-link>Book Now</a>
+      <a class="btn primary" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </nav>
 
-  <!-- ===== HERO (route: #top) ===== -->
-  <header id="route-top" class="route-section hero" role="banner" data-route="top">
+  <!-- ===== HERO (route: top) ===== -->
+  <header id="route-top" class="route-section hero" data-route="top" role="banner">
     <div class="hero-3d" aria-hidden="true">
       <div class="cube-wrap">
         <div class="cube">
@@ -121,24 +118,25 @@
       </div>
     </div>
     <div class="hero-overlay" aria-hidden="true"></div>
+
     <div class="wrap">
       <div class="panel">
         <h1>Childcare you can trust—so your safari can be unforgettable</h1>
         <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
         <div class="buttons">
-          <a href="#booking" class="btn primary" data-link>Book a session</a>
-          <a href="#safety"  class="btn ghost"   data-link>See our safety measures</a>
+          <a class="btn primary" href="#booking" data-link>Book a session</a>
+          <a class="btn ghost" href="#safety" data-link>See our safety measures</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ===== ABOUT (route: #about) ===== -->
+  <!-- ===== ABOUT (route) ===== -->
   <section id="route-about" class="route-section" data-route="about">
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2>About Our Nanny Service (Ages 5–12)</h2>
-        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts. Parents enjoy drives, spa sessions, private dinners, or excursions—knowing their children are safe, supervised, and happily engaged.</p>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts.</p>
         <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are tailored to each child’s age, interests, and energy level.</p>
       </div>
       <div class="panel">
@@ -148,13 +146,13 @@
           <li>Arts &amp; crafts, puzzles, reading, storytelling, nature play</li>
           <li>Educational engagement: animals, conservation, local culture</li>
           <li>Routine support: meals, quiet time, homework, bedtime (evenings)</li>
-          <li>Emotional care tailored to new holiday environments</li>
+          <li>Emotional care tailored to holiday environments</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- ===== SAFETY (route: #safety) ===== -->
+  <!-- ===== SAFETY (route) ===== -->
   <section id="route-safety" class="route-section" data-route="safety">
     <div class="wrap panel">
       <h2>Safety &amp; Trust</h2>
@@ -169,7 +167,7 @@
     </div>
   </section>
 
-  <!-- ===== REVIEWS (route: #reviews) ===== -->
+  <!-- ===== REVIEWS (route) ===== -->
   <section id="route-reviews" class="route-section" data-route="reviews">
     <div class="wrap grid cols-3">
       <div class="panel"><h3>★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
@@ -178,7 +176,7 @@
     </div>
   </section>
 
-  <!-- ===== PRICING (route: #pricing) ===== -->
+  <!-- ===== PRICING (route) ===== -->
   <section id="route-pricing" class="route-section" data-route="pricing">
     <div class="wrap">
       <h2>Pricing</h2>
@@ -256,7 +254,7 @@
           </div>
           <div class="buttons" style="margin-top:10px">
             <button class="btn primary" id="conv-btn" type="button">Convert</button>
-            <span class="small">Update rates, then tap a currency chip to refresh card prices.</span>
+            <span class="small">Update rates, then tap a currency chip to refresh prices.</span>
           </div>
           <div class="status" id="conv-result" aria-live="polite"></div>
         </div>
@@ -283,7 +281,72 @@
           </div>
           <div class="buttons" style="margin-top:10px">
             <button class="btn primary" id="calc-btn" type="button">Calculate total</button>
-            <span class="small">Uses the currently selected currency chip.</span>
+            <span class="small">Uses the currently selected currency.</span>
           </div>
           <div class="calc-total" id="calc-total" aria-live="polite"></div>
         </div>
+      </div>
+
+      <p class="small" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING (route) ===== -->
+  <section id="route-booking" class="route-section" data-route="booking">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2>Book Now</h2>
+        <p>Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
+        <div class="buttons">
+          <a class="btn primary" target="_blank" rel="noopener"
+             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
+          <a class="btn ghost" href="#contact" data-link>Prefer email? Contact us</a>
+        </div>
+        <p class="small">Languages: English • Swahili • Afrikaans (ask for others)</p>
+      </div>
+
+      <div class="panel">
+        <h3>Calendar &amp; quick booking</h3>
+        <form id="bookingForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="row">
+            <div><label for="b-name">Parent/Guardian name</label><input id="b-name" name="name" required /></div>
+            <div><label for="b-email">Email</label><input id="b-email" name="email" type="email" required /></div>
+          </div>
+          <div class="row">
+            <div><label for="b-phone">Phone</label><input id="b-phone" name="phone" /></div>
+            <div><label for="b-lodge">Lodge / Resort</label><input id="b-lodge" name="lodge" /></div>
+          </div>
+          <div class="row">
+            <div><label for="b-date">Date</label><input id="b-date" name="date" type="date" required /></div>
+            <div><label for="b-children">Children (ages)</label><input id="b-children" name="children" placeholder="e.g., 6 & 9" /></div>
+          </div>
+          <div style="margin-top:10px">
+            <label>Preferred time slot</label>
+            <div class="slots" role="group" aria-label="Choose a time slot">
+              <button type="button" class="slot" data-slot="08:00–11:00" aria-pressed="false">08:00–11:00</button>
+              <button type="button" class="slot" data-slot="12:00–15:00" aria-pressed="false">12:00–15:00</button>
+              <button type="button" class="slot" data-slot="15:00–18:00" aria-pressed="false">15:00–18:00</button>
+              <button type="button" class="slot" data-slot="18:00–21:00" aria-pressed="false">18:00–21:00</button>
+            </div>
+            <input type="hidden" name="slot" id="b-slot" />
+          </div>
+          <div style="margin-top:10px">
+            <label for="b-notes">Notes (requests, allergies, special needs)</label>
+            <textarea id="b-notes" name="notes" rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New booking request (Safari Holiday Childcare)" />
+          <button class="btn primary" type="submit" style="margin-top:12px">Send booking request</button>
+          <div class="status" id="b-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT (route) ===== -->
+  <section id="route-contact" class="route-section" data-route="contact">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+        <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+        <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
