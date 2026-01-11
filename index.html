@@ -1,4 +1,4 @@
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +17,7 @@
   a{color:#a5f3fc;text-decoration:none}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* Nav */
-  nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
-  .brand{font-weight:800;color:#fff}
-  .spacer{flex:1}
-  .menu{display:flex;gap:14px;flex-wrap:wrap}
-  .menu a{color:#cbd5e1;padding:8px 10px;border-radius:10px}
-  .menu a:hover,.menu a[aria-current="page"]{background:rgba(255,255,255,.10);color:#fff}
-  .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border)}
-  .btn.primary{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
-
-  /* Layout */
+  /* ===== Global layout ===== */
   .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
   .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
   h1{font-size:clamp(28px,4.5vw,50px);line-height:1.15;margin:0 0 12px}
@@ -37,14 +26,61 @@
   .small{color:var(--muted);font-size:14px}
   .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
   .grid{display:grid;gap:18px}
-  @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(3,1fr)}}
+  @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-4{grid-template-columns:repeat(4,1fr)}}
   section[hidden]{display:none!important}
 
-  /* Hero */
-  .hero{min-height:76vh;display:flex;align-items:center;background:#000 url('kid1.jpg.webp') center/cover no-repeat}
+  /* ===== Sticky nav ===== */
+  nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+  .brand{font-weight:800;color:#fff}
+  .spacer{flex:1}
+  .menu{display:flex;gap:14px;flex-wrap:wrap}
+  .menu a{color:#cbd5e1;padding:8px 10px;border-radius:10px}
+  .menu a:hover,.menu a[aria-current="page"]{background:rgba(255,255,255,.10);color:#fff}
+  .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border)}
+  .btn.primary{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
+  .btn.ghost{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.18)}
+
+  /* ===== Background slideshow (full-page, behind content) ===== */
+  .bg-slideshow{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:#000;
+  }
+  .bg-slideshow::before, .bg-slideshow::after{
+    content:""; position:absolute; inset:0; background-size:cover; background-position:center;
+    opacity:0; animation:slideFade 24s infinite;
+    filter:saturate(1.02) contrast(1.03);
+  }
+  .bg-slideshow::before{
+    background-image:url('kid1.jpg.webp');
+    animation-delay:0s;
+  }
+  .bg-slideshow::after{
+    background-image:url('kid2.jpg.webp');
+    animation-delay:12s;
+  }
+  /* Additional layers for more images */
+  .bg-slide-3, .bg-slide-4{
+    position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background-size:cover; background-position:center; opacity:0; animation:slideFade 24s infinite;
+    filter:saturate(1.02) contrast(1.03);
+  }
+  .bg-slide-3{ background-image:url('kid3.jpg.png'); animation-delay:6s; }
+  .bg-slide-4{ background-image:url('kid4.jpg.jpg'); animation-delay:18s; }
+
+  @keyframes slideFade{
+    0%   {opacity:0}
+    8%   {opacity:.70}
+    42%  {opacity:.70}
+    50%  {opacity:0}
+    100% {opacity:0}
+  }
+
+  /* ===== Hero (overlays to improve readability) ===== */
+  .hero{min-height:76vh;display:flex;align-items:center}
   .hero .panel{background:rgba(0,0,0,.62);border:1px solid var(--border)}
 
-  /* Forms & inputs */
+  /* ===== Forms & inputs ===== */
   .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
   @media (max-width:700px){.row{grid-template-columns:1fr}}
   input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.45);color:#fff}
@@ -54,7 +90,7 @@
   .slot[aria-pressed="true"]{background:var(--accent);color:#052e16;border-color:transparent;font-weight:700}
   .status{margin-top:8px;min-height:1.2em;font-size:14px;color:#a7f3d0}
 
-  /* Pricing widgets */
+  /* ===== Pricing widgets ===== */
   .currency-toggle{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
   .chip{border:1px solid var(--border);background:#0b1220;color:#cfe6ff;padding:6px 10px;border-radius:999px;cursor:pointer}
   .chip.active{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
@@ -62,27 +98,42 @@
   .price-amount{font-size:28px;font-weight:800}
   .price-currency{font-size:14px;color:#cbd5e1;margin-left:6px}
 
+  /* ===== Nanny Profiles ===== */
+  .profile{
+    background:#101828; border:1px solid var(--border); border-radius:12px; padding:18px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .profile h4{margin:0}
+  .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:#0b1220; color:#cfe6ff; border:1px solid var(--border); font-size:12px; margin-right:6px}
+  .stars{color:#fbbf24; font-weight:700}
+
   footer .panel{text-align:center}
 </style>
 </head>
 <body>
 
-  <!-- ===== NAV: clicking shows just that section ===== -->
+  <!-- ===== Background slideshow layers ===== -->
+  <div class="bg-slideshow" aria-hidden="true"></div>
+  <div class="bg-slide-3" aria-hidden="true"></div>
+  <div class="bg-slide-4" aria-hidden="true"></div>
+
+  <!-- ===== NAV ===== -->
   <nav aria-label="Primary">
     <div class="nav-inner">
-      <a class="brand" href="#home">Safari Holiday Childcare</a>
+      #homeSafari Holiday Childcare</a>
       <div class="spacer"></div>
       <div class="menu">
-        <a href="#booking">Book Now</a>
-        <a href="#about">About</a>
-        <a href="#safety">Safety &amp; Trust</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
+        #bookingBook Now</a>
+        #aboutAbout</a>
+        #safetySafety &amp; Trust</a>
+        #reviewsReviews</a>
+        #nannyHire a Nanny</a>
+        #pricingPricing</a>
+        #contactContact</a>
       </div>
       <div class="spacer"></div>
-      <a class="btn" href="#booking">Book Now</a>
-      <a class="btn primary" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
+      #bookingBook Now</a>
+      https://wa.me/YOUR_WHATSAPP_NUMBERWhatsApp</a>
     </div>
   </nav>
 
@@ -90,7 +141,8 @@
   <section id="home">
     <div class="wrap hero">
       <div class="panel">
-nd safety first.</p>
+        <h1>Childcare you can trust—so your safari can be unforgettable</h1>
+        <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
         <div class="buttons">
           #bookingBook a session</a>
           #safetySee our safety measures</a>
@@ -191,6 +243,57 @@ nd safety first.</p>
       <div class="panel"><h3>★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
       <div class="panel"><h3>★★★★★</h3><p>“Flexible hours and super professional. The best part of our trip.”</p><p class="small">— Daniel • Aug 2025</p></div>
       <div class="panel"><h3>★★★★★</h3><p>“Safety briefing was thorough and the activities were meaningful.”</p><p class="small">— Aisha • Sept 2025</p></div>
+    </div>
+  </section>
+
+  <!-- ===== HIRE A NANNY (new section, between Reviews and Pricing) ===== -->
+  <section id="nanny" hidden>
+    <div class="wrap">
+      <h2>Hire a Nanny</h2>
+      <p>Book a private nanny for consistent care across multiple days. All profiles are vetted, trained, and matched to your child’s interests and needs.</p>
+
+      <div class="grid cols-3">
+        <div class="profile">
+          <h4>Nomsa M.</h4>
+          <div class="stars">★★★★★</div>
+          <p class="small">“Nomsa connected instantly with our 6‑year‑old. Creative games and calm bedtime.” — Family K</p>
+          <div>
+            <span class="badge">First Aid + CPR</span>
+            <span class="badge">Storytelling</span>
+            <span class="badge">Evening care</span>
+          </div>
+          #bookingRequest this nanny</a>
+        </div>
+
+        <div class="profile">
+          <h4>Thabo S.</h4>
+          <div class="stars">★★★★★</div>
+          <p class="small">“Amazing nature activities and patient homework help.” — Family D</p>
+          <div>
+            <span class="badge">Nature play</span>
+            <span class="badge">Homework support</span>
+            <span class="badge">Meal assistance</span>
+          </div>
+          #bookingRequest this nanny</a>
+        </div>
+
+        <div class="profile">
+          <h4>Lerato P.</h4>
+          <div class="stars">★★★★★</div>
+          <p class="small">“Great with siblings and flexible hours—highly recommend.” — Family A</p>
+          <div>
+            <span class="badge">Sibling care</span>
+            <span class="badge">Flexible hours</span>
+            <span class="badge">Arts & crafts</span>
+          </div>
+          #bookingRequest this nanny</a>
+        </div>
+      </div>
+
+      <div class="buttons" style="margin-top:16px">
+        #bookingHire Nanny</a>
+        #contactAsk a question</a>
+      </div>
     </div>
   </section>
 
@@ -316,8 +419,8 @@ nd safety first.</p>
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // === One-section-at-a-time controller ===
-  const routes = ['home','booking','about','safety','reviews','pricing','contact'];
+  // === One-section-at-a-time controller (router) ===
+  const routes = ['home','booking','about','safety','reviews','nanny','pricing','contact'];
 
   function showSection(id){
     routes.forEach(r => {
