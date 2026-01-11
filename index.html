@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +11,14 @@
 <style>
   :root{
     --bg:#0b0f16; --panel:rgba(16,18,22,.82); --text:#f8fafc; --muted:#cbd5e1; --accent:#22c55e;
-    --border:rgba(148,163,184,.25); --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.45); --maxw:1180px;
-    --navH:64px;
+    --border:rgba(148,163,184,.25); --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.45); --maxw:1180px; --navH:64px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
   a{color:#a5f3fc;text-decoration:none}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* ===== NAVBAR (fixed, actions on the right) ===== */
+  /* ===== NAVBAR (fixed) ===== */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
   .nav-inner{max-width:var(--maxw);margin:0 auto;height:var(--navH);padding:0 20px;display:flex;align-items:center;gap:16px}
   .brand a{font-weight:800;color:#fff}
@@ -54,7 +55,7 @@
   section{scroll-margin-top:calc(var(--navH) + 12px)}
   section[hidden]{display:none!important}
 
-  /* ===== HERO CONTENT CARD ===== */
+  /* ===== HERO CARD ===== */
   .hero .content{position:relative;z-index:3;width:100%}
   .hero .panel{background:rgba(0,0,0,.62);border:1px solid var(--border)}
 
@@ -76,7 +77,7 @@
   .price-amount{font-size:28px;font-weight:800}
   .price-currency{font-size:14px;color:#cbd5e1;margin-left:6px}
 
-  /* ===== HIRE A NANNY PROFILES ===== */
+  /* ===== NANNY PROFILES ===== */
   .profile{background:#101828;border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
   .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#0b1220;color:#cfe6ff;border:1px solid var(--border);font-size:12px;margin-right:6px}
   .stars{color:#fbbf24;font-weight:700}
@@ -113,8 +114,7 @@
 
         <div class="actions">
           <a class="btn primary" href="#booking">Book Now</a>
-          <a class="btn ghost" rel="noopener" target="_blank"
-             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">WhatsApp</a>
+          <a class="btn ghost" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </nav>
@@ -139,8 +139,7 @@
         <h2>Book Now</h2>
         <p>Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
-          <a class="btn ghost" rel="noopener" target="_blank"
-             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
+          <a class="btn ghost" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
           <a class="btn" href="#contact">Prefer email? Contact us</a>
         </div>
         <p class="small">Languages: English • Swahili • Afrikaans (ask for others)</p>
@@ -188,7 +187,7 @@
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2>About Our Nanny Service (Ages 5–12)</h2>
-        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts. Parents can enjoy game drives, spa sessions, private dinners, or excursions—knowing their children are safe, supervised, and happily engaged.</p>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts.</p>
         <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are tailored to each child’s age, interests, and energy level.</p>
       </div>
       <div class="panel">
@@ -197,7 +196,7 @@
           <li>Supervised care in approved resort areas</li>
           <li>Arts &amp; crafts, puzzles, reading, storytelling, nature play</li>
           <li>Educational engagement: animals, conservation, local culture</li>
-          <li>Routine support: meals, quiet time, homework, bedtime (evenings)</li>
+          <li>Routine support: meals, quiet time, homework, bedtime</li>
           <li>Emotional care tailored to holiday environments</li>
         </ul>
       </div>
@@ -240,7 +239,7 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Nomsa connected instantly with our 6‑year‑old. Creative games and calm bedtime.” — Family K</p>
           <div><span class="badge">First Aid + CPR</span><span class="badge">Storytelling</span><span class="badge">Evening care</span></div>
-          <a href="#booking" class="btn">Request this nanny</a>
+          <a class="btn" href="#booking">Request this nanny</a>
         </div>
 
         <div class="profile">
@@ -248,7 +247,7 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Amazing nature activities and patient homework help.” — Family D</p>
           <div><span class="badge">Nature play</span><span class="badge">Homework support</span><span class="badge">Meal assistance</span></div>
-          <a href="#booking" class="btn">Request this nanny</a>
+          <a class="btn" href="#booking">Request this nanny</a>
         </div>
 
         <div class="profile">
@@ -256,13 +255,13 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Great with siblings and flexible hours—highly recommend.” — Family A</p>
           <div><span class="badge">Sibling care</span><span class="badge">Flexible hours</span><span class="badge">Arts & crafts</span></div>
-          <a href="#booking" class="btn">Request this nanny</a>
+          <a class="btn" href="#booking">Request this nanny</a>
         </div>
       </div>
 
       <div class="buttons" style="margin-top:16px">
         <a class="btn primary" href="#booking">Hire Nanny</a>
-        <a class="btn ghost" href="#contact">Ask a question</a>
+        <a class="btn" href="#contact">Ask a question</a>
       </div>
     </div>
   </section>
@@ -371,14 +370,15 @@
   <footer class="wrap"><div class="panel">© <span id="year"></span> Safari Holiday Childcare</div></footer>
 
 <script>
-  // Year
+  // Year stamp
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ===== ONE‑SECTION‑ONLY ROUTER (buttons show the chosen section) =====
+  // ===== ONE‑SECTION‑ONLY ROUTER =====
   const routes = ['home','booking','about','safety','reviews','nanny','pricing','contact'];
 
   function showSection(id){
     routes.forEach(r => { const el = document.getElementById(r); if(el) el.hidden = (r !== id); });
+    // highlight active menu/CTA
     document.querySelectorAll('nav .menu a, nav .brand a, .actions a, .buttons a').forEach(a=>{
       const t=(a.getAttribute('href')||'').startsWith('#') ? a.getAttribute('href').slice(1) : null;
       a.setAttribute('aria-current', t===id ? 'page' : '');
@@ -387,6 +387,7 @@
   }
   function syncFromHash(){ const id=(location.hash||'#home').slice(1); showSection(routes.includes(id)? id : 'home'); }
 
+  // Intercept clicks on any in‑page anchor
   document.addEventListener('click', (e)=>{
     const a = e.target.closest('a[href^="#"]'); if(!a) return;
     const id = a.getAttribute('href').slice(1); if(!routes.includes(id)) return;
@@ -412,44 +413,3 @@
     function set(code){ [[USD,'USD'],[ZAR,'ZAR'],[GBP,'GBP'],[EUR,'EUR']].forEach(([b,c])=>{const on=c===code; b?.classList.toggle('active',on); b?.setAttribute('aria-pressed',on);}); }
     function RUSD(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`$${u.toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('USD'); recalcTotal?.(); }
     function RZAR(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`R${Math.round(u*rates.ZAR).toLocaleString('en-ZA')}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('ZAR'); recalcTotal?.(); }
-    function RGBP(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`£${(u*rates.GBP).toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('GBP'); recalcTotal?.(); }
-    function REUR(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`€${(u*rates.EUR).toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('EUR'); recalcTotal?.(); }
-
-    USD?.addEventListener('click',RUSD); ZAR?.addEventListener('click',RZAR);
-    GBP?.addEventListener('click',RGBP); EUR?.addEventListener('click',REUR);
-    if(USD) RUSD();
-
-    // Converter
-    const amount=$('#conv-amount'), from=$('#conv-from'), to=$('#conv-to');
-    const rz=$('#rate-usd-zar'), rg=$('#rate-usd-gbp'), re=$('#rate-usd-eur'), convBtn=$('#conv-btn'), out=$('#conv-result');
-    const fmt=(a,c)=>({USD:`$${a.toFixed(2)}`,ZAR:`R${a.toLocaleString('en-ZA',{maximumFractionDigits:2})}`,GBP:`£${a.toFixed(2)}`,EUR:`€${a.toFixed(2)}`}[c]);
-    const toUSD=(a,c,r)=>c==='USD'?a:c==='ZAR'?a/r.ZAR:c==='GBP'?a/r.GBP:a/r.EUR;
-    const fromUSD=(u,c,r)=>c==='USD'?u:c==='ZAR'?u*r.ZAR:c==='GBP'?u*r.GBP:u*r.EUR;
-    convBtn?.addEventListener('click',()=>{
-      rates={ZAR:+(rz?.value||18.5), GBP:+(rg?.value||0.79), EUR:+(re?.value||0.92)};
-      const val=+(amount?.value||0); if(!val){ out.textContent='Enter an amount.'; return; }
-      const usd=toUSD(val,from.value,rates), res=fromUSD(usd,to.value,rates);
-      out.textContent=`${fmt(val,from.value)} = ${fmt(res,to.value)}`;
-      ({USD:RUSD,ZAR:RZAR,GBP:RGBP,EUR:REUR}[to.value]||RUSD)();
-    });
-
-    // Calculator
-    const pkg=$('#calc-package'), qty=$('#calc-qty'), calcBtn=$('#calc-btn'), total=$('#calc-total');
-    function activeCur(){ return ZAR?.classList.contains('active')?'ZAR':GBP?.classList.contains('active')?'GBP':EUR?.classList.contains('active')?'EUR':'USD'; }
-    function priceIn(code,usd){ return code==='USD'?`$${usd.toFixed(2)}`:code==='ZAR'?`R${Math.round(usd*rates.ZAR).toLocaleString('en-ZA')}`:code==='GBP'?`£${(usd*rates.GBP).toFixed(2)}`:`€${(usd*rates.EUR).toFixed(2)}`; }
-    window.recalcTotal = function recalcTotal(){ if(!pkg||!qty||!total) return; const u=+pkg.value||0, q=Math.max(1,+qty.value||1); total.textContent=`Estimated total: ${priceIn(activeCur(),u*q)}`; };
-    calcBtn?.addEventListener('click',recalcTotal); pkg?.addEventListener('change',recalcTotal); qty?.addEventListener('change',recalcTotal);
-  })();
-
-  // Formspree AJAX (optional)
-  (function(){
-    function wire(id, statusId){
-      const f=document.getElementById(id), s=document.getElementById(statusId);
-      if(!f||!s) return;
-      f.addEventListener('submit', async (e)=>{
-        e.preventDefault(); s.textContent='Sending…';
-        try{
-          const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
-          s.textContent=r.ok?'Thanks! We’ll get back to you shortly.':'There was a problem. Please try again.';
-          if(r.ok) f.reset();
-        }catch{ s.textContent='Network error. Please try again.'; }
