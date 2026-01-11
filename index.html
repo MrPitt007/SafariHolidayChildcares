@@ -8,16 +8,16 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted safari holiday childcare for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first." />
 
-  <!-- Optional font; remove these lines if you prefer zero external calls -->
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Optional: Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- Preload images to minimize initial flicker -->
-  <!-- <link rel="preload" as="image" href="kid1.jpg.webp">
+  <link rel="preload" as="image" href="kid1.jpg.webp">
   <link rel="preload" as="image" href="kid2.jpg.webp">
   <link rel="preload" as="image" href="kid3.jpg.png">
-  <link rel="preload" as="image" href="kid4.jpg.jpg"> -->
+  <link rel="preload" as="image" href="kid4.jpg.jpg">
 
   <style>
     :root{
@@ -31,8 +31,8 @@
       --radius: 16px;
       --maxw: 1080px;
 
-      /* 3D cube tuning (JS updates tilt) — further zoomed-out */
-      --cubeZ: 300px;   /* shallower depth → smaller apparent size */
+      /* 3× more zoomed‑out (JS updates tilt) */
+      --cubeZ: 180px;   /* shallower depth → smaller apparent size */
       --tiltX: 0deg;
       --tiltY: 0deg;
     }
@@ -53,7 +53,7 @@
     /* ===== Fullscreen 3D background (more zoomed-out) ===== */
     .bg-3d{
       position:fixed; inset:0; z-index:-3;
-      perspective:3200px;  /* deeper camera → less scale */
+      perspective:5400px;  /* deeper camera → less scale */
       overflow:hidden; background:#000;
       pointer-events:auto; /* enables :hover pause */
     }
@@ -74,7 +74,7 @@
 
     .face{
       position:absolute; top:50%; left:50%;
-      width:130vmax; height:95vmax;  /* smaller planes → more zoom-out */
+      width:110vmax; height:80vmax;  /* smaller planes → stronger zoom-out */
       transform:translate(-50%,-50%);
       background-size:cover;          /* still fills the viewport */
       background-position:center;
@@ -211,7 +211,8 @@
         <h2 id="book-now">Book Now</h2>
         <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
-          <a class="btn primary" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
+          <a class="btn primary" target="_blank" rel="noopener"
+             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
           <a class="btn" href="#contact">Prefer email? Contact us</a>
         </div>
         <div class="small" style="margin-top:10px">Languages: English • Swahili • Afrikaans (ask for others)</div>
@@ -453,7 +454,26 @@
       const wrap = document.getElementById('cubeWrap');
       const cube = document.getElementById('cube');
 
-      let targetX = 0, targetY = 0, curX =h.min(maxTilt, (x/(rect.width/2))  * maxTilt));
+      let targetX = 0, targetY = 0, curX = 0, curY = 0;
+      const maxTilt = 6; // degrees
+      const lerp = (a,b,t)=> a + (b - a) * t;
+
+      function animate(){
+        curX = lerp(curX, targetX, 0.08);
+        curY = lerp(curY, targetY, 0.08);
+        root.style.setProperty('--tiltX', curX.toFixed(2) + 'deg');
+        root.style.setProperty('--tiltY', curY.toFixed(2) + 'deg');
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      function onMove(e){
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top  + rect.height/2;
+        const p = e.touches ? e.touches[0] : e;
+        const x = p.clientX - cx, y = p.clientY - cy;
+        targetY = Math.max(-maxTilt, Math.min(maxTilt, (x/(rect.width/2))  * maxTilt));
         targetX = Math.max(-maxTilt, Math.min(maxTilt, (-y/(rect.height/2)) * maxTilt));
       }
       function onLeave(){ targetX = 0; targetY = 0; }
@@ -486,18 +506,4 @@
             headers:{ 'Accept':'application/json' }
           });
           if(res.ok){
-            status.textContent = 'Thanks! We\'ll get back to you shortly.';
-            form.reset();
-          } else {
-            status.textContent = 'There was a problem sending your message. Please try again.';
-          }
-        }catch(err){
-          status.textContent = 'Network error. Please try again.';
-        }
-      });
-    }
-    wireForm('quickRequest','qr-status');
-    wireForm('contactForm','c-status');
-  </script>
-</body>
-</html>
+            status.textContent = 'Thanks! We\'
