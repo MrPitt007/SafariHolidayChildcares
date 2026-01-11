@@ -27,7 +27,7 @@
 
     /* --- Top Nav --- */
     .nav{ position:sticky; top:0;
-      background:rgba(15,18,24,0.88); backdrop-filter:blur(8px);
+      background:rgba(15,18,24,0.90); backdrop-filter:blur(8px);
       border-bottom:1px solid rgba(255,255,255,0.08);
       z-index:1000;
     }
@@ -42,32 +42,36 @@
     .menu a:hover, .menu a:focus{ background:rgba(255,255,255,0.12); }
     .menu a.active{ background:rgba(255,255,255,0.18); }
 
-    /* --- Full-screen background slideshow (your 4 photos) --- */
+    /* --- FULL-SCREEN BACKGROUND SLIDESHOW (runs on every section) --- */
     .bg-slides{
-      position:fixed; inset:0; z-index:0; pointer-events:none;   /* behind content */
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+    }
+    .bg-slides::after{
+      /* soft dark overlay for text legibility */
+      content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
     }
     .bg-slides img{
       position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; opacity:0; animation:bgfade 24s infinite;
-      filter:brightness(0.5) saturate(1.08); transform:scale(1.03);
+      object-fit:cover; opacity:0; animation:bgfade 28s infinite;
+      transform:scale(1.03);
     }
-    /* 4 images → 6s each (24s total) */
+    /* 4 images → ~7s each (28s total) */
     .bg-slides img:nth-child(1){ animation-delay:0s; }
-    .bg-slides img:nth-child(2){ animation-delay:6s; }
-    .bg-slides img:nth-child(3){ animation-delay:12s; }
-    .bg-slides img:nth-child(4){ animation-delay:18s; }
+    .bg-slides img:nth-child(2){ animation-delay:7s; }
+    .bg-slides img:nth-child(3){ animation-delay:14s; }
+    .bg-slides img:nth-child(4){ animation-delay:21s; }
     @keyframes bgfade{
       0%{opacity:0}
-      8%, 20%{opacity:1}
-      28%, 100%{opacity:0}
+      10%, 30%{opacity:1}
+      40%, 100%{opacity:0}
     }
 
-    /* --- Sections / cards (only one visible at a time) --- */
+    /* --- Sections / cards (only one visible at any time) --- */
     .container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
     .section{ display:none; }
     .section.active{ display:block; }
 
-    /* --- Home hero (content box; background is global slideshow) --- */
+    /* --- Home hero block (content box; slideshow is global) --- */
     .hero{
       position:relative; min-height:62vh; display:grid; place-items:center;
       color:var(--text-invert); text-align:center; overflow:hidden;
@@ -127,13 +131,12 @@
 </head>
 <body>
 
-  <!-- FULL-SCREEN BACKGROUND (your 4 slides) -->
+  <!-- GLOBAL background slideshow (always visible behind content) -->
   <div class="bg-slides" id="bgSlides" aria-hidden="true">
-    <!-- These filenames must exist next to this HTML file; change if needed -->
-    <img src="bg1.jpg" alt="" />
-    <img src="bg2.jpg" alt="" />
-    <img src="bg3.jpg" alt="" />
-    <img src="bg4.jpg" alt="" />
+    <img src="kid1.jpg.webp" alt="" />
+    <img src="kid2.jpg.webp" alt="" />
+    <img src="kid3.jpg.png"  alt="" />
+    <img src="kid4.jpg.jpg"  alt="" />
   </div>
 
   <!-- Top Menu -->
@@ -141,7 +144,7 @@
     <div class="nav-inner">
       <div class="brand">Safari Holiday Childcare</div>
       <div class="menu" id="menu">
-        <a href="#" data-section="home" class="active">Home</a>
+        <a href="#" data-section="home">Home</a>
         <a href="#" data-section="booking">Book Now</a>
         <a href="#" data-section="about">About</a>
         <a href="#" data-section="safety">Safety &amp; Trust</a>
@@ -161,8 +164,8 @@
         <h1>Trusted Nannies for Safari Lodges (Ages 5–12)</h1>
         <p>Enjoy game drives or spa time while your children are safe, engaged, and smiling with our trained, vetted childcare professionals.</p>
         <div class="buttons">
-          <a class="btn" data-section="booking" href="#">Book a Session</a>
-          <a class="btn secondary" data-section="safety" href="#">See Safety Measures</a>
+          <a href="#" class="btn" data-section="booking">Book a Session</a>
+          <a href="#" class="btn secondary" data-section="safety">See Safety Measures</a>
         </div>
       </div>
     </header>
@@ -175,13 +178,11 @@
       <p class="muted">Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
 
       <div class="buttons" style="margin-bottom:12px;">
-        <a class="btn" href="https://wa.me/REPLACE_WITH_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">
-          WhatsApp us
-        </a>
-        <a class="btn secondary" data-section="contact" href="#">Prefer email? Contact us</a>
+        <a class="btn" href="https://wa.me/REPLACE_WITH_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">WhatsApp us</a>
+        <a href="#" data-section="contact">Prefer email? Contact us</a>
       </div>
 
-      <!-- Example form (wire to your backend / Formspree) -->
+      <!-- Example form (wire to Formspree or your backend) -->
       <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         <div class="form-grid">
           <div>
@@ -276,8 +277,10 @@
       <blockquote>“Our kids loved the animal tracking games! We felt completely at ease.” — Emma • July 2025</blockquote>
       <blockquote>“Flexible hours and super professional. The best part of our trip.” — Daniel • Aug 2025</blockquote>
       <blockquote>“Safety briefing was thorough and the activities were meaningful.” — Aisha • Sept 2025</blockquote>
+
+      <!-- Hiring button here -->
       <div class="buttons" style="margin-top:12px;">
-        <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
+        <a href="#" class="btn" data-section="nanny">Hiring a Nanny</a>
       </div>
     </section>
   </div>
@@ -297,8 +300,8 @@
             <li>Your nanny arrives prepared with age‑appropriate activities.</li>
           </ol>
           <div class="buttons" style="margin-top:10px;">
-            <a class="btn" data-section="booking" href="#">Book a Nanny</a>
-            <a class="btn secondary" data-section="contact" href="#">Ask a question</a>
+            <a href="#" class="btn" data-section="booking">Book a Nanny</a>
+            <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener" class="btn secondary">Ask a question</a>
           </div>
         </div>
         <div>
@@ -347,7 +350,7 @@
             <li>Age‑appropriate activities</li>
             <li>Snack supervision</li>
           </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
+          <a href="#" data-section="booking">Book Now</a>
         </div>
         <div class="price">
           <h3>Standard</h3>
@@ -357,7 +360,7 @@
             <li>Educational activities &amp; games</li>
             <li>Meal assistance</li>
           </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
+          <a href="#" data-section="booking">Book Now</a>
         </div>
         <div class="price">
           <h3>Premium</h3>
@@ -367,12 +370,13 @@
             <li>Full activity schedule</li>
             <li>Homework &amp; bedtime support</li>
           </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
+          <a href="#" data-section="booking">Book Now</a>
         </div>
       </div>
 
+      <!-- Hiring button here -->
       <div class="buttons" style="margin-top:14px;">
-        <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
+        <a href="#" class="btn" data-section="nanny">Hiring a Nanny</a>
       </div>
 
       <p class="muted" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
@@ -388,7 +392,6 @@
         Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a>
       </p>
 
-      <!-- Example contact form -->
       <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         <div class="form-grid">
           <div>
@@ -426,11 +429,11 @@
     const menuLinks = Array.from(document.querySelectorAll('#menu a[data-section]'));
 
     function showSection(id){
-      // Highlight the menu
+      // menu active state
       menuLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
-      // Show only the selected section
+      // show/hide sections
       sections.forEach(s => s.classList.toggle('active', s.id === id));
-      // Scroll to the top for a clean view
+      // scroll top for a clean view
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -451,14 +454,20 @@
       }
     });
 
+    // -------- Background slideshow is global (no extra JS needed) --------
+    // If you ever want different images per section later, we can swap
+    // the <img> tags inside #bgSlides in showSection() based on id.
+
     // Optional: support deep links like ?section=pricing
     const params = new URLSearchParams(window.location.search);
     const initial = params.get('section');
     if(initial && document.getElementById(initial)){
       showSection(initial);
     } else {
-      showSection('home'); // default
+      showSection('home'); // default view
     }
   </script>
 </body>
 </html>
+
+
