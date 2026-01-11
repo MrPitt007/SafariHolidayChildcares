@@ -313,3 +313,184 @@
           <div class="stars">★★★★★</div>
           <p>“Professional, kind, and safety‑focused. The bedtime routine was smooth even away from home.”</p>
           <p class="muted">— Michael • Parent</p>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>“Loved the educational animal activities. Our 7‑year‑old still talks about tracking footprints.”</p>
+          <p class="muted">— Zahra • Parent</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PRICING -->
+  <div id="pricing" class="section container">
+    <section class="card" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Pricing</h2>
+      <div class="price-cards">
+        <div class="price">
+          <h3>Basic</h3>
+          <div class="amount">$50 / session</div>
+          <ul>
+            <li>Up to 3 hours of care</li>
+            <li>Age‑appropriate activities</li>
+            <li>Snack supervision</li>
+          </ul>
+          <a href="#" class="btn" data-section="booking">Book Now</a>
+        </div>
+        <div class="price">
+          <h3>Standard</h3>
+          <div class="amount">$90 / session</div>
+          <ul>
+            <li>Up to 6 hours of care</li>
+            <li>Educational activities &amp; games</li>
+            <li>Meal assistance</li>
+          </ul>
+          <a href="#" class="btn" data-section="booking">Book Now</a>
+        </div>
+        <div class="price">
+          <h3>Premium</h3>
+          <div class="amount">$150 / day</div>
+          <ul>
+            <li>Up to 10 hours of care</li>
+            <li>Full activity schedule</li>
+            <li>Homework &amp; bedtime support</li>
+          </ul>
+          <a href="#" class="btn" data-section="booking">Book Now</a>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
+    </section>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section container">
+    <section class="card" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p>
+        Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a><br/>
+        Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a>
+      </p>
+
+      <!-- Simple contact form (example only) -->
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-grid">
+          <div>
+            <label for="cname">Name</label>
+            <input id="cname" name="name" required />
+          </div>
+          <div>
+            <label for="cemail">Email</label>
+            <input id="cemail" name="email" type="email" required />
+          </div>
+          <div class="full">
+            <label for="csubject">Subject</label>
+            <input id="csubject" name="subject" />
+          </div>
+          <div class="full">
+            <label for="cmessage">Message</label>
+            <textarea id="cmessage" name="message"></textarea>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button class="btn" type="submit">Send message</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <footer>© <span id="y"></span> Safari Holiday Childcare</footer>
+
+  <script>
+    // Year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Tab-like navigation (only one section visible)
+    const sections = Array.from(document.querySelectorAll('.section'));
+    const menuLinks = Array.from(document.querySelectorAll('#menu a[data-section]'));
+
+    function showSection(id){
+      // Toggle menu active state
+      menuLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+      // Show only the requested section
+      sections.forEach(s => {
+        if(s.id === id){
+          s.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      // Update background slideshow
+      setBackgroundFor(id);
+    }
+
+    // Wire up top menu clicks
+    menuLinks.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.dataset.section;
+        if(id) showSection(id);
+      });
+    });
+
+    // Wire up any in-page buttons that navigate sections
+    document.body.addEventListener('click', e => {
+      const tgt = e.target.closest('a[data-section]');
+      if(tgt){
+        e.preventDefault();
+        showSection(tgt.dataset.section);
+      }
+    });
+
+    // ---- Full background slideshow per section ----
+    const bg = document.getElementById('bgSlides');
+
+    // Replace these arrays with your own image URLs (3 per section recommended)
+    const BG_IMAGES = {
+      home: [
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600",
+        "https://images.unsplash.com/photo-1516302350523-f0f6f1367ec1?q=80&w=1600",
+        "https://images.unsplash.com/photo-1542482378-75c6a2eb94b2?q=80&w=1600"
+      ],
+      booking: [
+        "https://images.unsplash.com/photo-151968139378"https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600",
+        "https://images.unsplash.com/photo-1490904825500-74b2c7213d00?q=80&w=1600"
+      ],
+      nanny: [
+        "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1600",
+        "https://images.unsplash.com/photo-1507003211169-0f38ce5f2d3b?q=80&w=1600",
+        "https://images.unsplash.com/photo-1542810634-712f0d76a1aa?q=80&w=1600"
+      ],
+      pricing: [
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600",
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600",
+        "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1600"
+      ],
+      contact: [
+        "https://images.unsplash.com/photo-1469474968028-5668d52f650f?q=80&w=1600",
+        "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600",
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1600"
+      ]
+    };
+
+    function setBackgroundImages(urls){
+      // Inject <img> tags so the CSS animation can run
+      bg.innerHTML = urls.map(u => `${u}`).join('');
+    }
+    function setBackgroundFor(sectionId){
+      const urls = BG_IMAGES[sectionId] || BG_IMAGES.home;
+      setBackgroundImages(urls);
+    }
+
+    // Optional deep link: ?section=pricing opens directly to pricing
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('section');
+    if(initial && document.getElementById(initial)){
+      showSection(initial);
+    } else {
+      showSection('home'); // default
+    }
+  </script>
+</body>
+</html>
