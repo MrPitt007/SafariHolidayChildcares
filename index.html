@@ -8,12 +8,12 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted safari holiday childcare for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first." />
 
-  <!-- Optional: Google Font (commented out to avoid external calls)
+  <!-- Optional: Google Font (commented to avoid external calls)
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> -->
 
-  <!-- Preload images to minimize initial flicker (optional hints)
+  <!-- Optional image preload hints (commented)
   <link rel="preload" as="image" href="kid1.jpg.webp">
   <link rel="preload" as="image" href="kid2.jpg.webp">
   <link rel="preload" as="image" href="kid3.jpg.png">
@@ -31,8 +31,8 @@
       --radius: 16px;
       --maxw: 1080px;
 
-      /* 3× more zoomed‑out (JS updates tilt) */
-      --cubeZ: 180px;
+      /* Background 3D (zoomed-out) */
+      --cubeZ: 180px;   /* shallower depth → smaller apparent size */
       --tiltX: 0deg;
       --tiltY: 0deg;
     }
@@ -42,7 +42,7 @@
     body{
       min-height:100%;
       margin:0;
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* Inter optional */
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
@@ -50,7 +50,7 @@
       overflow-x:hidden;
     }
 
-    /* ===== Fullscreen 3D background (more zoomed-out) ===== */
+    /* ===== Fullscreen 3D background (zoomed-out) ===== */
     .bg-3d{
       position:fixed; inset:0; z-index:-3;
       perspective:5400px;
@@ -70,14 +70,13 @@
       will-change:transform;
     }
     .cube.paused{ animation-play-state: paused; }
-    .bg-3d:hover .cube{ animation-play-state: paused; }
+    .bg-3d:hover .cube{ animation-play-state: paused; } /* pause rotation on hover (desktop) */
 
     .face{
       position:absolute; top:50%; left:50%;
-      width:110vmax; height:80vmax;
+      width:110vmax; height:80vmax;  /* strong zoom-out */
       transform:translate(-50%,-50%);
-      background-size:cover;
-      background-position:center;
+      background-size:cover; background-position:center;
       backface-visibility:hidden; -webkit-backface-visibility:hidden;
       transform:translateZ(0) translate3d(0,0,0); -webkit-transform:translateZ(0);
       filter:saturate(1.02) contrast(1.03);
@@ -147,7 +146,7 @@
     .small{ font-size:14px; color:var(--muted); }
     ul{ padding-left:18px; }
     .grid{ display:grid; gap:18px; }
-    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3, 1fr);} }
+    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3,1fr);} }
     .price{ font-size:28px; font-weight:800; }
     footer{ border-top:1px solid var(--border); background:rgba(0,0,0,.5); }
     .footer-inner{ max-width:var(--maxw); margin:0 auto; padding:36px 20px; color:var(--muted); }
@@ -158,7 +157,7 @@
     @media (max-width:700px){ .row{ grid-template-columns:1fr; } }
     .status{ margin-top:10px; min-height:1.2em; font-size:14px; color:#a7f3d0; }
 
-    /* Currency toggle UI */
+    /* Currency UI */
     .currency-toggle{
       display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap;
     }
@@ -173,6 +172,16 @@
     .price-line{ margin-top:6px; }
     .price-amount{ font-size:28px; font-weight:800; }
     .price-currency{ font-size:14px; color:var(--muted); margin-left:6px; }
+
+    /* Converter UI */
+    .converter{
+      margin-top:22px;
+      display:grid; gap:12px;
+      grid-template-columns: 1fr;
+    }
+    .converter .row{ grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width:700px){ .converter .row{ grid-template-columns:1fr; } }
+    .conv-result{ font-size:18px; font-weight:700; color:#a7f3d0; }
   </style>
 </head>
 
@@ -227,7 +236,8 @@
         <h2 id="book-now">Book Now</h2>
         <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
-          <a class="btn primary" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
+          <a class="btn primary" target="_blank" rel="noopener"
+             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
           <a class="btn" href="#contact">Prefer email? Contact us</a>
         </div>
         <div class="small" style="margin-top:10px">Languages: English • Swahili • Afrikaans (ask for others)</div>
@@ -289,7 +299,7 @@
     </div>
   </section>
 
-  <!-- Safety -->
+  <!-- Safety & Trust -->
   <section id="safety" aria-labelledby="safety-title">
     <div class="wrap">
       <div class="panel">
@@ -367,7 +377,7 @@
     </div>
   </section>
 
-  <!-- Pricing (with USD / ZAR toggle) -->
+  <!-- Pricing (with USD / ZAR toggle + Converter) -->
   <section id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
       <h2 id="pricing-title" style="margin-bottom:8px;">Pricing</h2>
@@ -377,7 +387,7 @@
         <span style="color:var(--muted);">Currency:</span>
         <button type="button" class="chip active" id="btnUSD" aria-pressed="true">USD ($)</button>
         <button type="button" class="chip" id="btnZAR" aria-pressed="false">ZAR (R)</button>
-        <span class="small" style="margin-left:8px;">(Update rate in JS if needed)</span>
+        <span class="small" style="margin-left:8px;">(Update rate in Converter if needed)</span>
       </div>
 
       <div class="grid cols-3">
@@ -391,7 +401,7 @@
             <li>Snack supervision</li>
           </ul>
           <p class="price-line">
-            <span class="price-amount" data-usd="50" data-price></span>
+            <span class="price-amount" data-usd="50" data-unit="session" data-price></span>
             <span class="price-currency" data-currency></span>
           </p>
           <p><a class="btn" href="#booking">Book Now</a></p>
@@ -407,7 +417,7 @@
             <li>Meal assistance</li>
           </ul>
           <p class="price-line">
-            <span class="price-amount" data-usd="90" data-price></span>
+            <span class="price-amount" data-usd="90" data-unit="session" data-price></span>
             <span class="price-currency" data-currency></span>
           </p>
           <p><a class="btn" href="#booking">Book Now</a></p>
@@ -423,11 +433,36 @@
             <li>Homework &amp; bedtime support</li>
           </ul>
           <p class="price-line">
-            <span class="price-amount" data-usd="150" data-price></span>
+            <span class="price-amount" data-usd="150" data-unit="day" data-price></span>
             <span class="price-currency" data-currency></span>
           </p>
           <p><a class="btn" href="#booking">Book Now</a></p>
         </div>
+      </div>
+
+      <!-- Currency Converter -->
+      <div class="panel converter" aria-labelledby="converter-title">
+        <h3 id="converter-title">Currency Converter (USD ↔ ZAR)</h3>
+        <div class="row">
+          <div>
+            <label for="conv-amount">Amount</label>
+            <input id="conv-amount" type="number" step="0.01" placeholder="Enter amount" />
+          </div>
+          <div>
+            <label for="conv-mode">Direction</label>
+            <select id="conv-mode">
+              <option value="USD2ZAR">USD → ZAR</option>
+              <option value="ZAR2USD">ZAR → USD</option>
+            </select>
+          </div>
+          <div>
+            <label for="conv-rate">Rate (1 USD = ZAR)</label>
+            <input id="conv-rate" type="number" step="0.0001" value="18.50" />
+          </div>
+        </div>
+        <button class="btn primary" id="conv-btn" style="width:max-content;">Convert</button>
+        <div class="conv-result" id="conv-result" aria-live="polite"></div>
+        <div class="small">Tip: update the rate here; prices above will sync when you switch currency.</div>
       </div>
 
       <p class="small" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
@@ -484,7 +519,7 @@
   </footer>
 
   <script>
-    // Year stamp
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ========= Mouse/Touch Tilt with smoothing =========
@@ -522,7 +557,7 @@
       window.addEventListener('touchmove', onMove, {passive:true});
       window.addEventListener('blur', onLeave);
 
-      // Tap/click to pause/resume rotation (useful on touch)
+      // Tap/click to pause/resume rotation
       let paused = false;
       window.addEventListener('pointerdown', () => {
         paused = !paused;
@@ -532,11 +567,17 @@
 
     // ========= Currency Toggle (USD / ZAR) =========
     (function(){
-      const conversionRate = 18.50; // <-- 1 USD = 18.50 ZAR (update this when you want)
+      let conversionRate = 18.50; // 1 USD = ZAR (synced from converter when you change it)
+
       const btnUSD = document.getElementById('btnUSD');
       const btnZAR = document.getElementById('btnZAR');
       const priceEls = document.querySelectorAll('[data-price]');
       const currencyEls = document.querySelectorAll('[data-currency]');
+
+      function unitText(el){
+        const unit = (el.getAttribute('data-unit') || 'session');
+        return unit === 'day' ? '/ day' : '/ session';
+      }
 
       function setActive(isUSD){
         btnUSD.classList.toggle('active', isUSD);
@@ -545,21 +586,95 @@
         btnZAR.setAttribute('aria-pressed', String(!isUSD));
       }
 
-      function renderPricesUSD(){
+      function renderUSD(){
         priceEls.forEach(el=>{
           const usd = Number(el.getAttribute('data-usd') || '0');
           el.textContent = `$${usd.toFixed(0)}`;
         });
-        currencyEls.forEach(c=> c.textContent = '/ session or day');
+        currencyEls.forEach((c, i)=>{
+          const el = priceEls[i];
+          c.textContent = unitText(el);
+        });
         setActive(true);
       }
 
-      function renderPricesZAR(){
+      function renderZAR(){
         priceEls.forEach(el=>{
           const usd = Number(el.getAttribute('data-usd') || '0');
           const zar = usd * conversionRate;
-          // Format with no decimals and thousand separators
-          el.textContent = `R${Math.round(zar).toLocaleString('en-Z     try{
+          el.textContent = `R${Math.round(zar).toLocaleString('en-ZA')}`;
+        });
+        currencyEls.forEach((c, i)=>{
+          const el = priceEls[i];
+          c.textContent = unitText(el);
+        });
+        setActive(false);
+      }
+
+      btnUSD.addEventListener('click', renderUSD);
+      btnZAR.addEventListener('click', renderZAR);
+
+      // Expose a small API to update the rate from the converter
+      window.__setRateAndRefreshPrices = function(newRate, mode){
+        conversionRate = Number(newRate) || conversionRate;
+        if(mode === 'USD2ZAR'){
+          renderZAR();
+        }else{
+          renderUSD();
+        }
+      };
+
+      // Initial render (USD by default)
+      renderUSD();
+    })();
+
+    // ========= Currency Converter (USD ↔ ZAR) =========
+    (function(){
+      const amountEl = document.getElementById('conv-amount');
+      const modeEl   = document.getElementById('conv-mode');
+      const rateEl   = document.getElementById('conv-rate');
+      const btn      = document.getElementById('conv-btn');
+      const out      = document.getElementById('conv-result');
+
+      function doConvert(){
+        const amount = Number(amountEl.value || 0);
+        const rate   = Number(rateEl.value || 0);
+        const mode   = modeEl.value;
+
+        if(!amount || !rate){
+          out.textContent = 'Enter amount and a valid rate.';
+          return;
+        }
+        let resultText = '';
+        if(mode === 'USD2ZAR'){
+          const zar = amount * rate;
+          resultText = `$${amount.toFixed(2)} = R${zar.toLocaleString('en-ZA', {maximumFractionDigits:2})}`;
+        }else{
+          const usd = amount / rate;
+          resultText = `R${amount.toLocaleString('en-ZA', {maximumFractionDigits:2})} = $${usd.toFixed(2)}`;
+        }
+        out.textContent = resultText;
+
+        // Also update the pricing buttons if user changes rate
+        window.__setRateAndRefreshPrices(rate, mode);
+      }
+
+      btn.addEventListener('click', doConvert);
+      // Convenience: live update when user presses Enter inside amount or rate
+      [amountEl, rateEl].forEach(el=>{
+        el.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ e.preventDefault(); doConvert(); }});
+      });
+    })();
+
+    // ========= Forms (AJAX submit via Formspree) =========
+    function wireForm(formId, statusId){
+      const form = document.getElementById(formId);
+      const status = document.getElementById(statusId);
+      if(!form) return;
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        status.textContent = 'Sending…';
+        try{
           const res = await fetch(form.action, {
             method:'POST',
             body:new FormData(form),
@@ -572,12 +687,4 @@
             status.textContent = 'There was a problem sending your message. Please try again.';
           }
         }catch(err){
-          status.textContent = 'Network error. Please try again.';
-        }
-      });
-    }
-    wireForm('quickRequest','qr-status');
-    wireForm('contactForm','c-status');
-  </script>
-</body>
-</html>
+          status.textContent = '
