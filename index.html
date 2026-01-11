@@ -1,5 +1,5 @@
 
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,75 +8,35 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted safari holiday childcare for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first." />
 
-  <!-- Optional font (commented to avoid external calls)
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> --> 
-
   <style>
     :root{
-      --bg: #000;
-      --panel: rgba(10,11,13,.72);
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --accent: #22c55e;
-      --border: rgba(148,163,184,.25);
-      --shadow: 0 8px 24px rgba(0,0,0,.45);
-      --radius: 16px;
-      --maxw: 1080px;
+      --bg: #000; --panel: rgba(10,11,13,.72); --text: #f8fafc; --muted: #cbd5e1;
+      --accent: #22c55e; --border: rgba(148,163,184,.25); --shadow: 0 8px 24px rgba(0,0,0,.45);
+      --radius: 16px; --maxw: 1080px;
 
       /* Zoomed‑out 3D */
       --cubeZ: 180px;        /* shallower depth → smaller apparent size */
-      --tiltX: 0deg;
-      --tiltY: 0deg;
+      --tiltX: 0deg; --tiltY: 0deg;
     }
 
     *{ box-sizing:border-box }
     html{ height:100%; scroll-behavior:smooth; }
     body{
-      min-height:100%;
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-      letter-spacing:.2px;
-      overflow-x:hidden;
+      min-height:100%; margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.6; letter-spacing:.2px; overflow-x:hidden;
     }
 
     /* ===== Fullscreen 3D background ===== */
-    .bg-3d{
-      position:fixed; inset:0; z-index:-3;
-      perspective:5400px;
-      overflow:hidden; background:#000;
-      pointer-events:auto;
-    }
-    .cube-wrap{
-      position:absolute; top:50%; left:50%;
-      transform-style:preserve-3d;
-      transform:translate(-50%,-50%) rotateX(var(--tiltX)) rotateY(var(--tiltY));
-      will-change:transform;
-    }
-    .cube{
-      position:relative; width:220vmax; height:140vmax;
-      transform-style:preserve-3d;
-      animation:spin 48s linear infinite;
-      will-change:transform;
-    }
-    .cube.paused{ animation-play-state: paused; }
-    .bg-3d:hover .cube{ animation-play-state: paused; }
+    .bg-3d{ position:fixed; inset:0; z-index:-3; perspective:5400px; overflow:hidden; background:#000; pointer-events:auto; }
+    .cube-wrap{ position:absolute; top:50%; left:50%; transform-style:preserve-3d; transform:translate(-50%,-50%) rotateX(var(--tiltX)) rotateY(var(--tiltY)); will-change:transform; }
+    .cube{ position:relative; width:220vmax; height:140vmax; transform-style:preserve-3d; animation:spin 48s linear infinite; will-change:transform; }
+    .cube.paused{ animation-play-state: paused; } .bg-3d:hover .cube{ animation-play-state: paused; }
 
     .face{
-      position:absolute; top:50%; left:50%;
-      width:110vmax; height:80vmax;
-      transform:translate(-50%,-50%);
-      background-size:cover; background-position:center;
-      backface-visibility:hidden; -webkit-backface-visibility:hidden;
-      transform:translateZ(0) translate3d(0,0,0);
-      -webkit-transform:translateZ(0);
-      filter:saturate(1.02) contrast(1.03);
-      outline:1px solid transparent;
-      will-change:transform;
+      position:absolute; top:50%; left:50%; width:110vmax; height:80vmax; transform:translate(-50%,-50%);
+      background-size:cover; background-position:center; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+      transform:translateZ(0) translate3d(0,0,0); -webkit-transform:translateZ(0);
+      filter:saturate(1.02) contrast(1.03); outline:1px solid transparent; will-change:transform;
     }
     .front{ transform:translate(-50%,-50%) translateZ(var(--cubeZ));                  background-image:url('kid1.jpg.webp'); }
     .right{ transform:translate(-50%,-50%) rotateY( 90deg) translateZ(var(--cubeZ));  background-image:url('kid2.jpg.webp'); }
@@ -84,15 +44,11 @@
     .left { transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));  background-image:url('kid4.jpg.jpg'); }
 
     @keyframes spin{
-      0%   { transform:rotateX(0deg)  rotateY(0deg); }
-      20%  { transform:rotateX(2deg)  rotateY(0deg); }
-      25%  { transform:rotateX(0deg)  rotateY(-90deg); }
-      45%  { transform:rotateX(-2deg) rotateY(-90deg); }
-      50%  { transform:rotateX(0deg)  rotateY(-180deg); }
-      70%  { transform:rotateX(2deg)  rotateY(-180deg); }
-      75%  { transform:rotateX(0deg)  rotateY(-270deg); }
-      95%  { transform:rotateX(-2deg) rotateY(-270deg); }
-      100% { transform:rotateX(0deg)  rotateY(-360deg); }
+      0%{transform:rotateX(0deg) rotateY(0deg)} 20%{transform:rotateX(2deg) rotateY(0deg)}
+      25%{transform:rotateX(0deg) rotateY(-90deg)} 45%{transform:rotateX(-2deg) rotateY(-90deg)}
+      50%{transform:rotateX(0deg) rotateY(-180deg)} 70%{transform:rotateX(2deg) rotateY(-180deg)}
+      75%{transform:rotateX(0deg) rotateY(-270deg)} 95%{transform:rotateX(-2deg) rotateY(-270deg)}
+      100%{transform:rotateX(0deg) rotateY(-360deg)}
     }
     @media (prefers-reduced-motion: reduce){ .cube{ animation:none; } }
 
@@ -106,17 +62,9 @@
     }
 
     /* ===== Site UI ===== */
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:blur(8px); background:rgba(0,0,0,.45);
-      border-bottom:1px solid var(--border);
-    }
-    .nav-inner{
-      max-width:var(--maxw); margin:0 auto; padding:14px 20px;
-      display:flex; gap:16px; align-items:center; justify-content:space-between;
-    }
-    .brand{ font-weight:800; letter-spacing:.3px; }
-    .brand a{ text-decoration:none; color:var(--text); }
+    .nav{ position:sticky; top:0; z-index:50; backdrop-filter:blur(8px); background:rgba(0,0,0,.45); border-bottom:1px solid var(--border); }
+    .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:14px 20px; display:flex; gap:16px; align-items:center; justify-content:space-between; }
+    .brand a{ text-decoration:none; color:var(--text); font-weight:800; }
     .menu{ display:flex; gap:14px; flex-wrap:wrap; }
     .menu a{ color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:10px; }
     .menu a:hover{ background:rgba(0,0,0,.35); color:var(--text); }
@@ -124,57 +72,33 @@
 
     section{ scroll-margin-top:80px; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:56px 20px; }
-
     .hero{ min-height:70vh; display:flex; align-items:center; border-bottom:1px solid var(--border); }
-    .hero .panel{ background:var(--panel); padding:24px; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
     .hero h1{ font-size:clamp(28px,4vw,48px); line-height:1.15; margin:12px 0 10px; }
     .hero p{ color:var(--muted); max-width:60ch; }
-
     .buttons{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
     .btn{ display:inline-block; padding:12px 16px; border-radius:12px; text-decoration:none; border:1px solid var(--border); }
     .btn.primary{ background:var(--accent); color:#052e16; font-weight:700; border-color:transparent; }
     .btn.secondary{ background:rgba(0,0,0,.45); color:var(--text); }
 
-    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
     h2{ font-size:clamp(22px,3vw,32px); margin:0 0 10px; }
     h3{ font-size:clamp(18px,2.2vw,24px); margin:0 0 8px; }
     .small{ font-size:14px; color:var(--muted); }
     ul{ padding-left:18px; }
     .grid{ display:grid; gap:18px; }
-    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3, 1fr);} }
-    .price{ font-size:28px; font-weight:800; }
-    footer{ border-top:1px solid var(--border); background:rgba(0,0,0,.5); }
-    .footer-inner{ max-width:var(--maxw); margin:0 auto; padding:36px 20px; color:var(--muted); }
-
-    input, textarea{ width:100%; padding:10px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,.45); color:var(--text); }
-    label{ font-weight:600; display:block; margin-bottom:6px; }
-    .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    @media (max-width:700px){ .row{ grid-template-columns:1fr; } }
-    .status{ margin-top:10px; min-height:1.2em; font-size:14px; color:#a7f3d0; }
-
-    /* Currency UI */
-    .currency-toggle{
-      display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap;
-    }
-    .currency-toggle .chip{
-      border:1px solid var(--border); background:#0b1220; color:#cfe6ff;
-      padding:6px 10px; border-radius:999px; cursor:pointer; user-select:none;
-      font-size:14px;
-    }
-    .currency-toggle .chip.active{
-      background:var(--accent); color:#052e16; font-weight:700; border-color:transparent;
-    }
+    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3,1fr);} }
     .price-line{ margin-top:10px; }
     .price-amount{ font-size:28px; font-weight:800; }
     .price-currency{ font-size:14px; color:var(--muted); margin-left:6px; }
 
+    /* Currency UI */
+    .currency-toggle{ display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+    .chip{ border:1px solid var(--border); background:#0b1220; color:#cfe6ff; padding:6px 10px; border-radius:999px; cursor:pointer; user-select:none; font-size:14px; }
+    .chip.active{ background:var(--accent); color:#052e16; font-weight:700; border-color:transparent; }
+
     /* Converter UI */
-    .converter{
-      margin-top:22px;
-      display:grid; gap:12px;
-      grid-template-columns: 1fr;
-    }
-    .converter .row{ grid-template-columns: 1fr 1fr 1fr; }
+    .converter{ margin-top:22px; display:grid; gap:12px; grid-template-columns:1fr; }
+    .converter .row{ display:grid; gap:12px; grid-template-columns:1fr 1fr 1fr; }
     @media (max-width:700px){ .converter .row{ grid-template-columns:1fr; } }
     .conv-result{ font-size:18px; font-weight:700; color:#a7f3d0; }
   </style>
@@ -182,7 +106,7 @@
 
 <body id="top">
   <!-- Fullscreen 3D background -->
-  <div class="bg-3d" id="bg3d" aria-hidden="true">
+  <div class="bg-3d" aria-hidden="true">
     <div class="cube-wrap" id="cubeWrap">
       <div class="cube" id="cube">
         <div class="face front"></div>
@@ -299,32 +223,14 @@
       <div class="panel">
         <h2 id="safety-title">Safety &amp; Trust</h2>
         <div class="grid cols-3">
-          <div>
-            <h3>🩺 First Aid</h3>
-            <p>First aid &amp; CPR certification (renewed annually).</p>
-          </div>
-          <div>
-            <h3>🧑‍🏫 Trained Staff</h3>
-            <p>Ongoing training with child safeguarding and education modules.</p>
-          </div>
-          <div>
-            <h3>🛡️ Safeguarding</h3>
-            <p>Enhanced background checks and supervised protocols.</p>
-          </div>
+          <div><h3>🩺 First Aid</h3><p>First aid &amp; CPR certification (renewed annually).</p></div>
+          <div><h3>🧑‍🏫 Trained Staff</h3><p>Ongoing training with child safeguarding and education modules.</p></div>
+          <div><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
         </div>
         <div class="grid cols-3">
-          <div>
-            <h3>📋 Protocols</h3>
-            <p>Secure check‑in/out with ID verification; lodge risk assessments and daily site checks.</p>
-          </div>
-          <div>
-            <h3>🚑 Emergency readiness</h3>
-            <p>On‑site kits, radio/phone connectivity, and lodge coordination. Local contacts posted at check‑in.</p>
-          </div>
-          <div>
-            <h3>🌿 Allergies &amp; Medication</h3>
-            <p>Please share medical needs during booking. We store details securely and brief your carer.</p>
-          </div>
+          <div><h3>📋 Protocols</h3><p>Secure check‑in/out with ID verification; lodge risk assessments and daily site checks.</p></div>
+          <div><h3>🚑 Emergency readiness</h3><p>On‑site kits, radio/phone connectivity, and lodge coordination. Local contacts posted at check‑in.</p></div>
+          <div><h3>🌿 Allergies &amp; Medication</h3><p>Please share medical needs during booking. We store details securely and brief your carer.</p></div>
         </div>
       </div>
     </div>
@@ -333,21 +239,9 @@
   <!-- Reviews -->
   <section id="reviews" aria-labelledby="reviews-title">
     <div class="wrap grid cols-3">
-      <div class="panel">
-        <h3 id="reviews-title">★★★★★</h3>
-        <p>“Our kids loved the animal tracking games! We felt completely at ease.”</p>
-        <p class="small">— Emma • July 2025</p>
-      </div>
-      <div class="panel">
-        <h3>★★★★★</h3>
-        <p>“Flexible hours and super professional. The best part of our trip.”</p>
-        <p class="small">— Daniel • Aug 2025</p>
-      </div>
-      <div class="panel">
-        <h3>★★★★★</h3>
-        <p>“Safety briefing was thorough and the activities were meaningful.”</p>
-        <p class="small">— Aisha • Sept 2025</p>
-      </div>
+      <div class="panel"><h3 id="reviews-title">★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Flexible hours and super professional. The best part of our trip.”</p><p class="small">— Daniel • Aug 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Safety briefing was thorough and the activities were meaningful.”</p><p class="small">— Aisha • Sept 2025</p></div>
     </div>
   </section>
 
@@ -355,33 +249,26 @@
   <section id="nanny" aria-labelledby="nanny-title">
     <div class="wrap">
       <div class="panel grid cols-3">
-        <div>
-          <h2 id="nanny-title">Hire a Nanny</h2>
-          <p>For families wanting consistent care across multiple days, book a private nanny.</p>
-        </div>
-        <div>
-          <h3>Daily &amp; multi‑day</h3>
-          <p>Evenings available</p>
-        </div>
-        <div>
-          <h3>Sibling discounts</h3>
-          <p><a class="btn" href="#booking">Check availability</a></p>
-        </div>
+        <div><h2 id="nanny-title">Hire a Nanny</h2><p>For families wanting consistent care across multiple days, book a private nanny.</p></div>
+        <div><h3>Daily &amp; multi‑day</h3><p>Evenings available</p></div>
+        <div><h3>Sibling discounts</h3><p><a class="btn" href="#booking">Check availability</a></p></div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing (USD/ZAR toggle + visible default prices + converter) -->
+  <!-- Pricing (USD/ZAR/GBP/EUR toggle + visible default prices + converter) -->
   <section id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
       <h2 id="pricing-title" style="margin-bottom:8px;">Pricing</h2>
 
-      <!-- Currency toggle control -->
+      <!-- Currency toggle -->
       <div class="currency-toggle" role="group" aria-label="Currency selector">
         <span style="color:var(--muted);">Currency:</span>
         <button type="button" class="chip active" id="btnUSD" aria-pressed="true">USD ($)</button>
         <button type="button" class="chip" id="btnZAR" aria-pressed="false">ZAR (R)</button>
-        <span class="small" style="margin-left:8px;">(Use Converter to set rate)</span>
+        <button type="button" class="chip" id="btnGBP" aria-pressed="false">GBP (£)</button>
+        <button type="button" class="chip" id="btnEUR" aria-pressed="false">EUR (€)</button>
+        <span class="small" style="margin-left:8px;">(Use Converter to set/update rates)</span>
       </div>
 
       <div class="grid cols-3">
@@ -395,7 +282,7 @@
             <li>Snack supervision</li>
           </ul>
           <p class="price-line">
-            <!-- Visible by default; also used by JS -->
+            <!-- Visible by default; JS updates these spans -->
             <span class="price-amount" data-usd="50" data-unit="session" data-price>$50</span>
             <span class="price-currency" data-currency>/ session</span>
           </p>
@@ -437,27 +324,49 @@
 
       <!-- Currency Converter -->
       <div class="panel converter" aria-labelledby="converter-title">
-        <h3 id="converter-title">Currency Converter (USD ↔ ZAR)</h3>
+        <h3 id="converter-title">Currency Converter</h3>
         <div class="row">
           <div>
             <label for="conv-amount">Amount</label>
             <input id="conv-amount" type="number" step="0.01" placeholder="Enter amount" />
           </div>
           <div>
-            <label for="conv-mode">Direction</label>
-            <select id="conv-mode">
-              <option value="USD2ZAR">USD → ZAR</option>
-              <option value="ZAR2USD">ZAR → USD</option>
+            <label for="conv-from">From</label>
+            <select id="conv-from">
+              <option value="USD">USD ($)</option>
+              <option value="ZAR">ZAR (R)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="EUR">EUR (€)</option>
             </select>
           </div>
           <div>
-            <label for="conv-rate">Rate (1 USD = ZAR)</label>
-            <input id="conv-rate" type="number" step="0.0001" value="18.50" />
+            <label for="conv-to">To</label>
+            <select id="conv-to">
+              <option value="ZAR">ZAR (R)</option>
+              <option value="USD">USD ($)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
           </div>
         </div>
-        <button class="btn primary" id="conv-btn" style="width:max-content;">Convert</button>
+        <!-- Editable rates (base is USD). Update these and click “Convert” to refresh. -->
+        <div class="row">
+          <div>
+            <label for="rate-usd-zar">Rate: 1 USD = ZAR</label>
+            <input id="rate-usd-zar" type="number" step="0.0001" value="18.50" />
+          </div>
+          <div>
+            <label for="rate-usd-gbp">Rate: 1 USD = GBP</label>
+            <input id="rate-usd-gbp" type="number" step="0.0001" value="0.79" />
+          </div>
+          <div>
+            <label for="rate-usd-eur">Rate: 1 USD = EUR</label>
+            <input id="rate-usd-eur" type="number" step="0.0001" value="0.92" />
+          </div>
+        </div>
+        <button class="btn primary" id="conv-btn" style="width:max-content; margin-top:6px;">Convert</button>
         <div class="conv-result" id="conv-result" aria-live="polite"></div>
-        <div class="small">After changing the rate, tap USD/ZAR above to refresh card prices.</div>
+        <div class="small">Tip: after changing rates, tap USD/ZAR/GBP/EUR above to refresh card prices.</div>
       </div>
 
       <p class="small" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
@@ -507,11 +416,7 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-inner">
-      <div>© <span id="year"></span> Safari Holiday Childcare</div>
-    </div>
-  </footer>
+  <footer><div class="footer-inner"><div>© <span id="year"></span> Safari Holiday Childcare</div></div></footer>
 
   <script>
     // Year
@@ -519,159 +424,159 @@
 
     // ========= Mouse/Touch Tilt =========
     (function(){
-      const root = document.documentElement;
-      const wrap = document.getElementById('cubeWrap');
-      const cube = document.getElementById('cube');
-
-      let targetX = 0, targetY = 0, curX = 0, curY = 0;
-      const maxTilt = 6;
-      const lerp = (a,b,t)=> a + (b - a) * t;
-
-      function animate(){
-        curX = lerp(curX, targetX, 0.08);
-        curY = lerp(curY, targetY, 0.08);
-        root.style.setProperty('--tiltX', curX.toFixed(2) + 'deg');
-        root.style.setProperty('--tiltY', curY.toFixed(2) + 'deg');
-        requestAnimationFrame(animate);
-      }
-      animate();
-
-      function onMove(e){
-        const rect = wrap.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top  + rect.height/2;
-        const p = e.touches ? e.touches[0] : e;
-        const x = p.clientX - cx, y = p.clientY - cy;
-        targetY = Math.max(-maxTilt, Math.min(maxTilt, (x/(rect.width/2))  * maxTilt));
-        targetX = Math.max(-maxTilt, Math.min(maxTilt, (-y/(rect.height/2)) * maxTilt));
-      }
-      function onLeave(){ targetX = 0; targetY = 0; }
-
-      window.addEventListener('pointermove', onMove, {passive:true});
-      window.addEventListener('pointerleave', onLeave);
-      window.addEventListener('touchmove', onMove, {passive:true});
-      window.addEventListener('blur', onLeave);
-
-      // Tap/click to pause/resume rotation
-      let paused = false;
-      window.addEventListener('pointerdown', () => {
-        paused = !paused;
-        cube.classList.toggle('paused', paused);
-      });
+      const root = document.documentElement, wrap = document.getElementById('cubeWrap'), cube = document.getElementById('cube');
+      let targetX=0, targetY=0, curX=0, curY=0; const maxTilt=6; const lerp=(a,b,t)=>a+(b-a)*t;
+      function animate(){ curX=lerp(curX,targetX,0.08); curY=lerp(curY,targetY,0.08);
+        root.style.setProperty('--tiltX', curX.toFixed(2)+'deg'); root.style.setProperty('--tiltY', curY.toFixed(2)+'deg');
+        requestAnimationFrame(animate); } animate();
+      function onMove(e){ const r=wrap.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, p=e.touches?e.touches[0]:e;
+        const x=p.clientX-cx, y=p.clientY-cy; targetY=Math.max(-maxTilt, Math.min(maxTilt, (x/(r.width/2))*maxTilt));
+        targetX=Math.max(-maxTilt, Math.min(maxTilt, (-y/(r.height/2))*maxTilt)); }
+      function onLeave(){ targetX=0; targetY=0; }
+      window.addEventListener('pointermove', onMove, {passive:true}); window.addEventListener('pointerleave', onLeave);
+      window.addEventListener('touchmove', onMove, {passive:true}); window.addEventListener('blur', onLeave);
+      let paused=false; window.addEventListener('pointerdown', ()=>{ paused=!paused; cube.classList.toggle('paused', paused); });
     })();
 
-    // ========= Currency Toggle (USD / ZAR) =========
+    // ========= Currency Toggle (USD / ZAR / GBP / EUR) =========
     (function(){
-      let conversionRate = 18.50; // 1 USD = ZAR (can be updated via converter)
+      // Base rates: 1 USD equals the following (editable via converter)
+      let rates = { ZAR: 18.50, GBP: 0.79, EUR: 0.92 };
 
       const btnUSD = document.getElementById('btnUSD');
       const btnZAR = document.getElementById('btnZAR');
+      const btnGBP = document.getElementById('btnGBP');
+      const btnEUR = document.getElementById('btnEUR');
+
       const priceEls = document.querySelectorAll('[data-price]');
       const currencyEls = document.querySelectorAll('[data-currency]');
 
-      function unitText(el){
-        const unit = (el.getAttribute('data-unit') || 'session');
-        return unit === 'day' ? '/ day' : '/ session';
-      }
-
-      function setActive(isUSD){
-        btnUSD.classList.toggle('active', isUSD);
-        btnZAR.classList.toggle('active', !isUSD);
-        btnUSD.setAttribute('aria-pressed', String(isUSD));
-        btnZAR.setAttribute('aria-pressed', String(!isUSD));
+      function unitText(el){ const unit=(el.getAttribute('data-unit')||'session'); return unit==='day' ? '/ day' : '/ session'; }
+      function setActive(code){
+        [btnUSD,btnZAR,btnGBP,btnEUR].forEach(b=>{ b.classList.toggle('active', b.id.toUpperCase().includes(code)); b.setAttribute('aria-pressed', String(b.classList.contains('active'))); });
       }
 
       function renderUSD(){
         priceEls.forEach(el=>{
-          const usd = Number(el.getAttribute('data-usd') || '0');
+          const usd = Number(el.getAttribute('data-usd')||'0');
           el.textContent = `$${usd.toFixed(0)}`;
         });
-        currencyEls.forEach((c, i)=>{
-          const el = priceEls[i];
-          c.textContent = unitText(el);
-        });
-        setActive(true);
+        currencyEls.forEach((c,i)=>{ c.textContent = unitText(priceEls[i]); });
+        setActive('USD');
       }
-
       function renderZAR(){
         priceEls.forEach(el=>{
-          const usd = Number(el.getAttribute('data-usd') || '0');
-          const zar = usd * conversionRate;
-          el.textContent = `R${Math.round(zar).toLocaleString('en-ZA')}`;
+          const usd = Number(el.getAttribute('data-usd')||'0');
+          el.textContent = `R${Math.round(usd * rates.ZAR).toLocaleString('en-ZA')}`;
         });
-        currencyEls.forEach((c, i)=>{
-          const el = priceEls[i];
-          c.textContent = unitText(el);
+        currencyEls.forEach((c,i)=>{ c.textContent = unitText(priceEls[i]); });
+        setActive('ZAR');
+      }
+      function renderGBP(){
+        priceEls.forEach(el=>{
+          const usd = Number(el.getAttribute('data-usd')||'0');
+          el.textContent = `£${(usd * rates.GBP).toFixed(0)}`;
         });
-        setActive(false);
+        currencyEls.forEach((c,i)=>{ c.textContent = unitText(priceEls[i]); });
+        setActive('GBP');
+      }
+      function renderEUR(){
+        priceEls.forEach(el=>{
+          const usd = Number(el.getAttribute('data-usd')||'0');
+          el.textContent = `€${(usd * rates.EUR).toFixed(0)}`;
+        });
+        currencyEls.forEach((c,i)=>{ c.textContent = unitText(priceEls[i]); });
+        setActive('EUR');
       }
 
       btnUSD.addEventListener('click', renderUSD);
       btnZAR.addEventListener('click', renderZAR);
+      btnGBP.addEventListener('click', renderGBP);
+      btnEUR.addEventListener('click', renderEUR);
 
-      // Converter hook: update rate + refresh
-      window.__setRateAndRefreshPrices = function(newRate, mode){
-        conversionRate = Number(newRate) || conversionRate;
-        if(mode === 'USD2ZAR'){ renderZAR(); } else { renderUSD(); }
+      // Hook for converter to update rates + re-render a chosen currency
+      window.__updateRatesAndRefresh = function(newRates, targetCode){
+        rates = { ...rates, ...newRates };
+        ({USD:renderUSD, ZAR:renderZAR, GBP:renderGBP, EUR:renderEUR}[targetCode] || renderUSD)();
       };
 
-      // Initial render (USD) – prices also visible statically if JS fails
+      // Initial render (USD), prices also visible statically if JS fails
       renderUSD();
     })();
 
-    // ========= Currency Converter (USD ↔ ZAR) =========
+    // ========= Currency Converter (multi) =========
     (function(){
       const amountEl = document.getElementById('conv-amount');
-      const modeEl   = document.getElementById('conv-mode');
-      const rateEl   = document.getElementById('conv-rate');
+      const fromEl   = document.getElementById('conv-from');
+      const toEl     = document.getElementById('conv-to');
+      const rateZAR  = document.getElementById('rate-usd-zar');
+      const rateGBP  = document.getElementById('rate-usd-gbp');
+      const rateEUR  = document.getElementById('rate-usd-eur');
       const btn      = document.getElementById('conv-btn');
       const out      = document.getElementById('conv-result');
 
-      function doConvert(){
-        const amount = Number(amountEl.value || 0);
-        const rate   = Number(rateEl.value || 0);
-        const mode   = modeEl.value;
-
-        if(!amount || !rate){
-          out.textContent = 'Enter amount and a valid rate.';
-          return;
-        }
-        let resultText = '';
-        if(mode === 'USD2ZAR'){
-          const zar = amount * rate;
-          resultText = `$${amount.toFixed(2)} = R${zar.toLocaleString('en-ZA', {maximumFractionDigits:2})}`;
-        }else{
-          const usd = amount / rate;
-          resultText = `R${amount.toLocaleString('en-ZA', {maximumFractionDigits:2})} = $${usd.toFixed(2)}`;
-        }
-        out.textContent = resultText;
-
-        // Push rate back to pricing toggle
-        window.__setRateAndRefreshPrices(rate, mode);
+      // Helpers: convert via USD as base
+      function toUSD(amount, code, rates){
+        if(code==='USD') return amount;
+        if(code==='ZAR') return amount / rates.ZAR;
+        if(code==='GBP') return amount / rates.GBP;
+        if(code==='EUR') return amount / rates.EUR;
+        return amount;
+      }
+      function fromUSD(usd, code, rates){
+        if(code==='USD') return usd;
+        if(code==='ZAR') return usd * rates.ZAR;
+        if(code==='GBP') return usd * rates.GBP;
+        if(code==='EUR') return usd * rates.EUR;
+        return usd;
+      }
+      function fmt(amount, code){
+        const opts = { maximumFractionDigits:2 };
+        if(code==='USD') return `$${amount.toFixed(2)}`;
+        if(code==='ZAR') return `R${amount.toLocaleString('en-ZA', opts)}`;
+        if(code==='GBP') return `£${amount.toFixed(2)}`;
+        if(code==='EUR') return `€${amount.toFixed(2)}`;
+        return amount.toFixed(2);
       }
 
-      btn.addEventListener('click', doConvert);
-      [amountEl, rateEl].forEach(el=>{
-        el.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ e.preventDefault(); doConvert(); }});
+      function convertAndShow(){
+        const amount = Number(amountEl.value||0);
+        const from = fromEl.value, to = toEl.value;
+        const rates = {
+          ZAR: Number(rateZAR.value||18.5),
+          GBP: Number(rateGBP.value||0.79),
+          EUR: Number(rateEUR.value||0.92),
+        };
+        if(!amount){ out.textContent='Enter an amount.'; return; }
+
+        const usd = toUSD(amount, from, rates);
+        const res = fromUSD(usd, to, rates);
+        out.textContent = `${fmt(amount, from)} = ${fmt(res, to)}`;
+
+        // Also push new rates to the pricing toggle and refresh the chosen currency view
+        window.__updateRatesAndRefresh(rates, to);
+      }
+
+      btn.addEventListener('click', convertAndShow);
+      [amountEl, rateZAR, rateGBP, rateEUR].forEach(el=>{
+        el.addEventListener('keydown',(e)=>{ if(e.key==='Enter'){ e.preventDefault(); convertAndShow(); }});
       });
     })();
 
     // ========= Forms (AJAX submit via Formspree) =========
     function wireForm(formId, statusId){
-      const form = document.getElementById(formId);
-      const status = document.getElementById(statusId);
+      const form = document.getElementById(formId), status = document.getElementById(statusId);
       if(!form) return;
       form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        status.textContent = 'Sending…';
+        e.preventDefault(); status.textContent = 'Sending…';
         try{
-          const res = await fetch(form.action, {
-            method:'POST',
-            body:new FormData(form),
-            headers:{ 'Accept':'application/json' }
-          });
-          if(res.ok){
-            status.textContent = 'Thanks! We\'ll get back to you shortly.';
-            form.reset();
-          } else {
-            status.textContent = 'There was a problem sending your message. Please
+          const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } });
+          if(res.ok){ status.textContent = 'Thanks! We\'ll get back to you shortly.'; form.reset(); }
+          else { status.textContent = 'There was a problem sending your message. Please try again.'; }
+        }catch(err){ status.textContent = 'Network error. Please try again.'; }
+      });
+    }
+    wireForm('quickRequest','qr-status'); wireForm('contactForm','c-status');
+  </script>
+</body>
+</html>
