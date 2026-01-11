@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,8 @@
   <meta name="description" content="Trusted childcare for ages 5–12 at safari lodges. Flexible hours, play‑based learning, and safety first." />
   <meta name="robots" content="index,follow" />
 
-  <!-- Favicon / Social -->
-  <link rel="icon" href="/favicon.ico" />
+  <!-- Social / favicon (optional placeholders) -->
+  <!-- /favicon.ico -->
   <meta property="og:title" content="Safari Holiday Childcare" />
   <meta property="og:description" content="Trusted childcare for ages 5–12 at safari lodges. Safety first, flexible hours." />
   <meta property="og:image" content="https://your-domain.example/og-image.jpg" />
@@ -69,7 +70,7 @@
       background:
         radial-gradient(1000px 500px at 20% -10%, rgba(34,197,94,.10), transparent),
         radial-gradient(800px 360px at 80% -20%, rgba(56,189,248,.08), transparent),
-        linear-gradient(rgba(0,0,0,.64), rgba(0,0,0,.64));
+        linear-gradient(rgba(0,0,0,.66), rgba(0,0,0,.66));
     }
 
     /* Mobile fallback (no heavy 3D) */
@@ -106,7 +107,6 @@
     .small{font-size:14px;color:var(--muted)}
     .grid{display:grid;gap:18px}
     @media (min-width:900px){ .grid.cols-2{grid-template-columns:1fr 1fr} .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
-    .list ul{padding-left:18px}
     .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
 
     /* Pricing */
@@ -163,17 +163,17 @@
   </div>
   <div class="bg-overlay" aria-hidden="true"></div>
 
-  <!-- Sticky nav with valid anchors -->
+  <!-- Sticky nav with valid anchors & CTAs -->
   <nav class="nav" role="navigation" aria-label="Primary">
     <div class="nav-inner">
       <div class="brand"><a href="#top">Safari Holiday Childcare</a></div>
       <div class="spacer"></div>
       <div class="menu" role="menubar">
-        <a href="#about">About</a>
-        <a href="#safety">Safety</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" role="menuitem">About</a>
+        <a href="#safety" role="menuitem">Safety</a>
+        <a href="#reviews" role="menuitem">Reviews</a>
+        <a href="#pricing" role="menuitem">Pricing</a>
+        <a href="#contact" role="menuitem">Contact</a>
       </div>
       <div class="spacer"></div>
       <a class="btn primary" href="#booking">Book Now</a>
@@ -249,56 +249,3 @@
       <div class="panel">
         <h2 id="about-title">About Our Nanny Service (Ages 5–12)</h2>
         <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts. Our service is designed to give parents peace of mind while they enjoy game drives, spa treatments, private dinners, or excursions—knowing their children are safe, supervised, and happily engaged.</p>
-        <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are tailored to each child’s age, interests, and energy level.</p>
-      </div>
-      <div class="panel list">
-        <h3>What Our Nannies Do</h3>
-        <ul>
-          <li>Supervised care in safe resort areas</li>
-          <li>Arts &amp; crafts, puzzles, reading, storytelling, nature‑inspired play</li>
-          <li>Educational engagement: animals, conservation, and local culture</li>
-          <li>Routine support: meals, quiet time, homework (if needed), bedtime</li>
-          <li>Emotional care and supervision tailored to new holiday environments</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Safety -->
-  <section id="safety" aria-labelledby="safety-title">
-    <div class="wrap">
-      <div class="panel">
-        <h2 id="safety-title">Safety &amp; Trust</h2>
-        <div class="grid cols-3">
-          <div><h3>🩺 First Aid</h3><p>First aid &amp; CPR certification (renewed annually).</p></div>
-          <div><h3>🧑‍🏫 Trained Staff</h3><p>Ongoing training with child safeguarding and education modules.</p></div>
-          <div><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
-          <div><h3>📋 Protocols</h3><p>Secure check‑in/out; lodge risk assessments and daily site checks.</p></div>
-          <div><h3>🚑 Emergency readiness</h3><p>On‑site kits, radio/phone connectivity, and lodge coordination.</p></div>
-          <div><h3>🌿 Allergies &amp; Medication</h3><p>Share medical needs during booking; we brief your carer and store details securely.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews -->
-  <section id="reviews" aria-labelledby="reviews-title">
-    <div class="wrap grid cols-3">
-      <div class="panel"><h3 id="reviews-title">★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
-      <div class="panel"><h3>★★★★★</h3><p>“Flexible hours and super professional. The best part of our trip.”</p><p class="small">— Daniel • Aug 2025</p></div>
-      <div class="panel"><h3>★★★★★</h3><p>“Safety briefing was thorough and the activities were meaningful.”</p><p class="small">— Aisha • Sept 2025</p></div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" aria-labelledby="pricing-title">
-    <div class="wrap">
-      <h2 id="pricing-title" style="margin-bottom:8px;">Pricing</h2>
-
-      <!-- Currency toggle -->
-      <div class="currency-toggle" role="group" aria-label="Currency selector">
-        <span class="small">Currency:</span>
-        <button type="button" class="chip active" id="btnUSD" aria-pressed="true">USD ($)</button>
-        <button type="button" class="chip" id="btnZAR" aria-pressed="false">ZAR (R)</button>
-        <button type="button" class="chip" id="btnGBP" aria-pressed="false">GBP (£)</button>
-        <button type="button" class="chip" id="btnEUR" aria-pressed="false">EUR (€)</button>
