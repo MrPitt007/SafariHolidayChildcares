@@ -61,14 +61,13 @@
   .price-line{margin-top:10px}
   .price-amount{font-size:28px;font-weight:800}
   .price-currency{font-size:14px;color:#cbd5e1;margin-left:6px}
-  .calc-total{font-size:18px;font-weight:800;color:#a7f3d0;margin-top:8px}
 
   footer .panel{text-align:center}
 </style>
 </head>
 <body>
 
-  <!-- NAV (REAL ANCHORS): clicking these will show only that section -->
+  <!-- ===== NAV: use real anchors that point to section IDs ===== -->
   <nav aria-label="Primary">
     <div class="nav-inner">
       <a class="brand" href="#home">Safari Holiday Childcare</a>
@@ -87,7 +86,7 @@
     </div>
   </nav>
 
-  <!-- HOME -->
+  <!-- ===== HOME ===== -->
   <section id="home">
     <div class="wrap hero">
       <div class="panel">
@@ -101,12 +100,12 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ===== ABOUT ===== -->
   <section id="about" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2>About Our Nanny Service (Ages 5–12)</h2>
-        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts. Parents enjoy drives, spa sessions, private dinners, or excursions—knowing their children are safe, supervised, and happily engaged.</p>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts.</p>
         <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation.</p>
       </div>
       <div class="panel">
@@ -121,7 +120,7 @@
     </div>
   </section>
 
-  <!-- SAFETY -->
+  <!-- ===== SAFETY ===== -->
   <section id="safety" hidden>
     <div class="wrap panel">
       <h2>Safety &amp; Trust</h2>
@@ -136,7 +135,7 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
+  <!-- ===== REVIEWS ===== -->
   <section id="reviews" hidden>
     <div class="wrap grid cols-3">
       <div class="panel"><h3>★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
@@ -145,7 +144,7 @@
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- ===== PRICING ===== -->
   <section id="pricing" hidden>
     <div class="wrap">
       <h2>Pricing</h2>
@@ -226,21 +225,21 @@
           </div>
         </div>
         <p><button class="btn primary" id="calc-btn" type="button">Calculate</button></p>
-        <div class="calc-total" id="calc-total" aria-live="polite"></div>
+        <div class="status calc-total" id="calc-total" aria-live="polite"></div>
       </div>
 
       <p class="small" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
     </div>
   </section>
 
-  <!-- BOOKING -->
+  <!-- ===== BOOKING ===== -->
   <section id="booking" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2>Book Now</h2>
         <p>Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
-          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/YOUR_WHATSAPP_NUMBER">💬 WhatsApp us</a>
+          <a class="btn" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" rel="noopener">💬 WhatsApp us</a>
           <a class="btn" href="#contact">Prefer email? Contact us</a>
         </div>
         <p class="small">Languages: English • Swahili • Afrikaans (ask for others)</p>
@@ -263,7 +262,7 @@
           </div>
           <div style="margin-top:10px">
             <label>Preferred time slot</label>
-            <div class="slots" role="group">
+            <div class="slots" role="group" aria-label="Choose a time slot">
               <button type="button" class="slot" data-slot="08:00–11:00" aria-pressed="false">08:00–11:00</button>
               <button type="button" class="slot" data-slot="12:00–15:00" aria-pressed="false">12:00–15:00</button>
               <button type="button" class="slot" data-slot="15:00–18:00" aria-pressed="false">15:00–18:00</button>
@@ -283,7 +282,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ===== CONTACT ===== -->
   <section id="contact" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
@@ -317,40 +316,47 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ==== ONE-SECTION-AT-A-TIME CONTROLLER ====
-  const sections = ['home','about','safety','reviews','pricing','booking','contact'];
-  function show(id){
-    sections.forEach(s => {
-      const el = document.getElementById(s);
-      if(el) el.hidden = (s !== id);
+  // === ONE-SECTION-ONLY NAVIGATION ===
+  const routes = ['home','about','safety','reviews','pricing','booking','contact'];
+
+  function showSection(id){
+    routes.forEach(r => {
+      const el = document.getElementById(r);
+      if(el) el.hidden = (r !== id);
     });
-    // menu highlight
+    // Highlight active link
     document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
-      const href = a.getAttribute('href') || '';
-      const target = href.startsWith('#') ? href.slice(1) : '';
-      a.setAttribute('aria-current', target===id ? 'page' : '');
+      const t = (a.getAttribute('href')||'').slice(1);
+      a.setAttribute('aria-current', t===id ? 'page' : '');
     });
-    // scroll top for clean view
     window.scrollTo({top:0, behavior:'instant'});
   }
-  function routeFromHash(){
-    const h = (location.hash || '#home').slice(1);
-    show(sections.includes(h) ? h : 'home');
+
+  function handleHash(){
+    const id = (location.hash || '#home').slice(1);
+    showSection(routes.includes(id)? id : 'home');
   }
-  // click handling (anchors with href="#...")
+
+  // Intercept in-page anchor clicks
   document.addEventListener('click', (e)=>{
     const a = e.target.closest('a[href^="#"]');
     if(!a) return;
-    const target = a.getAttribute('href').slice(1);
-    if(!sections.includes(target)) return; // ignore non-route hashes
-    e.preventDefault();
-    if(location.hash.slice(1)!==target) history.pushState({}, '', '#'+target);
-    show(target);
+    const id = a.getAttribute('href').slice(1);
+    if(!routes.includes(id)) return;     // ignore non-route hashes
+    e.preventDefault();                   // don't jump, just show section
+    if(location.hash.slice(1) !== id){
+      history.pushState(null, '', '#'+id);
+    }
+    showSection(id);
   });
-  window.addEventListener('popstate', routeFromHash);
-  routeFromHash();
 
-  // ==== Booking time-slot buttons ====
+  // Back/Forward support
+  window.addEventListener('popstate', handleHash);
+
+  // Initial route
+  handleHash();
+
+  // === Booking slots (button chips) ===
   (function(){
     const slotButtons = document.querySelectorAll('.slot');
     const slotInput = document.getElementById('b-slot');
@@ -363,55 +369,59 @@
     });
   })();
 
-  // ==== Currency toggle, converter & calculator (Pricing) ====
+  // === Pricing widgets (toggle, converter, calculator) ===
   (function(){
     let rates = { ZAR: 18.50, GBP: 0.79, EUR: 0.92 };
-    const priceEls = document.querySelectorAll('[data-price]');
-    const currencyEls = document.querySelectorAll('[data-currency]');
-    const btnUSD = document.getElementById('btnUSD');
-    const btnZAR = document.getElementById('btnZAR');
-    const btnGBP = document.getElementById('btnGBP');
-    const btnEUR = document.getElementById('btnEUR');
-    const unitText = el => (el.getAttribute('data-unit')||'session')==='day' ? '/ day' : '/ session';
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
 
-    function setActive(code){ [[btnUSD,'USD'],[btnZAR,'ZAR'],[btnGBP,'GBP'],[btnEUR,'EUR']].forEach(([b,c])=>{const on=c===code;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});}
-    function RUSD(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`$${v.toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('USD'); recalcTotal(); }
-    function RZAR(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`R${Math.round(v*rates.ZAR).toLocaleString('en-ZA')}`; }); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('ZAR'); recalcTotal(); }
-    function RGBP(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`£${(v*rates.GBP).toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('GBP'); recalcTotal(); }
-    function REUR(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`€${(v*rates.EUR).toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('EUR'); recalcTotal(); }
+    const priceEls = $$('[data-price]');
+    const currencyEls = $$('[data-currency]');
+    const btnUSD = $('#btnUSD'), btnZAR = $('#btnZAR'), btnGBP = $('#btnGBP'), btnEUR = $('#btnEUR');
 
-    if(btnUSD){ btnUSD.onclick=RUSD; btnZAR.onclick=RZAR; btnGBP.onclick=RGBP; btnEUR.onclick=REUR; RUSD(); }
+    const unit = el => (el.getAttribute('data-unit')||'session')==='day' ? '/ day' : '/ session';
+    function setActive(code){ [[btnUSD,'USD'],[btnZAR,'ZAR'],[btnGBP,'GBP'],[btnEUR,'EUR']].forEach(([b,c])=>{const on=c===code;b?.classList.toggle('active',on);b?.setAttribute('aria-pressed',String(on));});}
+    function RUSD(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`$${v.toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); setActive('USD'); recalcTotal?.(); }
+    function RZAR(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`R${Math.round(v*rates.ZAR).toLocaleString('en-ZA')}`; }); currencyEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); setActive('ZAR'); recalcTotal?.(); }
+    function RGBP(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`£${(v*rates.GBP).toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); setActive('GBP'); recalcTotal?.(); }
+    function REUR(){ priceEls.forEach(el=>{ const v=+el.getAttribute('data-usd')||0; el.textContent=`€${(v*rates.EUR).toFixed(0)}`; }); currencyEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); setActive('EUR'); recalcTotal?.(); }
+
+    btnUSD?.addEventListener('click',RUSD); btnZAR?.addEventListener('click',RZAR);
+    btnGBP?.addEventListener('click',RGBP); btnEUR?.addEventListener('click',REUR);
+    // If pricing section exists, render USD by default
+    if (btnUSD) RUSD();
 
     // Converter
     const amount=$('#conv-amount'), from=$('#conv-from'), to=$('#conv-to');
     const rz=$('#rate-usd-zar'), rg=$('#rate-usd-gbp'), re=$('#rate-usd-eur'), convBtn=$('#conv-btn'), out=$('#conv-result');
-    function $(s){return document.querySelector(s)}
     const fmt=(a,c)=>({USD:`$${a.toFixed(2)}`,ZAR:`R${a.toLocaleString('en-ZA',{maximumFractionDigits:2})}`,GBP:`£${a.toFixed(2)}`,EUR:`€${a.toFixed(2)}`}[c]);
     const toUSD=(a,c,r)=>c==='USD'?a:c==='ZAR'?a/r.ZAR:c==='GBP'?a/r.GBP:a/r.EUR;
     const fromUSD=(u,c,r)=>c==='USD'?u:c==='ZAR'?u*r.ZAR:c==='GBP'?u*r.GBP:u*r.EUR;
-    if(convBtn) convBtn.onclick=()=>{
-      rates={ZAR:+(rz.value||18.5),GBP:+(rg.value||0.79),EUR:+(re.value||0.92)};
-      const val=+(amount.value||0); if(!val){ out.textContent='Enter an amount.'; return; }
+    convBtn?.addEventListener('click',()=>{
+      rates={ZAR:+(rz?.value||18.5),GBP:+(rg?.value||0.79),EUR:+(re?.value||0.92)};
+      const val=+(amount?.value||0); if(!val){ out.textContent='Enter an amount.'; return; }
       const usd=toUSD(val,from.value,rates), res=fromUSD(usd,to.value,rates);
-      out.textContent = `${fmt(val,from.value)} = ${fmt(res,to.value)}`;
+      out.textContent=`${fmt(val,from.value)} = ${fmt(res,to.value)}`;
       ({USD:RUSD,ZAR:RZAR,GBP:RGBP,EUR:REUR}[to.value]||RUSD)();
-    };
+    });
 
     // Calculator
     const pkg=$('#calc-package'), qty=$('#calc-qty'), calcBtn=$('#calc-btn'), total=$('#calc-total');
     function activeCur(){ return btnZAR?.classList.contains('active')?'ZAR':btnGBP?.classList.contains('active')?'GBP':btnEUR?.classList.contains('active')?'EUR':'USD'; }
     function priceIn(code,usd){ return code==='USD'?`$${usd.toFixed(2)}`:code==='ZAR'?`R${Math.round(usd*rates.ZAR).toLocaleString('en-ZA')}`:code==='GBP'?`£${(usd*rates.GBP).toFixed(2)}`:`€${(usd*rates.EUR).toFixed(2)}`; }
-    function recalcTotal(){ if(!pkg||!qty||!total) return; const u=+pkg.value||0, q=Math.max(1,+qty.value||1); total.textContent=`Estimated total: ${priceIn(activeCur(),u*q)}`; }
-    window.recalcTotal = recalcTotal;
-    if(calcBtn){ calcBtn.onclick=recalcTotal; pkg?.addEventListener('change',recalcTotal); qty?.addEventListener('change',recalcTotal); }
+    window.recalcTotal = function recalcTotal(){ if(!pkg||!qty||!total) return; const u=+pkg.value||0, q=Math.max(1,+qty.value||1); total.textContent=`Estimated total: ${priceIn(activeCur(),u*q)}`; };
+    calcBtn?.addEventListener('click',recalcTotal); pkg?.addEventListener('change',recalcTotal); qty?.addEventListener('change',recalcTotal);
   })();
 
-  // Simple AJAX forms (optional)
-  (function(){
-    function wire(formId,statusId){
-      const f=document.getElementById(formId), s=document.getElementById(statusId);
-      if(!f||!s) return;
-      f.addEventListener('submit', async (e)=>{
-        e.preventDefault(); s.textContent='Sending…';
-        try{
-          const
+  // AJAX forms (optional)
+hortly.' : 'There was a problem. Please try again.';
+          if(r.ok) f.reset();
+        }catch{ s.textContent='Network error. Please try again.'; }
+      });
+    }
+    wire('bookingForm','b-status');
+    wire('contactForm','c-status');
+  })();
+</script>
+</body>
+</html>
