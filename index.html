@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,15 +11,10 @@
   <!-- Favicon / Social -->
   <link rel="icon" href="/favicon.ico" />
   <meta property="og:title" content="Safari Holiday Childcare" />
-  <meta property="og:description" content="Trusted childcare for ages 5–12 at safari lodges. Flexible hours, play‑based learning, and safety first." />
+  <meta property="og:description" content="Trusted childcare for ages 5–12 at safari lodges. Safety first, flexible hours." />
   <meta property="og:image" content="https://your-domain.example/og-image.jpg" />
   <meta property="og:url" content="https://your-domain.example/" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Optional font (system UI by default) -->
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> -->
 
   <style>
     :root{
@@ -29,7 +23,7 @@
       --radius:16px; --maxw:1100px;
 
       /* 3D background (desktop) */
-      --cubeZ:180px;  /* shallower depth → less zoom */
+      --cubeZ:180px;
       --tiltX:0deg; --tiltY:0deg;
     }
 
@@ -43,7 +37,7 @@
     }
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-    /* ===== 3D background (desktop) ===== */
+    /* ===== 3D background (desktop only) ===== */
     .bg-3d{position:fixed;inset:0;z-index:-3;perspective:5400px;overflow:hidden;background:#000;pointer-events:auto}
     .cube-wrap{position:absolute;top:50%;left:50%;transform-style:preserve-3d;transform:translate(-50%,-50%) rotateX(var(--tiltX)) rotateY(var(--tiltY));will-change:transform}
     .cube{position:relative;width:220vmax;height:140vmax;transform-style:preserve-3d;animation:spin 60s linear infinite;will-change:transform}
@@ -61,8 +55,10 @@
     .left {transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));background-image:url('kid4.jpg.jpg')}
 
     @keyframes spin{
-      0%{transform:rotateX(0) rotateY(0)} 25%{transform:rotateX(0) rotateY(-90deg)}
-      50%{transform:rotateX(0) rotateY(-180deg)} 75%{transform:rotateX(0) rotateY(-270deg)}
+      0%{transform:rotateX(0) rotateY(0)}
+      25%{transform:rotateX(0) rotateY(-90deg)}
+      50%{transform:rotateX(0) rotateY(-180deg)}
+      75%{transform:rotateX(0) rotateY(-270deg)}
       100%{transform:rotateX(0) rotateY(-360deg)}
     }
     @media (prefers-reduced-motion:reduce){ .cube{animation:none} }
@@ -90,8 +86,7 @@
     .nav-inner{
       max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;
     }
-    .brand{font-weight:800}
-    .brand a{color:var(--text);text-decoration:none}
+    .brand a{color:var(--text);text-decoration:none;font-weight:800}
     .spacer{flex:1}
     .menu{display:flex;gap:12px;flex-wrap:wrap}
     .menu a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
@@ -109,12 +104,12 @@
     h2{font-size:clamp(22px,3vw,32px);margin:0 0 10px}
     h3{font-size:clamp(18px,2.2vw,24px);margin:0 0 8px}
     .small{font-size:14px;color:var(--muted)}
-
     .grid{display:grid;gap:18px}
     @media (min-width:900px){ .grid.cols-2{grid-template-columns:1fr 1fr} .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
-
     .list ul{padding-left:18px}
     .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+
+    /* Pricing */
     .price-line{margin-top:10px}
     .price-amount{font-size:28px;font-weight:800}
     .price-currency{font-size:14px;color:var(--muted);margin-left:6px}
@@ -137,7 +132,7 @@
     summary{cursor:pointer;font-weight:600}
   </style>
 
-  <!-- Schema.org (basic LocalBusiness) -->
+  <!-- Schema.org (LocalBusiness) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -168,21 +163,21 @@
   </div>
   <div class="bg-overlay" aria-hidden="true"></div>
 
-  <!-- Sticky nav with persistent CTAs -->
+  <!-- Sticky nav with valid anchors -->
   <nav class="nav" role="navigation" aria-label="Primary">
     <div class="nav-inner">
       <div class="brand"><a href="#top">Safari Holiday Childcare</a></div>
       <div class="spacer"></div>
       <div class="menu" role="menubar">
-        <a href="#about" role="menuitem">About</a>
-        <a href="#safety" role="menuitem">Safety</a>
-        <a href="#reviews" role="menuitem">Reviews</a>
-        <a href="#pricing" role="menuitem">Pricing</a>
-        <a href="#contact" role="menuitem">Contact</a>
+        <a href="#about">About</a>
+        <a href="#safety">Safety</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
       </div>
       <div class="spacer"></div>
-      <a class="btn primary" href="#booking" aria-label="Book Now">Book Now</a>
-      <a class="btn whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+      <a class="btn primary" href="#booking">Book Now</a>
+      <a class="btn whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </nav>
 
@@ -207,3 +202,103 @@
         <h2 id="book-now">Book Now</h2>
         <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
+          <a class="btn whatsapp" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
+          <a class="btn" href="#contact">Prefer email? Contact us</a>
+        </div>
+        <p class="small" style="margin-top:8px">Languages: English • Swahili • Afrikaans (ask for others)</p>
+      </div>
+
+      <div class="panel">
+        <h3>Quick request</h3>
+        <form id="quickRequest" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="row">
+            <div>
+              <label for="qr-name">Name</label>
+              <input id="qr-name" name="name" required />
+            </div>
+            <div>
+              <label for="qr-email">Email</label>
+              <input id="qr-email" name="email" type="email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="qr-datetime">Desired date &amp; time</label>
+              <input id="qr-datetime" name="datetime" placeholder="e.g., 12 Oct, 2–6pm" />
+            </div>
+            <div>
+              <label for="qr-phone">Phone</label>
+              <input id="qr-phone" name="phone" placeholder="optional" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="qr-notes">Notes (children ages, lodge, requests)</label>
+            <textarea id="qr-notes" name="notes" rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New quick request from Safari Holiday Childcare" />
+          <button class="btn primary" type="submit" style="margin-top:12px">Send request</button>
+          <div class="status" id="qr-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2 id="about-title">About Our Nanny Service (Ages 5–12)</h2>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts. Our service is designed to give parents peace of mind while they enjoy game drives, spa treatments, private dinners, or excursions—knowing their children are safe, supervised, and happily engaged.</p>
+        <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are tailored to each child’s age, interests, and energy level.</p>
+      </div>
+      <div class="panel list">
+        <h3>What Our Nannies Do</h3>
+        <ul>
+          <li>Supervised care in safe resort areas</li>
+          <li>Arts &amp; crafts, puzzles, reading, storytelling, nature‑inspired play</li>
+          <li>Educational engagement: animals, conservation, and local culture</li>
+          <li>Routine support: meals, quiet time, homework (if needed), bedtime</li>
+          <li>Emotional care and supervision tailored to new holiday environments</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety -->
+  <section id="safety" aria-labelledby="safety-title">
+    <div class="wrap">
+      <div class="panel">
+        <h2 id="safety-title">Safety &amp; Trust</h2>
+        <div class="grid cols-3">
+          <div><h3>🩺 First Aid</h3><p>First aid &amp; CPR certification (renewed annually).</p></div>
+          <div><h3>🧑‍🏫 Trained Staff</h3><p>Ongoing training with child safeguarding and education modules.</p></div>
+          <div><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
+          <div><h3>📋 Protocols</h3><p>Secure check‑in/out; lodge risk assessments and daily site checks.</p></div>
+          <div><h3>🚑 Emergency readiness</h3><p>On‑site kits, radio/phone connectivity, and lodge coordination.</p></div>
+          <div><h3>🌿 Allergies &amp; Medication</h3><p>Share medical needs during booking; we brief your carer and store details securely.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" aria-labelledby="reviews-title">
+    <div class="wrap grid cols-3">
+      <div class="panel"><h3 id="reviews-title">★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Flexible hours and super professional. The best part of our trip.”</p><p class="small">— Daniel • Aug 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Safety briefing was thorough and the activities were meaningful.”</p><p class="small">— Aisha • Sept 2025</p></div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <h2 id="pricing-title" style="margin-bottom:8px;">Pricing</h2>
+
+      <!-- Currency toggle -->
+      <div class="currency-toggle" role="group" aria-label="Currency selector">
+        <span class="small">Currency:</span>
+        <button type="button" class="chip active" id="btnUSD" aria-pressed="true">USD ($)</button>
+        <button type="button" class="chip" id="btnZAR" aria-pressed="false">ZAR (R)</button>
+        <button type="button" class="chip" id="btnGBP" aria-pressed="false">GBP (£)</button>
+        <button type="button" class="chip" id="btnEUR" aria-pressed="false">EUR (€)</button>
