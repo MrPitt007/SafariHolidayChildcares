@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +8,16 @@
   <title>Safari Holiday Childcare</title>
   <meta name="description" content="Trusted safari holiday childcare for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first." />
 
-  <!-- Preconnect & lightweight preloads to reduce any initial flicker -->
-  <!-- (No external CSS/JS; font is optional—remove if you want zero network calls.) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="kid1.jpg.webp">
-  <link rel="preload" as="image" href="kid2.jpg.webp">
-  <link rel="preload" as="image" href="kid3.jpg.png">
-  <link rel="preload" as="image" href="kid4.jpg.jpg">
+  <!-- Optional font; remove these three lines if you prefer zero external calls -->
+  https://fonts.googleapis.com
+  https://fonts.gstatic.com
+  https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap
+
+  <!-- Preload images to minimize initial flicker -->
+  kid1.jpg.webp
+  kid2.jpg.webp
+  kid3.jpg.png
+  kid4.jpg.jpg
 
   <style>
     :root{
@@ -31,8 +31,8 @@
       --radius: 16px;
       --maxw: 1080px;
 
-      /* 3D cube tuning (JS updates tilt) */
-      --cubeZ: 520px;   /* shallower depth → less zoom */
+      /* 3× zoomed‑out tuning (JS updates tilt) */
+      --cubeZ: 360px;    /* smaller depth → farther look */
       --tiltX: 0deg;
       --tiltY: 0deg;
     }
@@ -50,12 +50,12 @@
       overflow-x:hidden;
     }
 
-    /* ===== Fullscreen 3D background (zoomed-out) ===== */
+    /* ===== Fullscreen 3D background (3× zoomed‑out) ===== */
     .bg-3d{
       position:fixed; inset:0; z-index:-3;
-      perspective:2200px;  /* deeper camera → less aggressive scale */
+      perspective:2800px;  /* deeper camera → less apparent size */
       overflow:hidden; background:#000;
-      pointer-events:auto; /* enables :hover pause */
+      pointer-events:auto; /* enables :hover to pause rotation */
     }
     .cube-wrap{
       position:absolute; top:50%; left:50%;
@@ -64,8 +64,7 @@
       will-change:transform;
     }
     .cube{
-      position:relative;
-      width:220vmax; height:140vmax;
+      position:relative; width:220vmax; height:140vmax;
       transform-style:preserve-3d;
       animation:spin 48s linear infinite;
       will-change:transform;
@@ -75,20 +74,20 @@
 
     .face{
       position:absolute; top:50%; left:50%;
-      width:170vmax; height:115vmax; /* ↓ reduced size → zooms out */
+      width:140vmax; height:100vmax;  /* much smaller planes → zooms out */
       transform:translate(-50%,-50%);
-      background-size:cover;         /* still fills the viewport */
+      background-size:cover;          /* still fills the viewport */
       background-position:center;
       backface-visibility:hidden; -webkit-backface-visibility:hidden;
       transform:translateZ(0) translate3d(0,0,0); -webkit-transform:translateZ(0);
-      filter:saturate(1.03) contrast(1.04);
+      filter:saturate(1.02) contrast(1.03);
       outline:1px solid transparent;
       will-change:transform;
     }
     .front{ transform:translate(-50%,-50%) translateZ(var(--cubeZ));                  background-image:url('kid1.jpg.webp'); }
     .right{ transform:translate(-50%,-50%) rotateY( 90deg) translateZ(var(--cubeZ));  background-image:url('kid2.jpg.webp'); }
-    .back { transform:translate(-50%,-50%) rotateY(180deg) translateZ(var(--cubeZ));  background-image:url('kid3.jpg.png');  }
-    .left { transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));  background-image:url('kid4.jpg.jpg');  }
+    .back { transform:translate(-50%,-50%) rotateY(180deg) translateZ(var(--cubeZ));  background-image:url('kid3.jpg.png'); }
+    .left { transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));  background-image:url('kid4.jpg.jpg'); }
 
     @keyframes spin{
       0%   { transform:rotateX(0deg)  rotateY(0deg); }
@@ -109,7 +108,7 @@
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(34,197,94,.12), transparent),
         radial-gradient(900px 400px at 90% -20%, rgba(56,189,248,.10), transparent),
-        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58));
+        linear-gradient(rgba(0,0,0,.56), rgba(0,0,0,.56));
     }
 
     /* ===== Site UI ===== */
@@ -148,7 +147,7 @@
     .small{ font-size:14px; color:var(--muted); }
     ul{ padding-left:18px; }
     .grid{ display:grid; gap:18px; }
-    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3, 1fr);} }
+    @media (min-width:900px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3,1fr);} }
     .price{ font-size:28px; font-weight:800; }
     footer{ border-top:1px solid var(--border); background:rgba(0,0,0,.5); }
     .footer-inner{ max-width:var(--maxw); margin:0 auto; padding:36px 20px; color:var(--muted); }
@@ -210,3 +209,302 @@
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2 id="book-now">Book Now</h2>
+        <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
+        <div class="buttons">
+          <a class="btn primary" target="_blank" rel="noopener"
+             href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
+          <a class="btn" href="#contact">Prefer email? Contact us</a>
+        </div>
+        <div class="small" style="margin-top:10px">Languages: English • Swahili • Afrikaans (ask for others)</div>
+      </div>
+
+      <div class="panel">
+        <h3>Quick request</h3>
+        <form id="quickRequest" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="row">
+            <div>
+              <label for="qr-name">Name</label>
+              <input id="qr-name" name="name" required />
+            </div>
+            <div>
+              <label for="qr-email">Email</label>
+              <input id="qr-email" name="email" type="email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="qr-datetime">Desired date &amp; time</label>
+              <input id="qr-datetime" name="datetime" placeholder="e.g., 12 Oct, 2–6pm" />
+            </div>
+            <div>
+              <label for="qr-phone">Phone</label>
+              <input id="qr-phone" name="phone" placeholder="optional" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="qr-notes">Notes (children ages, lodge, requests)</label>
+            <textarea id="qr-notes" name="notes" rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New quick request from Safari Holiday Childcare" />
+          <button class="btn primary" type="submit" style="margin-top:12px">Send request</button>
+          <div class="status" id="qr-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2 id="about-title">About Our Nanny Service (Ages 5–12)</h2>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within South African safari lodges and holiday resorts. Our service is designed to give parents peace of mind while they enjoy game drives, spa treatments, private dinners, or excursions, knowing their children are safe, supervised, and happily engaged.</p>
+        <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are carefully planned to suit each child’s age, interests, and energy level, ensuring every child feels comfortable, included, and cared for.</p>
+      </div>
+      <div class="panel">
+        <h3>What Our Nannies Do</h3>
+        <ul>
+          <li>Supervised care in safe resort areas.</li>
+          <li>Age‑appropriate activities: arts &amp; crafts, puzzles, reading, storytelling, nature‑inspired play.</li>
+          <li>Educational engagement: animals, conservation, and local culture through games and guided activities.</li>
+          <li>Routine support: mealtimes, quiet time, homework (if required), and bedtime routines for evening bookings.</li>
+          <li>Emotional care and supervision tailored to new holiday environments.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety & Trust -->
+  <section id="safety" aria-labelledby="safety-title">
+    <div class="wrap">
+      <div class="panel">
+        <h2 id="safety-title">Safety &amp; Trust</h2>
+        <p>We meet rigorous standards so you can relax. From background checks to lodge safety protocols, your child’s wellbeing is our priority.</p>
+        <div class="grid cols-3">
+          <div>
+            <h3>🩺 First Aid</h3>
+            <p>First aid &amp; CPR certification (renewed annually).</p>
+          </div>
+          <div>
+            <h3>🧑‍🏫 Trained Staff</h3>
+            <p>Ongoing training with child safeguarding and education modules.</p>
+          </div>
+          <div>
+            <h3>🛡️ Safeguarding</h3>
+            <p>Enhanced background checks and supervised protocols.</p>
+          </div>
+        </div>
+        <div class="grid cols-3">
+          <div>
+            <h3>📋 Protocols</h3>
+            <p>Secure check‑in/out with ID verification; lodge risk assessments and daily site checks.</p>
+          </div>
+          <div>
+            <h3>🚑 Emergency readiness</h3>
+            <p>On‑site kits, radio/phone connectivity, and lodge coordination. Local contacts posted at check‑in.</p>
+          </div>
+          <div>
+            <h3>🌿 Allergies &amp; Medication</h3>
+            <p>Please share medical needs during booking. We store details securely and brief your carer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" aria-labelledby="reviews-title">
+    <div class="wrap grid cols-3">
+      <div class="panel">
+        <h3 id="reviews-title">★★★★★</h3>
+        <p>“Our kids loved the animal tracking games! We felt completely at ease.”</p>
+        <p class="small">— Emma • July 2025</p>
+      </div>
+      <div class="panel">
+        <h3>★★★★★</h3>
+        <p>“Flexible hours and super professional. The best part of our trip.”</p>
+        <p class="small">— Daniel • Aug 2025</p>
+      </div>
+      <div class="panel">
+        <h3>★★★★★</h3>
+        <p>“Safety briefing was thorough and the activities were meaningful.”</p>
+        <p class="small">— Aisha • Sept 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hire a Nanny -->
+  <section id="nanny" aria-labelledby="nanny-title">
+    <div class="wrap">
+      <div class="panel grid cols-3">
+        <div>
+          <h2 id="nanny-title">Hire a Nanny</h2>
+          <p>For families wanting consistent care across multiple days, book a private nanny.</p>
+        </div>
+        <div>
+          <h3>Daily &amp; multi‑day</h3>
+          <p>Evenings available</p>
+        </div>
+        <div>
+          <h3>Sibling discounts</h3>
+          <p><a class="btn" href="#booking">Check availability</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap grid cols-3">
+      <div class="panel">
+        <h3 id="pricing-title">Basic</h3>
+        <p>Perfect for short sessions during your safari holiday.</p>
+        <ul>
+          <li>Up to 3 hours of care</li>
+          <li>Age‑appropriate activities</li>
+          <li>Snack supervision</li>
+        </ul>
+        <p class="price">$50 <span class="small">/ session</span></p>
+        <p><a class="btn" href="#booking">Book Now</a></p>
+      </div>
+      <div class="panel">
+        <h3>Standard</h3>
+        <p>Ideal for half‑day coverage while you enjoy excursions.</p>
+        <ul>
+          <li>Up to 6 hours of care</li>
+          <li>Educational activities &amp; games</li>
+          <li>Meal assistance</li>
+        </ul>
+        <p class="price">$90 <span class="small">/ session</span></p>
+        <p><a class="btn" href="#booking">Book Now</a></p>
+      </div>
+      <div class="panel">
+        <h3>Premium</h3>
+        <p>For full‑day care and evening coverage with bedtime routine.</p>
+        <ul>
+          <li>Up to 10 hours of care</li>
+          <li>Full activity schedule</li>
+          <li>Homework &amp; bedtime support</li>
+        </ul>
+        <p class="price">$150 <span class="small">/ day</span></p>
+        <p><a class="btn" href="#booking">Book Now</a></p>
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="small">*Prices are indicative and may vary by lodge location and special requests.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2 id="contact-title">Contact</h2>
+        <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
+        <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+        <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
+      </div>
+      <div class="panel">
+        <h3>Send us a message</h3>
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="row">
+            <div>
+              <label for="c-name">Name</label>
+              <input id="c-name" name="name" required />
+            </div>
+            <div>
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="c-phone">Phone</label>
+              <input id="c-phone" name="phone" />
+            </div>
+            <div>
+              <label for="c-subject">Subject</label>
+              <input id="c-subject" name="subject" value="General enquiry" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" rows="5" required></textarea>
+          </div>
+          <button class="btn primary" type="submit" style="margin-top:12px">Send message</button>
+          <div class="status" id="c-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Safari Holiday Childcare</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year stamp
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========= Mouse/Touch Tilt with smoothing =========
+    (function(){
+      const root = document.documentElement;
+      const wrap = document.getElementById('cubeWrap');
+      const cube = document.getElementById('cube');
+
+      let targetX = 0, targetY = 0, curX = 0, curY = 0;
+      const maxTilt = 6; // degrees
+      const lerp = (a,b,t)=> a + (b - a) * t;
+
+      function animate(){
+        curX = lerp(curX, targetX, 0.08);
+        curY = lerp(curY, targetY, 0.08);
+        root.style.setProperty('--tiltX', curX.toFixed(2) + 'deg');
+        root.style.setProperty('--tiltY', curY.toFixed(2) + 'deg');
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      function onMove(e){
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top  + rect.height/2;
+        const p = e.touches ? e.touches[0] : e;
+        const x = p.clientX - cx, y = p.clientY - cy;
+        targetY = Math.max(-maxTilt, Math.min(maxTilt, (x/(rect.width/2))  * maxTilt));
+        targetX = Math.max(-maxTilt, Math.min(maxTilt, (-y/(rect.height/2)) * maxTilt));
+      }
+      function onLeave(){ targetX = 0; targetY = 0; }
+
+      window.addEventListener('pointermove', onMove, {passive:true});
+      window.addEventListener('pointerleave', onLeave);
+      window.addEventListener('touchmove', onMove, {passive:true});
+      window.addEventListener('blur', onLeave);
+
+      // Tap/click to pause/resume rotation (useful on touch)
+      let paused = false;
+      window.addEventListener('pointerdown', () => {
+        paused = !paused;
+        cube.classList.toggle('paused', paused);
+      });
+    })();
+
+    // ========= AJAX form submit (Formspree) =========
+    function wireForm(formId, statusId){
+      const form = document.getElementById(formId);
+      const status = document.getElementt();
+          } else {
+            status.textContent = 'There was a problem sending your message. Please try again.';
+          }
+        }catch(err){
+          status.textContent = 'Network error. Please try again.';
+        }
+      });
+    }
+    wireForm('quickRequest','qr-status');
+    wireForm('contactForm','c-status');
+  </script>
+</body>
+</html>
