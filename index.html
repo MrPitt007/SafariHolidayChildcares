@@ -17,79 +17,94 @@
   a{color:#a5f3fc;text-decoration:none}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* ===== NAVBAR (ALWAYS VISIBLE) ===== */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-  .nav-inner{max-width:var(--maxw);margin:0 auto;height:var(--navH);padding:0 20px;display:flex;align-items:center;gap:16px}
-  .brand a{font-weight:800;color:#fff}
-  .menu{display:flex;gap:14px;flex-wrap:wrap}
-  .menu a{color:#cbd5e1;padding:8px 10px;border-radius:10px}
-  .menu a:hover,.menu a[aria-current="page"]{background:rgba(255,255,255,.10);color:#fff}
-  .actions{margin-left:auto;display:flex;gap:10px}
-  .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border)}
-  .btn.primary{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
-  .btn.ghost{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.18)}
-
-  /* ===== FULL‑SCREEN HERO SLIDESHOW ===== */
-  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:var(--navH);overflow:hidden}
-  .slides{position:absolute;inset:0;z-index:1;pointer-events:none}
-  .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:fade 28s infinite ease-in-out}
-  .s1{background-image:url('kid1.jpg.webp');animation-delay:0s}
-  .s2{background-image:url('kid2.jpg.webp');animation-delay:7s}
-  .s3{background-image:url('kid3.jpg.png');animation-delay:14s}
-  .s4{background-image:url('kid4.jpg.jpg');animation-delay:21s}
-  .curtain{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65));z-index:2}
+  /* ===== GLOBAL FULL‑PAGE SLIDESHOW (behind everything) ===== */
+  .bg-slides{position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden}
+  .bg-slide{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; animation:fade 28s infinite ease-in-out}
+  .bg1{background-image:url('kid1.jpg.webp'); animation-delay:0s}
+  .bg2{background-image:url('kid2.jpg.webp'); animation-delay:7s}
+  .bg3{background-image:url('kid3.jpg.png'); animation-delay:14s}
+  .bg4{background-image:url('kid4.jpg.jpg'); animation-delay:21s}
+  .bg-curtain{position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65))}
   @keyframes fade{0%{opacity:0} 8%{opacity:.9} 22%{opacity:.9} 30%{opacity:0} 100%{opacity:0}}
-  @media (prefers-reduced-motion:reduce){.slide{animation:none;opacity:.6}}
+  @media (prefers-reduced-motion:reduce){.bg-slide{animation:none;opacity:.6}}
 
-  /* ===== PAGE LAYOUT ===== */
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
-  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
-  h1{font-size:clamp(28px,4.6vw,52px);line-height:1.15;margin:0 0 12px}
-  h2{font-size:clamp(22px,3vw,34px);margin:0 0 10px}
-  h3{font-size:clamp(18px,2.2vw,24px);margin:0 0 8px}
-  .small{color:#cbd5e1;font-size:14px}
-  .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .grid{display:grid;gap:18px}
-  @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(3,1fr)}}
+  /* ===== NAVBAR (fixed; always visible) ===== */
+  nav{position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(0,0,0,.55); backdrop-filter:blur(8px); border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:var(--maxw); margin:0 auto; height:var(--navH);
+             padding:0 20px; display:flex; align-items:center; gap:16px}
+  .brand{min-width:180px}
+  .brand a{font-weight:800; color:#fff; white-space:nowrap}
+  .menu{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  .menu a{color:#cbd5e1; padding:8px 10px; border-radius:10px; white-space:nowrap}
+  .menu a:hover, .menu a[aria-current="page"]{background:rgba(255,255,255,.10); color:#fff}
+  .actions{margin-left:auto; display:flex; gap:10px; align-items:center}
+  .btn{display:inline-block; padding:10px 14px; border-radius:12px; border:1px solid var(--border)}
+  .btn.primary{background:var(--accent); color:#052e16; font-weight:700; border-color:transparent}
+  .btn.ghost{background:rgba(255,255,255,.10); color:#fff; border-color:rgba(255,255,255,.18)}
+
+  /* ===== SECTIONS & LAYOUT ===== */
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:56px 20px}
   section{scroll-margin-top:calc(var(--navH) + 12px)}
-  section[hidden]{display:none!important}
+  section[hidden]{display:none !important}
 
-  /* ===== HERO CONTENT ===== */
-  .hero .content{position:relative;z-index:3;width:100%}
-  .hero .panel{background:rgba(0,0,0,.62);border:1px solid var(--border)}
+  .panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+         box-shadow:var(--shadow); padding:24px}
+  h1{font-size:clamp(28px,4.6vw,52px); line-height:1.15; margin:0 0 12px}
+  h2{font-size:clamp(22px,3vw,34px); margin:0 0 10px}
+  h3{font-size:clamp(18px,2.2vw,24px); margin:0 0 8px}
+  .small{color:#cbd5e1; font-size:14px}
+  .buttons{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+  .grid{display:grid; gap:18px}
+  @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr} .cols-3{grid-template-columns:repeat(3,1fr)}}
 
-  /* ===== FORMS ===== */
-  .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+  /* ===== HERO (uses same global background) ===== */
+  .hero{min-height:100vh; display:flex; align-items:center; padding-top:calc(var(--navH) + 8px)}
+  .hero .panel{background:rgba(0,0,0,.62); border:1px solid var(--border)}
+
+  /* ===== Forms & chips ===== */
+  .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
   @media (max-width:700px){.row{grid-template-columns:1fr}}
-  input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.45);color:#fff}
-  label{font-weight:600;margin-bottom:6px;display:block}
-  .slots{display:flex;gap:10px;flex-wrap:wrap}
-  .slot{padding:8px 12px;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:rgba(0,0,0,.45)}
-  .slot[aria-pressed="true"]{background:var(--accent);color:#052e16;border-color:transparent;font-weight:700}
-  .status{margin-top:8px;min-height:1.2em;font-size:14px;color:#a7f3d0}
+  input,select,textarea{width:100%; padding:10px; border-radius:10px; border:1px solid var(--border);
+                        background:rgba(0,0,0,.45); color:#fff}
+  label{font-weight:600; margin-bottom:6px; display:block}
+  .slots{display:flex; gap:10px; flex-wrap:wrap}
+  .slot{padding:8px 12px; border-radius:10px; border:1px solid var(--border); cursor:pointer; background:rgba(0,0,0,.45)}
+  .slot[aria-pressed="true"]{background:var(--accent); color:#052e16; border-color:transparent; font-weight:700}
+  .status{margin-top:8px; min-height:1.2em; font-size:14px; color:#a7f3d0}
 
-  /* ===== PRICING ===== */
-  .currency-toggle{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-  .chip{border:1px solid var(--border);background:#0b1220;color:#cfe6ff;padding:6px 10px;border-radius:999px;cursor:pointer}
-  .chip.active{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
+  /* ===== Pricing widgets ===== */
+  .currency-toggle{display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap}
+  .chip{border:1px solid var(--border); background:#0b1220; color:#cfe6ff; padding:6px 10px; border-radius:999px; cursor:pointer}
+  .chip.active{background:var(--accent); color:#052e16; font-weight:700; border-color:transparent}
   .price-line{margin-top:10px}
-  .price-amount{font-size:28px;font-weight:800}
-  .price-currency{font-size:14px;color:#cbd5e1;margin-left:6px}
+  .price-amount{font-size:28px; font-weight:800}
+  .price-currency{font-size:14px; color:#cbd5e1; margin-left:6px}
 
-  /* ===== NANNY PROFILES ===== */
-  .profile{background:#101828;border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
-  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#0b1220;color:#cfe6ff;border:1px solid var(--border);font-size:12px;margin-right:6px}
-  .stars{color:#fbbf24;font-weight:700}
+  /* ===== Nanny profiles ===== */
+  .profile{background:#101828; border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:8px}
+  .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:#0b1220; color:#cfe6ff; border:1px solid var(--border); font-size:12px; margin-right:6px}
+  .stars{color:#fbbf24; font-weight:700}
 
   footer .panel{text-align:center}
 </style>
 </head>
 <body>
 
-  <!-- ===== NAV OUTSIDE OF SECTIONS (won't be hidden) ===== -->
+  <!-- Global background slideshow (persists across all sections) -->
+  <div class="bg-slides" aria-hidden="true">
+    <div class="bg-slide bg1"></div>
+    <div class="bg-slide bg2"></div>
+    <div class="bg-slide bg3"></div>
+    <div class="bg-slide bg4"></div>
+    <div class="bg-curtain"></div>
+  </div>
+
+  <!-- NAV (outside sections, fixed at top) -->
   <nav aria-label="Primary">
     <div class="nav-inner">
       <div class="brand">#homeSafari Holiday Childcare</a></div>
+
       <div class="menu">
         #bookingBook Now</a>
         #aboutAbout</a>
@@ -99,6 +114,7 @@
         #pricingPricing</a>
         #contactContact</a>
       </div>
+
       <div class="actions">
         #bookingBook Now</a>
         https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.WhatsApp</a>
@@ -106,17 +122,9 @@
     </div>
   </nav>
 
-  <!-- ===== HOME (full‑screen slideshow) ===== -->
+  <!-- HOME -->
   <section id="home" class="hero">
-    <div class="slides" aria-hidden="true">
-      <div class="slide s1"></div>
-      <div class="slide s2"></div>
-      <div class="slide s3"></div>
-      <div class="slide s4"></div>
-      <div class="curtain"></div>
-    </div>
-
-    <div class="wrap content">
+    <div class="wrap">
       <div class="panel">
         <h1>Childcare you can trust—so your safari can be unforgettable</h1>
         <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
@@ -128,7 +136,7 @@
     </div>
   </section>
 
-  <!-- ===== BOOKING ===== -->
+  <!-- BOOKING -->
   <section id="booking" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
@@ -178,7 +186,7 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ABOUT -->
   <section id="about" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
@@ -199,7 +207,7 @@
     </div>
   </section>
 
-  <!-- ===== SAFETY ===== -->
+  <!-- SAFETY -->
   <section id="safety" hidden>
     <div class="wrap panel">
       <h2>Safety &amp; Trust</h2>
@@ -214,7 +222,7 @@
     </div>
   </section>
 
-  <!-- ===== REVIEWS ===== -->
+  <!-- REVIEWS -->
   <section id="reviews" hidden>
     <div class="wrap grid cols-3">
       <div class="panel"><h3>★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
@@ -223,7 +231,7 @@
     </div>
   </section>
 
-  <!-- ===== HIRE A NANNY ===== -->
+  <!-- HIRE A NANNY -->
   <section id="nanny" hidden>
     <div class="wrap">
       <h2>Hire a Nanny</h2>
@@ -262,7 +270,7 @@
     </div>
   </section>
 
-  <!-- ===== PRICING ===== -->
+  <!-- PRICING -->
   <section id="pricing" hidden>
     <div class="wrap">
       <h2>Pricing</h2>
@@ -341,7 +349,7 @@
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- CONTACT -->
   <section id="contact" hidden>
     <div class="wrap grid cols-2">
       <div class="panel">
@@ -375,12 +383,12 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ===== ONE‑SECTION‑ONLY ROUTER (nav stays visible) =====
+  // ===== ONE‑SECTION‑ONLY ROUTER =====
   const routes = ['home','booking','about','safety','reviews','nanny','pricing','contact'];
 
   function showSection(id){
     routes.forEach(r => { const el = document.getElementById(r); if(el) el.hidden = (r !== id); });
-    // highlight active
+    // highlight active menu/CTA
     document.querySelectorAll('nav .menu a, nav .brand a, .actions a, .buttons a').forEach(a=>{
       const href = a.getAttribute('href') || '';
       const t = href.startsWith('#') ? href.slice(1) : null;
@@ -390,7 +398,7 @@
   }
   function syncFromHash(){ const id=(location.hash||'#home').slice(1); showSection(routes.includes(id)? id : 'home'); }
 
-  // Intercept internal links
+  // Intercept internal anchor clicks
   document.addEventListener('click', (e)=>{
     const a = e.target.closest('a[href^="#"]'); if(!a) return;
     const id = a.getAttribute('href').slice(1); if(!routes.includes(id)) return;
@@ -416,36 +424,3 @@
     const unit=el=>(el.getAttribute('data-unit')||'session')==='day'?'/ day':'/ session';
 
     function set(code){ [[USD,'USD'],[ZAR,'ZAR'],[GBP,'GBP'],[EUR,'EUR']].forEach(([b,c])=>{const on=c===code; b?.classList.toggle('active',on); b?.setAttribute('aria-pressed',on);}); }
-    function RUSD(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`$${u.toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('USD'); recalcTotal?.(); }
-    function RZAR(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`R${Math.round(u*rates.ZAR).toLocaleString('en-ZA')}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('ZAR'); recalcTotal?.(); }
-    function RGBP(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`£${(u*rates.GBP).toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('GBP'); recalcTotal?.(); }
-    function REUR(){ priceEls.forEach(el=>{ const u=+el.getAttribute('data-usd')||0; el.textContent=`€${(u*rates.EUR).toFixed(0)}`;}); curEls.forEach((c,i)=>c.textContent=unit(priceEls[i])); set('EUR'); recalcTotal?.(); }
-
-    USD?.addEventListener('click',RUSD); ZAR?.addEventListener('click',RZAR);
-    GBP?.addEventListener('click',RGBP); EUR?.addEventListener('click',REUR);
-    if(USD) RUSD();
-
-    // Converter
-    const amount=$('#conv-amount'), from=$('#conv-from'), to=$('#conv-to');
-    const rz=$('#rate-usd-zar'), rg=$('#rate-usd-gbp'), re=$('#rate-usd-eur'), convBtn=$('#conv-btn'), out=$('#conv-result');
-    const fmt=(a,c)=>({USD:`$${a.toFixed(2)}`,ZAR:`R${a.toLocaleString('en-ZA',{maximumFractionDigits:2})}`,GBP:`£${a.toFixed(2)}`,EUR:`€${a.toFixed(2)}`}[c]);
-    const toUSD=(a,c,r)=>c==='USD'?a:c==='ZAR'?a/r.ZAR:c==='GBP'?a/r.GBP:a/r.EUR;
-    const fromUSD=(u,c,r)=>c==='USD'?u:c==='ZAR'?u*r.ZAR:c==='GBP'?u*r.GBP:u*r.EUR;
-    convBtn?.addEventListener('click',()=>{
-      rates={ZAR:+(rz?.value||18.5), GBP:+(rg?.value||0.79), EUR:+(re?.value||0.92)};
-      const val=+(amount?.value||0); if(!val){ out.textContent='Enter an amount.'; return; }
-      const usd=toUSD(val,from.value,rates), res=fromUSD(usd,to.value,rates);
-      out.textContent=`${fmt(val,from.value)} = ${fmt(res,to.value)}`;
-      ({USD:RUSD,ZAR:RZAR,GBP:RGBP,EUR:REUR}[to.value]||RUSD)();
-    });
-
-    // Calculator
-    const pkg=$('#calc-package'), qty=$('#calc-qty'), calcBtn=$('#calc-btn'), total=$('#calc-total');
-    function activeCur(){ return ZAR?.classList.contains('active')?'ZAR':GBP?.classList.contains('active')?'GBP':EUR?.classList.contains('active')?'EUR':'USD'; }
-    function priceIn(code,usd){ return code==='USD'?`$${usd.toFixed(2)}`:code==='ZAR'?`R${Math.round(usd*rates.ZAR).toLocaleString('en-ZA')}`:code==='GBP'?`£${(usd*rates.GBP).toFixed(2)}`:`€${(usd*rates.EUR).toFixed(2)}`; }
-    window.recalcTotal = function recalcTotal(){ if(!pkg||!qty||!total) return; const u=+pkg.value||0, q=Math.max(1,+qty.value||1); total.textContent=`Estimated total: ${priceIn(activeCur(),u*q)}`; };
-    calcBtn?.addEventListener('click',recalcTotal); pkg?.addEventListener('change',recalcTotal); qty?.addEventListener('change',recalcTotal);
-  })();
-</script>
-</body>
-</html>
