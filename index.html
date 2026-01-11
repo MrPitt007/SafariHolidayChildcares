@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
   a{color:#a5f3fc;text-decoration:none}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  /* ===== NAVBAR ===== */
+  /* ===== NAVBAR (ALWAYS VISIBLE) ===== */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
   .nav-inner{max-width:var(--maxw);margin:0 auto;height:var(--navH);padding:0 20px;display:flex;align-items:center;gap:16px}
   .brand a{font-weight:800;color:#fff}
@@ -55,7 +54,7 @@
   section{scroll-margin-top:calc(var(--navH) + 12px)}
   section[hidden]{display:none!important}
 
-  /* ===== HERO CARD ===== */
+  /* ===== HERO CONTENT ===== */
   .hero .content{position:relative;z-index:3;width:100%}
   .hero .panel{background:rgba(0,0,0,.62);border:1px solid var(--border)}
 
@@ -87,7 +86,27 @@
 </head>
 <body>
 
-  <!-- ===== HERO (full‑screen slideshow) ===== -->
+  <!-- ===== NAV OUTSIDE OF SECTIONS (won't be hidden) ===== -->
+  <nav aria-label="Primary">
+    <div class="nav-inner">
+      <div class="brand">#homeSafari Holiday Childcare</a></div>
+      <div class="menu">
+        #bookingBook Now</a>
+        #aboutAbout</a>
+        #safetySafety &amp; Trust</a>
+        #reviewsReviews</a>
+        #nannyHire a Nanny</a>
+        #pricingPricing</a>
+        #contactContact</a>
+      </div>
+      <div class="actions">
+        #bookingBook Now</a>
+        https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HOME (full‑screen slideshow) ===== -->
   <section id="home" class="hero">
     <div class="slides" aria-hidden="true">
       <div class="slide s1"></div>
@@ -97,36 +116,13 @@
       <div class="curtain"></div>
     </div>
 
-    <!-- NAV -->
-    <nav aria-label="Primary">
-      <div class="nav-inner">
-        <div class="brand"><a href="#home">Safari Holiday Childcare</a></div>
-
-        <div class="menu">
-          <a href="#booking">Book Now</a>
-          <a href="#about">About</a>
-          <a href="#safety">Safety &amp; Trust</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#nanny">Hire a Nanny</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <div class="actions">
-          <a class="btn primary" href="#booking">Book Now</a>
-          <a class="btn ghost" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO CARD -->
     <div class="wrap content">
       <div class="panel">
         <h1>Childcare you can trust—so your safari can be unforgettable</h1>
         <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
         <div class="buttons">
-          <a class="btn primary" href="#booking">Book a session</a>
-          <a class="btn ghost" href="#safety">See our safety measures</a>
+          #bookingBook a session</a>
+          #safetySee our safety measures</a>
         </div>
       </div>
     </div>
@@ -139,15 +135,15 @@
         <h2>Book Now</h2>
         <p>Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
         <div class="buttons">
-          <a class="btn ghost" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">💬 WhatsApp us</a>
-          <a class="btn ghost" href="#contact">Prefer email? Contact us</a>
+          https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability.💬 WhatsApp us</a>
+          #contactPrefer email? Contact us</a>
         </div>
         <p class="small">Languages: English • Swahili • Afrikaans (ask for others)</p>
       </div>
 
       <div class="panel">
         <h3>Calendar &amp; quick booking</h3>
-        <form id="bookingForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        https://formspree.io/f/YOUR_FORMSPREE_ID
           <div class="row">
             <div><label for="b-name">Parent/Guardian name</label><input id="b-name" name="name" required /></div>
             <div><label for="b-email">Email</label><input id="b-email" name="email" type="email" required /></div>
@@ -239,7 +235,7 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Nomsa connected instantly with our 6‑year‑old. Creative games and calm bedtime.” — Family K</p>
           <div><span class="badge">First Aid + CPR</span><span class="badge">Storytelling</span><span class="badge">Evening care</span></div>
-          <a class="btn ghost" href="#booking">Request this nanny</a>
+          #bookingRequest this nanny</a>
         </div>
 
         <div class="profile">
@@ -247,7 +243,7 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Amazing nature activities and patient homework help.” — Family D</p>
           <div><span class="badge">Nature play</span><span class="badge">Homework support</span><span class="badge">Meal assistance</span></div>
-          <a class="btn ghost" href="#booking">Request this nanny</a>
+          #bookingRequest this nanny</a>
         </div>
 
         <div class="profile">
@@ -255,13 +251,13 @@
           <div class="stars">★★★★★</div>
           <p class="small">“Great with siblings and flexible hours—highly recommend.” — Family A</p>
           <div><span class="badge">Sibling care</span><span class="badge">Flexible hours</span><span class="badge">Arts & crafts</span></div>
-          <a class="btn ghost" href="#booking">Request this nanny</a>
+          #bookingRequest this nanny</a>
         </div>
       </div>
 
       <div class="buttons" style="margin-top:16px">
-        <a class="btn primary" href="#booking">Hire Nanny</a>
-        <a class="btn ghost" href="#contact">Ask a question</a>
+        #bookingHire Nanny</a>
+        #contactAsk a question</a>
       </div>
     </div>
   </section>
@@ -286,7 +282,7 @@
             <span class="price-amount" data-usd="50" data-unit="session" data-price>$50</span>
             <span class="price-currency" data-currency>/ session</span>
           </p>
-          <p><a class="btn ghost" href="#booking">Book Now</a></p>
+          <p>#bookingBook Now</a></p>
         </div>
         <div class="panel">
           <h3>Standard</h3>
@@ -295,7 +291,7 @@
             <span class="price-amount" data-usd="90" data-unit="session" data-price>$90</span>
             <span class="price-currency" data-currency>/ session</span>
           </p>
-          <p><a class="btn ghost" href="#booking">Book Now</a></p>
+          <p>#bookingBook Now</a></p>
         </div>
         <div class="panel">
           <h3>Premium</h3>
@@ -304,7 +300,7 @@
             <span class="price-amount" data-usd="150" data-unit="day" data-price>$150</span>
             <span class="price-currency" data-currency>/ day</span>
           </p>
-          <p><a class="btn ghost" href="#booking">Book Now</a></p>
+          <p>#bookingBook Now</a></p>
         </div>
       </div>
 
@@ -350,13 +346,13 @@
     <div class="wrap grid cols-2">
       <div class="panel">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a></p>
-        <p>Phone: <a href="tel:+10000000000">+1 (000) 000‑0000</a></p>
+        <p>Email: mailto:hello@safari-childcare.examplehello@safari-childcare.example</a></p>
+        <p>Phone: tel:+10000000000+1 (000) 000‑0000</a></p>
         <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
       </div>
       <div class="panel">
         <h3>Send us a message</h3>
-        <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        https://formspree.io/f/YOUR_FORMSPREE_ID
           <div class="row">
             <div><label for="c-name">Name</label><input id="c-name" name="name" required /></div>
             <div><label for="c-email">Email</label><input id="c-email" name="email" type="email" required /></div>
@@ -379,12 +375,12 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ===== ONE‑SECTION‑ONLY ROUTER =====
+  // ===== ONE‑SECTION‑ONLY ROUTER (nav stays visible) =====
   const routes = ['home','booking','about','safety','reviews','nanny','pricing','contact'];
 
   function showSection(id){
     routes.forEach(r => { const el = document.getElementById(r); if(el) el.hidden = (r !== id); });
-    // highlight active menu/CTA
+    // highlight active
     document.querySelectorAll('nav .menu a, nav .brand a, .actions a, .buttons a').forEach(a=>{
       const href = a.getAttribute('href') || '';
       const t = href.startsWith('#') ? href.slice(1) : null;
@@ -394,11 +390,10 @@
   }
   function syncFromHash(){ const id=(location.hash||'#home').slice(1); showSection(routes.includes(id)? id : 'home'); }
 
-  // Intercept clicks on any in‑page anchor
+  // Intercept internal links
   document.addEventListener('click', (e)=>{
     const a = e.target.closest('a[href^="#"]'); if(!a) return;
-    const id = a.getAttribute('href').slice(1);
-    if(!routes.includes(id)) return; // ignore non-route hashes
+    const id = a.getAttribute('href').slice(1); if(!routes.includes(id)) return;
     e.preventDefault();
     if(location.hash.slice(1)!==id) history.pushState(null,'','#'+id);
     showSection(id);
@@ -412,7 +407,7 @@
     btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true'); if(hidden) hidden.value=b.dataset.slot;}));
   })();
 
-  // Pricing widgets (toggle, converter, calculator)
+  // Pricing widgets
   (function(){
     let rates={ZAR:18.5, GBP:0.79, EUR:0.92};
     const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
@@ -451,24 +446,6 @@
     window.recalcTotal = function recalcTotal(){ if(!pkg||!qty||!total) return; const u=+pkg.value||0, q=Math.max(1,+qty.value||1); total.textContent=`Estimated total: ${priceIn(activeCur(),u*q)}`; };
     calcBtn?.addEventListener('click',recalcTotal); pkg?.addEventListener('change',recalcTotal); qty?.addEventListener('change',recalcTotal);
   })();
-
-  // Formspree AJAX (optional)
-  (function(){
-    function wire(id, statusId){
-      const f=document.getElementById(id), s=document.getElementById(statusId);
-      if(!f||!s) return;
-      f.addEventListener('submit', async (e)=>{
-        e.preventDefault(); s.textContent='Sending…';
-        try{
-          const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
-          s.textContent=r.ok?'Thanks! We’ll get back to you shortly.':'There was a problem. Please try again.';
-          if(r.ok) f.reset();
-        }catch{ s.textContent='Network error. Please try again.'; }
-      });
-    }
-    wire('bookingForm','b-status'); wire('contactForm','c-status');
-  })();
 </script>
 </body>
 </html>
-
