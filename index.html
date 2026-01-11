@@ -1,251 +1,260 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Safari Holiday Childcare</title>
-  <meta name="description" content="Trusted childcare for ages 5–12 while parents enjoy their safari holiday." />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Arctic Adventure</title>
+  <meta name="description" content="Arctic Adventure — Winter, Summer, Transport, Prices, Booking"/>
 
-  <!-- Fonts & Base Styles (adjust to match your local site) -->
   <style>
     :root{
-      --brand:#1c563a; --accent:#e1ad3d; --ink:#141414; --muted:#5e5e5e;
-      --bg:#ffffff; --bg-alt:#f6f6f6; --panel:#ffffff;
-      --shadow:0 8px 30px rgba(0,0,0,.08);
+      --ink:#ffffff;           /* header text */
+      --muted:#c7c7c7;         /* muted text */
+      --bg:#0a0a0a;            /* page background */
+      --panel:#121212;         /* section background */
+      --brand:#ffffff;         /* brand color */
+      --accent:#1db954;        /* accent (hover/active underline) */
+      --shadow:0 10px 30px rgba(0,0,0,.20);
     }
-    *{ box-sizing:border-box }
-    html{ scroll-behavior:smooth }
-    body{ margin:0; color:var(--ink); background:var(--bg);
-          font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
-    a{ color:var(--brand); text-decoration:none }
-    a:hover{ text-decoration:underline }
-    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
-    h1{ font-size:clamp(2rem, 4vw + 1rem, 3rem) }
-    h2{ font-size:clamp(1.5rem, 1.5vw + 1rem, 2rem) }
-    p{ margin:0 0 1rem; color:var(--muted) }
-    .container{ width:min(1100px, 92vw); margin:0 auto }
 
-    /* Top nav (like most single-file sites) */
-    .nav{
+    /* Reset and base */
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:#eaeaea;
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    h1,h2,h3{margin:0 0 .6rem; line-height:1.2}
+    h1{font-size:clamp(1.8rem, 2.5vw + 1rem, 3rem)}
+    h2{font-size:clamp(1.4rem, 1vw + 1rem, 2rem)}
+    p{margin:0 0 1rem; color:var(--muted)}
+    a{color:#fff; text-decoration:none}
+
+    /* ===== Sticky top header (like your screenshot) ===== */
+    .header{
       position:sticky; top:0; z-index:1000;
+      backdrop-filter: saturate(120%) blur(6px);
+      background:linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      max-width:1200px; margin:0 auto;
       display:flex; align-items:center; justify-content:space-between;
-      background:#fff; border-bottom:1px solid #eee; padding:.6rem 1rem;
+      padding:.80rem 1rem;
     }
-    .nav .brand{ color:var(--brand); font-weight:800 }
-    .nav .menu{ display:flex; gap:1rem; flex-wrap:wrap }
-    .nav .menu a{ color:var(--ink); font-weight:600 }
+    .brand{
+      font-weight:800; color:var(--brand); letter-spacing:.2px;
+    }
+    .menu{
+      display:flex; align-items:center; gap:1.6rem;
+      font-weight:700;
+    }
+    .menu a{
+      color:var(--ink);
+      position:relative; padding:.2rem 0;
+    }
+    .menu a:hover::after,
+    .menu a.active::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px;
+      height:3px; border-radius:2px;
+      background:var(--accent);
+    }
 
-    /* Hero (background image, overlay) */
+    /* ===== Full-screen hero video for Winter ===== */
     .hero{
-      position:relative; min-height:60vh; background:#000; isolation:isolate; overflow:hidden;
-      display:flex; align-items:center;
+      position:relative; min-height:calc(100vh - 64px); /* subtract header approx */
+      isolation:isolate; overflow:hidden; background:#000;
     }
+    .hero video{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; filter:contrast(102%) saturate(105%);
+    }
+    /* top gradient for text readability */
     .hero::before{
       content:""; position:absolute; inset:0;
-      background:url('kid4.jpg.png') center/cover no-repeat;
-      opacity:.9;
+      background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.15) 100%);
+      z-index:1;
     }
-    .hero::after{
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
+    .hero-inner{
+      position:relative; z-index:2; max-width:1200px; margin:0 auto;
+      padding:64px 1rem; display:flex; align-items:flex-end; min-height:inherit;
     }
-    .hero .inner{ position:relative; z-index:1; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.4); padding:64px 0 }
-    .hero .cta{ display:flex; gap:.8rem; flex-wrap:wrap }
+    .hero-title{
+      color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.6);
+      margin-bottom:4rem;
+    }
 
-    /* Sections */
-    .section{ padding:56px 0 }
-    .section.alt{ background:var(--bg-alt) }
+    /* ===== Content sections ===== */
+    .section{
+      padding:64px 0; background:transparent;
+    }
+    .section .container{
+      max-width:1200px; margin:0 auto; padding:0 1rem;
+      background:transparent;
+    }
+    .card{
+      background:var(--panel); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; box-shadow:var(--shadow); padding:20px;
+    }
 
-    /* Cards & grids */
-    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:24px }
-    @media (max-width:960px){ .grid-2{ grid-template-columns:1fr } }
+    /* Grid helpers */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+    @media (max-width:900px){
+      .grid-3,.grid-2{grid-template-columns:1fr}
+      .hero-inner{align-items:center}
+      .hero-title{margin-bottom:2rem}
+    }
 
     /* Footer */
-    .footer{ background:#0f0f0f; color:#d6d6d6; padding:28px 0 16px; margin-top:40px }
+    .footer{
+      background:#0b0b0b; color:#bdbdbd; border-top:1px solid rgba(255,255,255,.08);
+      margin-top:40px; padding:28px 0 16px;
+    }
+    .footer .container{max-width:1200px; margin:0 auto; padding:0 1rem}
+    .smallprint{border-top:1px solid rgba(255,255,255,.12); margin-top:12px; padding-top:12px; font-size:.9rem; color:#8a8a8a}
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation (ORDER YOU REQUESTED) -->
-  <header class="nav">
-    #topSafari Holiday Childcare</a>
-    <nav class="menu" aria-label="Main navigation">
-      #bookingBook Now</a>
-      #aboutAbout</a>
-      #safetySafety &amp; Trust</a>
-      #reviewsReviews</a>
-      #nannyHire a Nanny</a>
-      #pricingPricing</a>
-      #contactContact</a>
-    </nav>
+  <!-- ===== Header ===== -->
+  <header class="header" aria-label="Primary navigation">
+    <div class="nav">
+      #topArctic Adventure</a>
+      <nav class="menu" id="menu">
+        #winterWinter</a>
+        #summerSummer</a>
+        #transportTransport</a>
+        #pricesPrices</a>
+        #bookingBooking</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="top" aria-label="Hero">
-    <div class="container inner">
-      <h1>Childcare you can trust—so your safari can be unforgettable</h1>
-      <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
-      <div class="cta">
-        #bookingBook a session</a>
-        #aboutLearn more</a>
+  <!-- ===== WINTER (Hero with video background) ===== -->
+  <section id="winter" class="hero" aria-label="Winter">
+    <!-- Replace with your video file path -->
+    <video src="assets/video/winter.mp4" autoplay muted loop playsinline></video>
+
+    <div class="hero-inner">
+      <h1 class="hero-title">Experience winter under the Arctic sky</h1>
+    </div>
+  </section>
+
+  <!-- ===== SUMMER ===== -->
+  <section id="summer" class="section" aria-label="Summer">
+    <div class="container">
+      <h2>Summer</h2>
+      <p>Describe your summer activities, midnight sun experiences, hikes, river trips, and local culture here.</p>
+      <div class="grid-3" style="margin-top:14px">
+        <div class="card"><h3>Midnight Sun Walk</h3><p>Guided evening walk with golden landscapes.</p></div>
+        <div class="card"><h3>River Kayak</h3><p>Gentle kayak with safety equipment included.</p></div>
+        <div class="card"><h3>Forest Forage</h3><p>Learn about local berries and traditional uses.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Book Now -->
-  <section id="booking" class="section">
+  <!-- ===== TRANSPORT ===== -->
+  <section id="transport" class="section" aria-label="Transport">
     <div class="container">
-      <h2>Book Now</h2>
-      <p>Choose a time that suits your itinerary. We’ll confirm details and match your family with a qualified carer.</p>
-      <!-- Calendly embed placeholder -->
-      <div style="background:#fff; border:1px solid #eee; border-radius:12px; box-shadow:var(--shadow); padding:16px;">
-        <!-- Replace this with your Calendly widget/link when ready -->
-        <p style="color:#8a6d3b; background:#fff7e6; border:1px solid #ffe1a6; padding:10px; border-radius:10px;">
-          Booking link coming soon. WhatsApp & email available below.
+      <h2>Transport</h2>
+      <div class="grid-2" style="margin-top:14px">
+        <div class="card"><h3>Airport Transfers</h3><p>Pickup and drop‑off aligned with your flight times.</p></div>
+        <div class="card"><h3>Local Shuttle</h3><p>Daily shuttle to activities and partner lodges.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICES ===== -->
+  <section id="prices" class="section" aria-label="Prices">
+    <div class="container">
+      <h2>Prices</h2>
+
+      <!-- Currency selector -->
+      <div style="margin:10px 0 18px">
+        <label for="currency" style="font-weight:700; margin-right:.5rem;">Currency:</label>
+        <select id="currency" style="padding:.45rem .7rem; border-radius:10px; border:1px solid rgba(255,255,255,.16); background:#0e0e0e; color:#fff;">
+          <option value="USD" selected>USD ($)</option>
+          <option value="ZAR">ZAR (R)</option>
+        </select>
+      </div>
+
+      <div class="grid-3">
+        <article class="card price" data-price-usd="120" data-price-zar="2220">
+          <h3>Winter Day Tour</h3>
+          <p><strong><span class="symbol">$</span><span class="amount">120</span></strong> / person</p>
+          <p class="muted">Includes guide, warm drinks, and transfers.</p>
+        </article>
+        <article class="card price" data-price-usd="95" data-price-zar="1750">
+          <h3>Summer Hike</h3>
+          <p><strong><span class="symbol">$</span><span class="amount">95</span></strong> / person</p>
+          <p class="muted">Guided forest hike under the midnight sun.</p>
+        </article>
+        <article class="card price" data-price-usd="45" data-price-zar="830">
+          <h3>Shuttle Pass</h3>
+          <p><strong><span class="symbol">$</span><span class="amount">45</span></strong> / day</p>
+          <p class="muted">Unlimited local shuttle for planned activities.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="booking" class="section" aria-label="Booking">
+    <div class="container">
+      <h2>Booking</h2>
+      <p>Secure your spot now. Add a booking widget or contact options below.</p>
+
+      <div class="card" style="margin-top:14px">
+        <p style="color:#eac76a"><strong>Coming soon:</strong> inline booking widget.</p>
+        <!-- Example: replace with your Calendly link when ready -->
+        <p>
+          <a href="https://calendly.com/" target="_blank" rel="noopener">Open booking calendar</a> ·
+          https://wa.me/YOUR_WHATSAPP_NUMBERWhatsApp</a> ·
+          mailto:hello@example.comEmail</a>
         </p>
       </div>
-      <!-- Quick actions -->
-      <p style="margin-top:12px">
-        https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%20—%20availability%20please.WhatsApp us</a> ·
-        mailto:hello@safari-childcare.exampleEmail us</a>
-      </p>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2>About</h2>
-      <h3>About Our Nanny Service (Ages 5–12)</h3>
-      <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within South African safari lodges and holiday resorts…</p>
-      <ul>
-        <li><strong>Supervised care:</strong> Approved lodge/resort spaces</li>
-        <li><strong>Age-appropriate activities:</strong> Crafts, reading, board games, storytelling, nature play</li>
-        <li><strong>Educational engagement:</strong> Animals, conservation, local culture</li>
-        <li><strong>Routine support:</strong> Mealtimes, quiet time, homework, bedtime</li>
-        <li><strong>Emotional care:</strong> Secure, supported, listened to</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Safety & Trust -->
-  <section id="safety" class="section alt">
-    <div class="container grid-2">
-      <div>
-        <h2>Safety &amp; Trust</h2>
-        <p>Background checks, first aid & CPR, secure check‑in/out, lodge risk assessments.</p>
-        <ul>
-          <li>Enhanced background checks</li>
-          <li>First aid &amp; CPR certification</li>
-          <li>Age‑based ratios</li>
-          <li>ID verification</li>
-          <li>Daily site checks</li>
-        </ul>
-      </div>
-      <div>
-        <div style="background:#fff; border:1px solid #eee; border-radius:12px; box-shadow:var(--shadow); padding:16px;">
-          <strong>Emergency readiness</strong>
-          <p>On‑site kits, radio/phone connectivity, and lodge coordination.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews -->
-  <section id="reviews" class="section">
-    <div class="container">
-      <h2>Reviews</h2>
-      <div class="grid-2">
-        <article style="background:#fff; border:1px solid #eee; border-radius:12px; box-shadow:var(--shadow); padding:16px;">
-          <div style="color:#f5b301">★★★★★</div>
-          <p>“Our kids loved the animal tracking games!”</p>
-          <small>— Emma • July 2025</small>
-        </article>
-        <article style="background:#fff; border:1px solid #eee; border-radius:12px; box-shadow:var(--shadow); padding:16px;">
-          <div style="color:#f5b301">★★★★★</div>
-          <p>“Flexible hours and super professional.”</p>
-          <small>— Daniel • Aug 2025</small>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Hire a Nanny -->
-  <section id="nanny" class="section alt">
-    <div class="container">
-      <h2>Hire a Nanny</h2>
-      <p>Private nanny for multi‑day care. Evenings available. Sibling discounts.</p>
-      #bookingCheck availability</a>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2>Pricing</h2>
-      <label for="currency"><strong>Currency:</strong></label>
-      <select id="currency" style="margin-left:.4rem; padding:.3rem .5rem;">
-        <option value="USD" selected>USD ($)</option>
-        <option value="ZAR">ZAR (R)</option>
-      </select>
-
-      <div class="grid-2" style="margin-top:16px">
-        <article class="card" data-price-usd="50" data-price-zar="925">
-          <h3>Basic</h3>
-          <p><span class="currency-symbol">$</span><span class="price-value">50</span> / session</p>
-          <p>Up to 3 hours</p>
-        </article>
-        <article class="card" data-price-usd="90" data-price-zar="1665">
-          <h3>Standard</h3>
-          <p><span class="currency-symbol">$</span><span class="price-value">90</span> / session</p>
-          <p>Up to 6 hours</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section alt">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Email: mailto:hello@safari-childcare.examplehello@safari-childcare.example</a></p>
-      <p>Phone: tel:+10000000000+1 (000) 000‑0000</a></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
+  <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; Safari Holiday Childcare</p>
-      <p class="smallprint">All services subject to availability and lodge policies.</p>
+      <p>&copy; Arctic Adventure</p>
+      <p class="smallprint">All experiences subject to weather conditions and availability.</p>
     </div>
   </footer>
 
-  <!-- Currency switcher logic -->
   <script>
-    (function(){
-      const select = document.getElementById('currency');
-      const cards = document.querySelectorAll('[data-price-usd]');
-      function apply(curr){
-        cards.forEach(card => {
-          const usd = parseFloat(card.dataset.priceUsd);
-          const zar = parseFloat(card.dataset.priceZar);
-          const priceEl = card.querySelector('.price-value');
-          const symbolEl = card.querySelector('.currency-symbol');
-          if (curr === 'ZAR'){
-            symbolEl.textContent = 'R';
-            priceEl.textContent = Number.isFinite(zar) ? zar.toLocaleString('en-ZA') : '';
-          } else {
-            symbolEl.textContent = '$';
-            priceEl.textContent = Number.isFinite(usd) ? usd.toLocaleString('en-US') : '';
-          }
-        });
-      }
-      select.addEventListener('change', e => apply(e.target.value));
-      apply(select.value);
-    })();
+    // ===== Active menu highlighting while scrolling =====
+    const links = document.querySelectorAll('.menu a');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const setActive = id => {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin:'-40% 0px -50% 0px', threshold:0.1 });
+    sections.forEach(s => observer.observe(s));
+
+    // ===== Currency selector (USD/ZAR) for prices =====
+    const currency = document.getElementById('currency');
+    const priceCards = document.querySelectorAll('.price');
+    function applyCurrency(curr){
+      priceCards.forEach(card => {
+        const usd = parseFloat(card.dataset.priceUsd);
+        const zar = parseFloat(card.dataset.priceZar);
+        const amountEl = card.querySelector('.amount');
+        const symbolEl = card.querySelector('.symbol');
+        if (curr === 'ZAR'){ symbolEl.textContent = 'R'; amountEl.textContent = Number.isFinite(zar) ? zar.toLocaleString('en-ZA') : ''; }
+        else { symbolEl.textContent = '$'; amountEl.textContent = Number.isFinite(usd) ? usd.toLocaleString('en-US') : ''; }
+      });
+    }
+    currency.addEventListener('change', e => applyCurrency(e.target.value));
+    applyCurrency(currency.value);
   </script>
 </body>
 </html>
