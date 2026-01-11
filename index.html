@@ -1,20 +1,22 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Arctic Adventure</title>
-  <meta name="description" content="Arctic-style one-page layout with full background slideshow hero and right-aligned menu."/>
+  <title>Safari Holiday Childcare</title>
+  <meta name="description" content="Trusted nanny services for ages 5–12 during your safari holiday — safe, professional, and fun."/>
+
+  <!-- Calendly widget styles (optional; remove if you don't use Calendly) -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css"/>
 
   <style>
     :root{
       --ink:#ffffff;           /* header/menu text */
       --muted:#c7c7c7;         /* muted text */
       --bg:#0a0a0a;            /* page background */
-      --panel:#121212;         /* section card */
-      --accent:#1db954;        /* active underline */
+      --panel:#121212;         /* section card background */
+      --accent:#1db954;        /* active underline / focus */
       --shadow:0 10px 30px rgba(0,0,0,.20);
       --header-blur: blur(6px);
     }
@@ -44,16 +46,12 @@
       display:flex; align-items:center; justify-content:space-between;
       padding:.80rem 1rem;
     }
-    .brand{
-      font-weight:800; color:#fff; letter-spacing:.2px;
-    }
+    .brand{ font-weight:800; color:#fff; letter-spacing:.2px }
     .menu{
-      display:flex; align-items:center; gap:1.6rem;
-      font-weight:700;
+      display:flex; align-items:center; gap:1.6rem; font-weight:700;
     }
     .menu a{
-      color:var(--ink);
-      position:relative; padding:.2rem 0;
+      color:var(--ink); position:relative; padding:.2rem 0;
     }
     .menu a:hover::after,
     .menu a.active::after{
@@ -61,7 +59,7 @@
       height:3px; border-radius:2px; background:var(--accent);
     }
 
-    /* ===== Hero (WINTER) — full-screen slideshow ===== */
+    /* ===== HERO — full-screen background slideshow ===== */
     .hero{
       position:relative; min-height:calc(100vh - 64px); /* subtract header approx */
       isolation:isolate; overflow:hidden; background:#000;
@@ -70,15 +68,15 @@
     .slide{
       position:absolute; inset:0;
       background:#000 center/cover no-repeat;
-      opacity:0; transform:scale(1.02);  /* tiny zoom to avoid edges when fading */
-      animation:fade 20s infinite;       /* 4 slides × 5s each */
+      opacity:0; transform:scale(1.02);          /* tiny zoom avoids edge peeks */
+      animation:fade 20s infinite;               /* 4 slides × 5s each */
     }
     .slide:nth-child(1){ animation-delay:0s }
     .slide:nth-child(2){ animation-delay:5s }
     .slide:nth-child(3){ animation-delay:10s }
     .slide:nth-child(4){ animation-delay:15s }
 
-    /* Smooth fade timing for 5-second cadence */
+    /* 5s cadence: in, hold, out */
     @keyframes fade{
       0%{opacity:0}
       5%{opacity:1}     /* fade in */
@@ -87,7 +85,7 @@
       100%{opacity:0}
     }
 
-    /* readability gradient on top of slideshow */
+    /* readability gradient above slides */
     .hero::before{
       content:""; position:absolute; inset:0;
       background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.15) 100%);
@@ -102,7 +100,7 @@
       margin-bottom:4rem;
     }
 
-    /* ===== Content sections (Summer, Transport, Prices, Booking) ===== */
+    /* ===== Sections ===== */
     .section{ padding:64px 0; background:transparent; }
     .section .container{ max-width:1200px; margin:0 auto; padding:0 1rem; }
     .card{
@@ -130,177 +128,32 @@
     /* Accessibility */
     :focus-visible{ outline:3px solid var(--accent); outline-offset:2px }
 
-    /* Reduced motion: stop slideshow on first slide */
+    /* Reduced motion: show only the first slide */
     @media (prefers-reduced-motion:reduce){
       .slide{ animation:none; opacity:0 }
       .slide:nth-child(1){ opacity:1 }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
   <!-- ===== Top header ===== -->
   <header class="header" aria-label="Primary navigation">
     <div class="nav">
-      <a class="brand" href="#top">Arctic Adventure</a>
+      <a class="brand" href="#top">Safari Holiday Childcare</a>
       <nav class="menu" id="menu">
-        <a href="#winter">Winter</a>
-        <a href="#summer">Summer</a>
-        <a href="#transport">Transport</a>
-        <a href="#prices">Prices</a>
-        <a href="#booking">Booking</a>
+        <a href="#booking">Book Now</a>
+        <a href="#about">About</a>
+        <a href="#safety">Safety &amp; Trust</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#nanny">Hire a Nanny</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ===== WINTER (HERO with slideshow) ===== -->
-  <section id="winter" class="hero" aria-label="Winter">
+  <!-- ===== HERO (full background slideshow) ===== -->
+  <section id="hero" class="hero" aria-label="Hero">
     <div class="slides" aria-hidden="true">
-      <!-- JS will set background-image on these 4 slides -->
-      <div class="slide" role="img" aria-label="Slide 1"></div>
-      <div class="slide" role="img" aria-label="Slide 2"></div>
-      <div class="slide" role="img" aria-label="Slide 3"></div>
-      <div class="slide" role="img" aria-label="Slide 4"></div>
-    </div>
-
-    <div class="hero-inner">
-      <h1 class="hero-title">Experience winter under the Arctic sky</h1>
-    </div>
-  </section>
-
-  <!-- ===== SUMMER ===== -->
-  <section id="summer" class="section" aria-label="Summer">
-    <div class="container">
-      <h2>Summer</h2>
-      <p>Describe your summer activities, midnight sun experiences, hikes, river trips, and local culture here.</p>
-      <div class="grid-3" style="margin-top:14px">
-        <div class="card"><h3>Midnight Sun Walk</h3><p>Guided evening walk with golden landscapes.</p></div>
-        <div class="card"><h3>River Kayak</h3><p>Gentle kayak with safety equipment included.</p></div>
-        <div class="card"><h3>Forest Forage</h3><p>Learn about local berries and traditional uses.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TRANSPORT ===== -->
-  <section id="transport" class="section" aria-label="Transport">
-    <div class="container">
-      <h2>Transport</h2>
-      <div class="grid-2" style="margin-top:14px">
-        <div class="card"><h3>Airport Transfers</h3><p>Pickup and drop‑off aligned with your flight times.</p></div>
-        <div class="card"><h3>Local Shuttle</h3><p>Daily shuttle to activities and partner lodges.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PRICES (with currency selector) ===== -->
-  <section id="prices" class="section" aria-label="Prices">
-    <div class="container">
-      <h2>Prices</h2>
-
-      <div style="margin:10px 0 18px">
-        <label for="currency" style="font-weight:700; margin-right:.5rem;">Currency:</label>
-        <select id="currency" style="padding:.45rem .7rem; border-radius:10px; border:1px solid rgba(255,255,255,.16); background:#0e0e0e; color:#fff;">
-          <option value="USD" selected>USD ($)</option>
-          <option value="ZAR">ZAR (R)</option>
-        </select>
-      </div>
-
-      <div class="grid-3">
-        <article class="card price" data-price-usd="120" data-price-zar="2220">
-          <h3>Winter Day Tour</h3>
-          <p><strong><span class="symbol">$</span><span class="amount">120</span></strong> / person</p>
-          <p class="muted">Includes guide, warm drinks, and transfers.</p>
-        </article>
-        <article class="card price" data-price-usd="95" data-price-zar="1750">
-          <h3>Summer Hike</h3>
-          <p><strong><span class="symbol">$</span><span class="amount">95</span></strong> / person</p>
-          <p class="muted">Guided forest hike under the midnight sun.</p>
-        </article>
-        <article class="card price" data-price-usd="45" data-price-zar="830">
-          <h3>Shuttle Pass</h3>
-          <p><strong><span class="symbol">$</span><span class="amount">45</span></strong> / day</p>
-          <p class="muted">Unlimited local shuttle for planned activities.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BOOKING ===== -->
-  <section id="booking" class="section" aria-label="Booking">
-    <div class="container">
-      <h2>Booking</h2>
-      <p>Secure your spot now. Add a booking widget or contact options below.</p>
-
-      <div class="card" style="margin-top:14px">
-        <p style="color:#eac76a"><strong>Coming soon:</strong> inline booking widget.</p>
-        <p>
-          <a href="https://calendly.com/" target="_blank" rel="noopener">Open booking calendar</a> ·
-          <a id="wa-link" href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" rel="noopener">WhatsApp</a> ·
-          <a href="mailto:hello@example.com">Email</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; Arctic Adventure</p>
-      <p class="smallprint">All experiences subject to weather conditions and availability.</p>
-    </div>
-  </footer>
-
-  <script>
-    /* ===== Hero slideshow images (4 images, 5s each) =====
-       Put these files next to index.html or change paths below.
-    */
-    const heroImages = [
-      'kid4.jpg.png',   // slide 1
-      'kid1.jpg.webp',  // slide 2
-      'kid2.jpg.webp',  // slide 3
-      'kid3.jpg.png'    // slide 4
-      // If using a folder, e.g.: 'assets/hero/kid4.jpg.png', etc.
-    ];
-    document.querySelectorAll('.slides .slide').forEach((el, i) => {
-      el.style.backgroundImage = `url("${heroImages[i % heroImages.length]}")`;
-    });
-
-    /* ===== Active menu highlight on scroll ===== */
-    const menuLinks = document.querySelectorAll('.menu a');
-    const sections = [...menuLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-
-    const setActive = id => {
-      menuLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-    };
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    }, { rootMargin:'-40% 0px -50% 0px', threshold:0.1 });
-    sections.forEach(s => observer.observe(s));
-
-    /* ===== Currency selector (USD/ZAR) for Prices ===== */
-    const currency = document.getElementById('currency');
-    const priceCards = document.querySelectorAll('.price');
-    function applyCurrency(curr){
-      priceCards.forEach(card => {
-        const usd = parseFloat(card.dataset.priceUsd);
-        const zar = parseFloat(card.dataset.priceZar);
-        const amountEl = card.querySelector('.amount');
-        const symbolEl = card.querySelector('.symbol');
-        if (curr === 'ZAR'){
-          symbolEl.textContent = 'R';
-          amountEl.textContent = Number.isFinite(zar) ? zar.toLocaleString('en-ZA') : '';
-        } else {
-          symbolEl.textContent = '$';
-          amountEl.textContent = Number.isFinite(usd) ? usd.toLocaleString('en-US') : '';
-        }
-      });
-    }
-    currency.addEventListener('change', e => applyCurrency(e.target.value));
-    applyCurrency(currency.value);
-
-    /* ===== Optional: polite notice if WhatsApp placeholder still present ===== */
-    const waLink = document.getElementById('wa-link');
-    if (waLink && waLink.href.includes('YOUR_WHATSAPP_NUMBER')){
-      waLink.addEventListener('click', (e)
+      <!-- JS sets background-image on these slides -->
