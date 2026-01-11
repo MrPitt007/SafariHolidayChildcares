@@ -2,173 +2,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Safari Holiday Childcare</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Trusted childcare for ages 5–12 at safari lodges. Flexible hours, play‑based learning, and safety first.">
 
 <style>
-body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Arial;
-  background:#000;
-  color:#fff;
-}
+  :root{
+    --bg:#0b0f16; --panel:rgba(16,18,22,.82); --text:#f8fafc; --muted:#cbd5e1; --accent:#22c55e;
+    --border:rgba(148,163,184,.25); --shadow:0 8px 24px rgba(0,0,0,.45); --radius:16px; --maxw:1180px;
+    --cubeZ:180px;
+  }
+  *{box-sizing:border-box}
+  html{height:100%}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:.2px;overflow-x:hidden}
+  a{color:#a5f3fc;text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-/* ===== NAV ===== */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(0,0,0,.7);
-  padding:12px 20px;
-  z-index:100;
-  display:flex;
-  gap:15px;
-}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  cursor:pointer;
-}
-nav a:hover{color:#22c55e}
+  /* ===== Nav ===== */
+  nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+  .brand{font-weight:800;font-size:15px;color:var(--text)}
+  .spacer{flex:1}
+  .menu{display:flex;gap:14px;flex-wrap:wrap}
+  .menu a{color:#cbd5e1;padding:8px 10px;border-radius:10px}
+  .menu a:hover,.menu a[aria-current="page"]{background:rgba(255,255,255,.1);color:#fff}
+  .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border)}
+  .btn.primary{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
+  .btn.ghost{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.18)}
 
-/* ===== SECTIONS ===== */
-.section{
-  display:none;
-  min-height:100vh;
-  padding:100px 20px 40px;
-  max-width:1000px;
-  margin:auto;
-}
-.section.active{display:block}
+  /* ===== Hero ===== */
+  .hero{position:relative;min-height:84vh;display:flex;align-items:center;overflow:hidden;background:#000}
+  .hero .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px;position:relative;z-index:2;width:100%}
+  .hero .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+  .hero h1{font-size:clamp(28px,4.5vw,50px);line-height:1.15;margin:0 0 12px}
+  .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .hero-3d{position:absolute;inset:0;z-index:1;perspective:5400px;overflow:hidden}
+  .cube-wrap{position:absolute;top:50%;left:50%;transform-style:preserve-3d;transform:translate(-50%,-50%)}
+  .cube{position:relative;width:220vmax;height:140vmax;transform-style:preserve-3d;animation:spin 60s linear infinite}
+  .face{position:absolute;top:50%;left:50%;width:110vmax;height:80vmax;transform:translate(-50%,-50%);background-size:cover;background-position:center;backface-visibility:hidden;filter:saturate(1.02) contrast(1.03)}
+  .front{transform:translate(-50%,-50%) translateZ(var(--cubeZ));background-image:url('kid1.jpg.webp')}
+  .right{transform:translate(-50%,-50%) rotateY( 90deg) translateZ(var(--cubeZ));background-image:url('kid2.jpg.webp')}
+  .back {transform:translate(-50%,-50%) rotateY(180deg) translateZ(var(--cubeZ));background-image:url('kid3.jpg.png')}
+  .left {transform:translate(-50%,-50%) rotateY(-90deg) translateZ(var(--cubeZ));background-image:url('kid4.jpg.jpg')}
+  @keyframes spin{0%{transform:rotateX(0) rotateY(0)}25%{transform:rotateX(0) rotateY(-90deg)}50%{transform:rotateX(0) rotateY(-180deg)}75%{transform:rotateX(0) rotateY(-270deg)}100%{transform:rotateX(0) rotateY(-360deg)}}
+  @media (prefers-reduced-motion:reduce){.cube{animation:none}}
+  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.62))}
 
-/* ===== HERO ===== */
-.hero{
-  text-align:center;
-}
-.hero h1{font-size:3rem}
-.hero p{font-size:1.2rem;color:#ddd}
+  /* ===== Sections ===== */
+  section{scroll-margin-top:80px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+  h2{font-size:clamp(22px,3vw,34px);margin:0 0 10px}
+  h3{font-size:clamp(18px,2.2vw,24px);margin:0 0 8px}
+  .small{color:#cbd5e1;font-size:14px}
+  .grid{display:grid;gap:18px}
+  @media (min-width:900px){.cols-2{grid-template-columns:1fr 1fr}.cols-3{grid-template-columns:repeat(3,1fr)}}
+  .route-section[hidden]{display:none !important}
 
-/* ===== PANELS ===== */
-.panel{
-  background:rgba(0,0,0,.65);
-  padding:25px;
-  border-radius:14px;
-  margin-bottom:20px;
-}
+  /* Forms & booking */
+  .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+  @media (max-width:700px){.row{grid-template-columns:1fr}}
+  input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.45);color:var(--text)}
+  label{font-weight:600;margin-bottom:6px;display:block}
+  .slots{display:flex;gap:10px;flex-wrap:wrap}
+  .slot{padding:8px 12px;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:rgba(0,0,0,.45)}
+  .slot[aria-pressed="true"]{background:var(--accent);color:#052e16;border-color:transparent;font-weight:700}
+  .status{margin-top:8px;min-height:1.2em;font-size:14px;color:#a7f3d0}
 
-/* ===== BUTTON ===== */
-.btn{
-  background:#22c55e;
-  color:#052e16;
-  padding:10px 16px;
-  border-radius:10px;
-  font-weight:700;
-  text-decoration:none;
-  display:inline-block;
-}
+  /* Currency UI */
+  .currency-toggle{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .chip{border:1px solid var(--border);background:#0b1220;color:#cfe6ff;padding:6px 10px;border-radius:999px;cursor:pointer;user-select:none;font-size:14px}
+  .chip.active{background:var(--accent);color:#052e16;font-weight:700;border-color:transparent}
+  .price-line{margin-top:10px}
+  .price-amount{font-size:28px;font-weight:800}
+  .price-currency{font-size:14px;color:#cbd5e1;margin-left:6px}
 
-/* ===== BACKGROUND SLIDES ===== */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  animation:slide 24s infinite;
-  background-size:cover;
-  background-position:center;
-}
-@keyframes slide{
-  0%{background-image:url("kid1.jpg")}
-  25%{background-image:url("kid2.jpg")}
-  50%{background-image:url("kid3.jpg")}
-  75%{background-image:url("kid4.jpg")}
-  100%{background-image:url("kid1.jpg")}
-}
+  /* Tools */
+  .tools{display:grid;gap:18px;grid-template-columns:1fr}
+  .tools .row{grid-template-columns:1fr 1fr 1fr}
+  @media (max-width:900px){.tools .row{grid-template-columns:1fr}}
+  .calc-total{font-size:18px;font-weight:800;color:#a7f3d0;margin-top:8px}
 </style>
 </head>
 
 <body>
+  <!-- ===== NAV (real anchors + data-link) ===== -->
+  <nav role="navigation" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" data-link href="#top">Safari Holiday Childcare</a>
+      <div class="spacer"></div>
+      <div class="menu" role="menubar">
+        <a data-link href="#booking">Book Now</a>
+        <a data-link href="#about">About</a>
+        <a data-link href="#safety">Safety</a>
+        <a data-link href="#reviews">Reviews</a>
+        <a data-link href="#pricing">Pricing</a>
+        <a data-link href="#contact">Contact</a>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn ghost" data-link href="#booking">Book Now</a>
+      <a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability.">WhatsApp</a>
+    </div>
+  </nav>
 
-<div class="bg"></div>
+  <!-- ===== HERO (route: top) ===== -->
+  <header id="route-top" class="route-section hero" data-route="top" role="banner">
+    <div class="hero-3d" aria-hidden="true">
+      <div class="cube-wrap">
+        <div class="cube">
+          <div class="face front"></div><div class="face right"></div>
+          <div class="face back"></div><div class="face left"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
 
-<!-- NAV -->
-<nav>
-  <a onclick="show('home')">Home</a>
-  <a onclick="show('booking')">Booking</a>
-  <a onclick="show('about')">About</a>
-  <a onclick="show('safety')">Safety</a>
-  <a onclick="show('contact')">Contact</a>
-</nav>
+    <div class="wrap">
+      <div class="panel">
+        <h1>Childcare you can trust—so your safari can be unforgettable</h1>
+        <p>Qualified carers for ages 5–12 at partner lodges. Flexible hours, play‑based learning, and safety first.</p>
+        <div class="buttons">
+          <a class="btn primary" data-link href="#booking">Book a session</a>
+          <a class="btn ghost" data-link href="#safety">See our safety measures</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- HOME -->
-<section id="home" class="section active hero">
-  <div class="panel">
-    <h1>Safari Holiday Childcare</h1>
-    <p>Trusted childcare for ages 5–12 inside South African safari lodges.</p>
-    <a class="btn" onclick="show('booking')">Book a Nanny</a>
-  </div>
-</section>
+  <!-- ===== ABOUT (route) ===== -->
+  <section id="route-about" class="route-section" data-route="about">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2>About Our Nanny Service (Ages 5–12)</h2>
+        <p>Safari Holiday Childcare provides trusted, professional nanny services for children aged 5 to 12 years within safari lodges and holiday resorts.</p>
+        <p>Our trained nannies create a structured yet fun environment that balances play, learning, and relaxation. Activities are tailored to each child’s age, interests, and energy level.</p>
+      </div>
+      <div class="panel">
+        <h3>What Our Nannies Do</h3>
+        <ul>
+          <li>Supervised care in approved resort areas</li>
+          <li>Arts &amp; crafts, puzzles, reading, storytelling, nature play</li>
+          <li>Educational engagement: animals, conservation, local culture</li>
+          <li>Routine support: meals, quiet time, homework, bedtime (evenings)</li>
+          <li>Emotional care tailored to holiday environments</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<!-- BOOKING -->
-<section id="booking" class="section">
-  <div class="panel">
-    <h2>Book a Nanny</h2>
-    <p>Safe, professional childcare while you enjoy your safari.</p>
-    <form>
-      <p><input placeholder="Parent name"></p>
-      <p><input placeholder="Email"></p>
-      <p><input placeholder="Children ages (e.g. 6 & 10)"></p>
-      <p><textarea placeholder="Dates & notes"></textarea></p>
-      <button class="btn" type="submit">Send Request</button>
-    </form>
-  </div>
-</section>
+  <!-- ===== SAFETY (route) ===== -->
+  <section id="route-safety" class="route-section" data-route="safety">
+    <div class="wrap panel">
+      <h2>Safety &amp; Trust</h2>
+      <div class="grid cols-3">
+        <div class="panel"><h3>🩺 First Aid</h3><p>First aid &amp; CPR certification (renewed annually).</p></div>
+        <div class="panel"><h3>🧑‍🏫 Trained Staff</h3><p>Ongoing training with child safeguarding and education modules.</p></div>
+        <div class="panel"><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
+        <div class="panel"><h3>📋 Protocols</h3><p>Secure check‑in/out; risk assessments; daily site checks.</p></div>
+        <div class="panel"><h3>🚑 Emergency readiness</h3><p>On‑site kits, radio/phone connectivity; lodge coordination.</p></div>
+        <div class="panel"><h3>🌿 Allergies &amp; Medication</h3><p>Share medical needs during booking; we brief your carer.</p></div>
+      </div>
+    </div>
+  </section>
 
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="panel">
-    <h2>About Us</h2>
-    <p>
-      Safari Holiday Childcare provides professional nanny services for children aged 5–12
-      staying at safari lodges in South Africa.
-    </p>
-    <p>
-      Our trained nannies offer fun, structured activities such as nature games,
-      crafts, storytelling, wildlife education, and quiet relaxation.
-    </p>
-  </div>
-</section>
+  <!-- ===== REVIEWS (route) ===== -->
+  <section id="route-reviews" class="route-section" data-route="reviews">
+    <div class="wrap grid cols-3">
+      <div class="panel"><h3>★★★★★</h3><p>“Our kids loved the animal tracking games! We felt completely at ease.”</p><p class="small">— Emma • July 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Flexible hours and super professional. The best part of our trip.”</p><p class="small">— Daniel • Aug 2025</p></div>
+      <div class="panel"><h3>★★★★★</h3><p>“Safety briefing was thorough and the activities were meaningful.”</p><p class="small">— Aisha • Sept 2025</p></div>
+    </div>
+  </section>
 
-<!-- SAFETY -->
-<section id="safety" class="section">
-  <div class="panel">
-    <h2>Safety & Trust</h2>
-    <ul>
-      <li>✔ First Aid & CPR trained</li>
-      <li>✔ Background-checked nannies</li>
-      <li>✔ Secure lodge-based care</li>
-      <li>✔ Emergency procedures in place</li>
-    </ul>
-  </div>
-</section>
+  <!-- ===== PRICING (route) ===== -->
+  <section id="route-pricing" class="route-section" data-route="pricing">
+    <div class="wrap">
+      <h2>Pricing</h2>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="panel">
-    <h2>Contact</h2>
-    <p>Email: hello@safari-childcare.example</p>
-    <p>WhatsApp: +27 00 000 0000</p>
-  </div>
-</section>
+      <div class="currency-toggle" role="group" aria-label="Currency selector">
+        <span class="small">Currency:</span>
+        <button type="button" class="chip active" id="btnUSD" aria-pressed="true">USD ($)</button>
+        <button type="button" class="chip" id="btnZAR" aria-pressed="false">ZAR (R)</button>
+        <button type="button" class="chip" id="btnGBP" aria-pressed="false">GBP (£)</button>
+        <button type="button" class="chip" id="btnEUR" aria-pressed="false">EUR (€)</button>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="panel">
+          <h3>Basic</h3>
+          <ul><li>Up to 3 hours of care</li><li>Age‑appropriate activities</li><li>Snack supervision</li></ul>
+          <p class="price-line">
+            <span class="price-amount" data-usd="50" data-unit="session" data-price>$50</span>
+            <span class="price-currency" data-currency>/ session</span>
+          </p>
+          <p><a data-link href="#booking">Book Now</a></p>
+        </div>
+        <div class="panel">
+          <h3>Standard</h3>
+          <ul><li>Up to 6 hours of care</li><li>Educational activities &amp; games</li><li>Meal assistance</li></ul>
+          <p class="price-line">
+            <span class="price-amount" data-usd="90" data-unit="session" data-price>$90</span>
+            <span class="price-currency" data-currency>/ session</span>
+          </p>
+          <p><a data-link href="#booking">Book Now</a></p>
+        </div>
+        <div class="panel">
+          <h3>Premium</h3>
+          <ul><li>Up to 10 hours of care</li><li>Full activity schedule</li><li>Homework &amp; bedtime support</li></ul>
+          <p class="price-line">
+            <span class="price-amount" data-usd="150" data-unit="day" data-price>$150</span>
+            <span class="price-currency" data-currency>/ day</span>
+          </p>
+          <p><a data-link href="#booking">Book Now</a></p>
+        </div>
+      </div>
+
+      <!-- Converter + Calculator -->
+      <div class="tools">
+        <div class="panel" aria-labelledby="converter-title">
+          <h3 id="converter-title">Currency Converter</h3>
+          <div class="row">
+            <div>
+              <label for="conv-amount">Amount</label>
+              <input id="conv-amount" type="number" step="0.01" placeholder="Enter amount" />
+            </div>
+            <div>
+              <label for="conv-from">From</label>
+              <select id="conv-from">
+                <option value="USD">USD ($)</option>
+                <option value="ZAR">ZAR (R)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+            </div>
+            <div>
+              <label for="conv-to">To</label>
+              <select id="conv-to">
+                <option value="ZAR">ZAR (R)</option>
+                <option value="USD">USD ($)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+            </div>
+          </div>
+          <div class="row" style="margin-top:8px">
+            <div><label for="rate-usd-zar">1 USD = ZAR</label><input id="rate-usd-zar" type="number" step="0.0001" value="18.50" /></div>
+            <div><label for="rate-usd-gbp">1 USD = GBP</label><input id="rate-usd-gbp" type="number" step="0.0001" value="0.79" /></div>
+            <div><label for="rate-usd-eur">1 USD = EUR</label><input id="rate-usd-eur" type="number" step="0.0001" value="0.92" /></div>
+          </div>
+          <div class="buttons" style="margin-top:10px">
+            <button class="btn primary" id="conv-btn" type="button">Convert</button>
+            <span class="small">Update rates, then tap a currency chip to refresh prices.</span>
+          </div>
+          <div class="status" id="conv-result" aria-live="polite"></div>
+        </div>
+
+        <div class="panel" aria-labelledby="calc-title">
+          <h3 id="calc-title">Price Calculator</h3>
+          <div class="row">
+            <div>
+              <label for="calc-package">Package</label>
+              <select id="calc-package">
+                <option value="50" data-unit="session">Basic ($50 / session)</option>
+                <option value="90" data-unit="session">Standard ($90 / session)</option>
+                <option value="150" data-unit="day">Premium ($150 / day)</option>
+              </select>
+            </div>
+            <div>
+              <label for="calc-qty">Quantity (sessions/days)</label>
+              <input id="calc-qty" type="number" min="1" value="1" />
+            </div>
+            <div>
+              <label for="calc-note">Notes (optional)</label>
+              <input id="calc-note" placeholder="e.g., evening booking, 2 siblings" />
+            </div>
+          </div>
+          <div class="buttons" style="margin-top:10px">
+            <button class="btn primary" id="calc-btn" type="button">Calculate total</button>
+          </div>
+          <div class="calc-total" id="calc-total" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:10px;">*Prices are indicative and may vary by lodge location and special requests.</p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING (route) ===== -->
+  <section id="route-booking" class="route-section" data-route="booking">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2>Book Now</h2>
+        <p>Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
+        <div class="buttons">
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%20would%20like%20to%20ask%20about%20availability.">💬 WhatsApp us</a>
+          <a class="btn" data-linkme="email" type="email" required /></div>
+          </div>
+          <div class="row">
+            <div><label for="b-phone">Phone</label><input id="b-phone" name="phone" /></div>
+            <div><label for="b-lodge">Lodge / Resort</label><input id="b-lodge" name="lodge" /></div>
+          </div>
+          <div class="row">
+            <div><label for="b-date">Date</label><input id="b-date" name="date" type="date" required /></div>
+            <div><label for="b-children">Children (ages)</label><input id="b-children" name="children" placeholder="e.g., 6 & 9" /></div>
+          </div>
+          <div style="margin-top:10px">
+            <label>Preferred time slot</label>
+            <div class="slots" role="group" aria-label="Choose a time slot">
+              <button type="button" class="slot" data-slot="08:00–11:00" aria-pressed="false">08:00–11:00</button>
+              <button type="button" class="slot" data-slot="12:00–15:00" aria-pressed="false">12:00–15:00</button>
+              <button type="button" class="slot" data-slot="15:00–18:00" aria-pressed="false">15:00–18:00</button>
+              <button type="button" class="slot" data-slot="18:00–21:00" aria-pressed="false">18:00–21:00</button>
+            </div>
+            <input type="hidden" name="slot" id="b-slot" />
+          </div>
+          <div style="margin-top:10px">
+            <label for="b-notes">Notes (requests, allergies, special needs)</label>
+            <textarea id="b-notes" name="notes" rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New booking request (Safari Holiday Childcare)" />
+          <button class="btn primary" type="submit" style="margin-top:12px">Send booking request</button>
+          <div class="status" id="b-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT (route) ===== -->
+  <section id="route-contact" class="route-section" data-route="contact">
+    <div class="wrap grid cols-2">
+      <div class="panel">
+        <h2>Contact</h2>
+        <p>Email: mailto:hello@safari-childcare.examplehello@safari-childcare.example</a></p>
+        <p>Phone: tel:+10000000000+1 (000) 000‑0000</a></p>
+        <p>Lodges: We partner with select camps and can also assess new sites on request.</p>
+      </div>
+      <div class="panel">
+        <h3>Send us a message</h3>
+        https://formspree.io/f/YOUR_FORMSPREE_ID
+          <div class="row">
+            <div><label for="c-name">Name</label><input id="c-name" name="name" required /></div>
+            <div><label for="c-email">Email</label><input id="c-email" name="email" type="email" required /></div>
+          </div>
+          <div class="row">
+            <div><label for="c-phone">Phone</label><input id="c-phone" name="phone" /></div>
+            <div><label for="c-subject">Subject</label><input id="c-subject" name="subject" value="General enquiry" /></div>
+          </div>
+          <div style="margin-top:12px"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="5" required></textarea></div>
+          <button class="btn primary" type="submit" style="margin-top:12px">Send message</button>
+          <div class="status" id="c-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="panel">© <span id="year"></span> Safari Holiday Childcare</div>
+  </footer>
 
 <script>
-function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-</script>
+/* ===== Year ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ===== Booking slots ===== */
+(() => {
+  const slotButtons = document.querySelectorAll('.slot');
+  const slotInput = document.getElementById('b-slot');
+  slotButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      slotButtons.forEach(b=>b.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+      if(slotInput) slotInput.value = btn.dataset.slot;
+    });
+  });
+})();
+
+/* ===== Currency + converter + calculator ===== */
+(() => {
+  let rates = { ZAR: 18.50, GBP: 0.79, EUR: 0.92 };
+  const $ = s=>document.querySelector(s), $$ = s=>document.querySelectorAll(s);
+  const btnUSD=$('#btnUSD'), btnZAR=$('#btnZAR'), btnGBP=$('#btnGBP'), btnEUR=$('#btnEUR');
+  const priceEls=$$('[data-price]'), currencyEls=$$('[data-currency]');
+  const unitText=el=>(el.getAttribute('data-unit')||'session')==='day'?'/ day':'/ session';
+  function setActive(code){ [[btnUSD,'USD'],[btnZAR,'ZAR'],[btnGBP,'GBP'],[btnEUR,'EUR']].forEach(([b,c])=>{const on=c===code; b.classList.toggle('active',on); b.setAttribute('aria-pressed',String(on));});}
+  function renderUSD(){priceEls.forEach(el=>{const usd=+el.getAttribute('data-usd')||0; el.textContent=`$${usd.toFixed(0)}`;}); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('USD'); recalcTotal();}
+  function renderZAR(){priceEls.forEach(el=>{const usd=+el.getAttribute('data-usd')||0; el.textContent=`R${Math.round(usd*rates.ZAR).toLocaleString('en-ZA')}`;}); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('ZAR'); recalcTotal();}
+  function renderGBP(){priceEls.forEach(el=>{const usd=+el.getAttribute('data-usd')||0; el.textContent=`£${(usd*rates.GBP).toFixed(0)}`;}); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('GBP'); recalcTotal();}
+  function renderEUR(){priceEls.forEach(el=>{const usd=+el.getAttribute('data-usd')||0; el.textContent=`€${(usd*rates.EUR).toFixed(0)}`;}); currencyEls.forEach((c,i)=>c.textContent=unitText(priceEls[i])); setActive('EUR'); recalcTotal();}
+  if(btnUSD){btnUSD.addEventListener('click',renderUSD);btnZAR.addEventListener('click',renderZAR);btnGBP.addEventListener('click',renderGBP);btnEUR.addEventListener('click',renderEUR);renderUSD();}
+
+  // Converter
+  const amountEl=$('#conv-amount'), fromEl=$('#conv-from'), toEl=$('#conv-to');
+  const rateZAR=$('#rate-usd-zar'), rateGBP=$('#rate-usd-gbp'), rateEUR=$('#rate-usd-eur');
+  const convBtn=$('#conv-btn'), convOut=$('#conv-result');
+  const fmt=(amt,code)=>({USD:`$${amt.toFixed(2)}`,ZAR:`R${amt.toLocaleString('en-ZA',{maximumFractionDigits:2})}`,GBP:`£${amt.toFixed(2)}`,EUR:`€${amt.toFixed(2)}`}[code]);
+  const toUSD=(a,c,r)=>c==='USD'?a:c==='ZAR'?a/r.ZAR:c==='GBP'?a/r.GBP:c==='EUR'?a/r.EUR:a;
+  const fromUSD=(u,c,r)=>c==='USD'?u:c==='ZAR'?u*r.ZAR:c==='GBP'?u*r.GBP:c==='EUR'?u*r.EUR:u;
+  function convert(){
+    const amount=+amountEl.value||0, from=fromEl.value, to=toEl.value;
+    rates = { ZAR:+rateZAR.value||18.5, GBP:+rateGBP.value||0.79, EUR:+rateEUR.value||0.92 };
+    if(!amount){ convOut.textContent='Enter an amount.'; return; }
+    const usd=toUSD(amount,from,rates), res=fromUSD(usd,to,rates);
+    convOut.textContent=`${fmt(amount,from)} = ${fmt(res,to)}`;
+    ({USD:renderUSD,ZAR:renderZAR,GBP:renderGBP,EUR:renderEUR}[to]||renderUSD)();
+  }
+  if(convBtn) convBtn.addEventListener('click',convert);
+
+  // Calculator
+  const calcPkg=$('#calc-package'), calcQty=$('#calc-qty'), calcBtn=$('#calc-btn'), calcTotal=$('#calc-total');
+  function activeCurrency(){return btnZAR?.classList.contains('active')?'ZAR':btnGBP?.classList.contains('active')?'GBP':btnEUR?.classList.contains('active')?'EUR':'USD'}
+  function priceInActiveCurrency(usd){const cur=activeCurrency();return cur==='USD'?`$${usd.toFixed(2)}`:cur==='ZAR'?`R${Math.round(usd*rates.ZAR).toLocaleString('en-ZA')}`:cur==='GBP'?`£${(usd*rates.GBP).toFixed(2)}`:`€${(usd*rates.EUR).toFixed(2)}`}
+  function recalcTotal(){if(!calcPkg||!calcQty||!calcTotal)return;const usd=+calcPkg.value||0, qty=Math.max(1,+calcQty.value||1), totalUSD=usd*qty; calcTotal.textContent=`Estimated total: ${priceInActiveCurrency(totalUSD)} (${qty} × ${priceInActiveCurrency(usd)})`}
+  if(calcBtn){ calcBtn.addEventListener('click',recalcTotal); [calcPkg,calcQty].forEach(el=>el?.addEventListener('change',recalcTotal)); }
+})();
+
+/* ===== Router: show only the requested section ===== */
+(() => {
+  const sections = Array.from(document.querySelectorAll('.route-section'));
+  function show(route){
+    route = (route||'top').replace(/^#/,'').toLowerCase();
+    sections.forEach(s => s.hidden = (s.dataset.route !== route));
+    document.querySelectorAll('nav .menu a[data-link], nav .brand[data-link], nav .btn[data-link]').forEach(a=>{
+      const r=(a.getAttribute('href')||'').replace(/^#/,'').toLowerCase();
+      a.setAttribute('aria-current', r===route ? 'page' : '');
+    });
+    // scroll to top and focus heading
+    const visible=sections.find(s=>!s.hidden);
+    if(visible){
+      window.scrollTo({top:0, behavior:'instant'});
+      const h=visible.querySelector('h1, h2'); if(h){ h.setAttribute('tabindex','-1'); h.focus(); }
+    }
+    const titles={top:'Home',about:'About',safety:'Safety',reviews:'Reviews',pricing:'Pricing',booking:'Book Now',contact:'Contact'};
+    document.title=`Safari Holiday Childcare — ${titles[route]||'Page'}`;
+  }
+
+  // Event delegation: handle ALL clicks on anchors with data-link
+  document.addEventListener('click', (e)=>{
+    const a=e.target.closest('a[data-link]');
+    if(!a) return;
+    const href=a.getAttribute('href')||'';
+    if(href.startsWith('#')){
+      e.preventDefault();
+      const route=href.slice(1);
+      if(location.hash.slice(1)!==route) history.pushState({route}, '', `#${route}`);
+      show(route);
+    }
+  });
+
+  // Back/forward browser buttons
+  window.addEventListener('popstate', ()=> show(location.hash));
+
+  // Initial route
+  show(location.hash || 'top');
+})();
+</script>
 </body>
 </html>
