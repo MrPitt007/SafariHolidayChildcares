@@ -75,7 +75,7 @@ a:hover{ text-decoration:underline }
   transition:opacity 0.35s ease; z-index:1000;
 }
 .overlay.active{ opacity:1; pointer-events:auto; }
-/* ── Video Background (replaces image slideshow) ── */
+/* ── Video Background ── */
 .bg-video{
   position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
 }
@@ -284,3 +284,258 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
   </section>
 </div>
 <!-- PRICING -->
+<div id="pricing" class="section container">
+  <section class="card" aria-labelledby="pricing-title">
+    <h2 id="pricing-title">Pricing</h2>
+  </section>
+  <section class="card">
+    <div class="price-cards">
+      <div class="price">
+        <h3>Basic</h3>
+        <div class="amount">$50 / session</div>
+        <ul>
+          <li>Up to 3 hours of care</li>
+          <li>Age‑appropriate activities</li>
+          <li>Snack supervision</li>
+        </ul>
+        <a class="btn" data-section="booking" href="#">Book Now</a>
+      </div>
+      <div class="price">
+        <h3>Standard</h3>
+        <div class="amount">$90 / session</div>
+        <ul>
+          <li>Up to 6 hours of care</li>
+          <li>Educational activities & games</li>
+          <li>Meal assistance</li>
+        </ul>
+        <a class="btn" data-section="booking" href="#">Book Now</a>
+      </div>
+      <div class="price">
+        <h3>Premium</h3>
+        <div class="amount">$150 / day</div>
+        <ul>
+          <li>Up to 10 hours of care</li>
+          <li>Full activity schedule</li>
+          <li>Homework & bedtime support</li>
+        </ul>
+        <a class="btn" data-section="booking" href="#">Book Now</a>
+      </div>
+    </div>
+    <div class="buttons" style="margin-top:14px;">
+      <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
+    </div>
+  </section>
+  <!-- Currency Converter -->
+  <section class="card" aria-labelledby="fx-title">
+    <h3 id="fx-title">Currency Converter</h3>
+    <p class="muted">Convert between USD, EUR, GBP, and ZAR using live rates (falls back to demo rates if offline).</p>
+    <form id="fxForm" class="form-grid" onsubmit="return false;">
+      <div>
+        <label for="fxAmount">Amount</label>
+        <input id="fxAmount" type="number" min="0" step="0.01" value="100" />
+      </div>
+      <div>
+        <label for="fxFrom">From</label>
+        <select id="fxFrom">
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+          <option>ZAR</option>
+        </select>
+      </div>
+      <div>
+        <label for="fxTo">To</label>
+        <select id="fxTo">
+          <option>ZAR</option>
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+        </select>
+      </div>
+      <div class="full">
+        <button id="fxConvert" class="btn" type="button">Convert</button>
+      </div>
+      <div class="full">
+        <output id="fxResult" style="font-weight:700;"></output>
+      </div>
+    </form>
+    <p id="fxStatus" class="muted" style="margin-top:8px;"></p>
+  </section>
+  <!-- Price Calculator -->
+  <section class="card" aria-labelledby="calc-title">
+    <h3 id="calc-title">Price Calculator</h3>
+    <form id="calcForm" class="form-grid" onsubmit="return false;">
+      <div>
+        <label for="pkg">Package</label>
+        <select id="pkg">
+          <option value="Basic" data-price="50">Basic ($50)</option>
+          <option value="Standard" data-price="90">Standard ($90)</option>
+          <option value="Premium" data-price="150">Premium ($150)</option>
+        </select>
+      </div>
+      <div>
+        <label for="qty">Quantity</label>
+        <input id="qty" type="number" min="1" step="1" value="1" />
+      </div>
+      <div>
+        <label for="calcCurr">Currency</label>
+        <select id="calcCurr">
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+          <option>ZAR</option>
+        </select>
+      </div>
+      <div class="full">
+        <button id="calcBtn" class="btn" type="button">Calculate Total</button>
+      </div>
+      <div class="full">
+        <output id="calcResult" style="font-weight:700;"></output>
+      </div>
+    </form>
+  </section>
+  <section class="card">
+    <p class="muted">*Prices are indicative and may vary by lodge location and special requests.</p>
+  </section>
+</div>
+<!-- CONTACT -->
+<div id="contact" class="section container">
+  <section class="card" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p>
+      Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a><br/>
+      Phone: <a href="tel:+10000000000">+1 (000) 000-0000</a>
+    </p>
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <div class="form-grid">
+        <div><label for="cname">Name</label><input id="cname" name="name" required /></div>
+        <div><label for="cemail">Email</label><input id="cemail" name="email" type="email" required /></div>
+        <div class="full"><label for="csubject">Subject</label><input id="csubject" name="subject" /></div>
+        <div class="full"><label for="cmessage">Message</label><textarea id="cmessage" name="message"></textarea></div>
+      </div>
+      <div style="margin-top:12px;"><button class="btn" type="submit">Send message</button></div>
+    </form>
+  </section>
+</div>
+<footer>© <span id="y"></span> Safari Holiday Childcare</footer>
+<script>
+// Year
+document.getElementById('y').textContent = new Date().getFullYear();
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+function toggleMenu() {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  overlay.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+hamburger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu);
+mobileMenu.addEventListener('click', e => {
+  if (e.target.tagName === 'A') toggleMenu();
+});
+// Section switching – made more robust
+const sections = document.querySelectorAll('.section');
+const allLinks = document.querySelectorAll('a[data-section]');
+
+function showSection(id) {
+  sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
+  allLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  toggleMenu(); // close menu after click
+}
+
+// Attach to all data-section links (menu + hero buttons)
+allLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const sectionId = link.dataset.section;
+    if (sectionId && document.getElementById(sectionId)) {
+      showSection(sectionId);
+    }
+  });
+});
+
+// Start on home
+showSection('home');
+
+// Currency Converter & Calculator – safe with optional chaining
+const fxAmount = document.getElementById('fxAmount');
+const fxFrom = document.getElementById('fxFrom');
+const fxTo = document.getElementById('fxTo');
+const fxBtn = document.getElementById('fxConvert');
+const fxOut = document.getElementById('fxResult');
+const fxStatus = document.getElementById('fxStatus');
+
+const calcPkg = document.getElementById('pkg');
+const calcQty = document.getElementById('qty');
+const calcCurr = document.getElementById('calcCurr');
+const calcBtn = document.getElementById('calcBtn');
+const calcOut = document.getElementById('calcResult');
+
+let fxRates = null;
+
+function fmt(n, curr) {
+  try {
+    return new Intl.NumberFormat(undefined, { style: 'currency', currency: curr }).format(n);
+  } catch {
+    return `${curr} ${n.toFixed(2)}`;
+  }
+}
+
+async function loadRates() {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD', { cache: 'no-store' });
+    const data = await res.json();
+    const r = data.rates || {};
+    fxRates = { USD: 1, EUR: r.EUR, GBP: r.GBP, ZAR: r.ZAR };
+    fxStatus.textContent = `Live rates loaded. Last update: ${new Date(data.time_last_update_utc).toLocaleString()}`;
+  } catch (err) {
+    fxRates = { USD: 1, EUR: 0.92, GBP: 0.80, ZAR: 18.00 };
+    fxStatus.textContent = 'Using demo rates (offline). Connect to the internet for live updates.';
+  }
+}
+
+function convert(amount, from, to) {
+  if (!fxRates || !fxRates[from] || !fxRates[to]) return null;
+  const inUSD = amount / fxRates[from];
+  return inUSD * fxRates[to];
+}
+
+fxBtn?.addEventListener('click', () => {
+  const amt = parseFloat(fxAmount?.value || '0');
+  const from = fxFrom?.value || 'USD';
+  const to = fxTo?.value || 'ZAR';
+  if (isNaN(amt) || amt < 0) {
+    fxOut.textContent = 'Enter a valid amount.';
+    return;
+  }
+  const result = convert(amt, from, to);
+  if (result === null) {
+    fxOut.textContent = 'Rates not available yet.';
+    return;
+  }
+  fxOut.textContent = `${fmt(amt, from)} = ${fmt(result, to)}`;
+});
+
+calcBtn?.addEventListener('click', () => {
+  const sel = calcPkg?.selectedOptions[0];
+  if (!sel) return;
+  const price = parseFloat(sel.dataset.price || '0');
+  const qty = Math.max(1, parseInt(calcQty?.value || '1', 10));
+  const curr = calcCurr?.value || 'USD';
+  const baseUSD = price * qty;
+  const total = convert(baseUSD, 'USD', curr);
+  if (total === null) {
+    calcOut.textContent = 'Rates not available yet.';
+    return;
+  }
+  calcOut.innerHTML = `Package: <b>${sel.value}</b> × <b>${qty}</b> = ${fmt(total, curr)} (converted from ${fmt(baseUSD, 'USD')})`;
+});
+
+loadRates();
+</script>
+</body>
+</html>
