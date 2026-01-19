@@ -43,7 +43,7 @@
       user-select: none;
     }
 
-    /* Mobile menu */
+    /* Mobile menu (CLOSED by default) */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -72,7 +72,7 @@
       color: #38bdf8;
     }
 
-    /* Overlay */
+    /* Overlay (DISABLED by default) */
     .overlay {
       position: fixed;
       inset: 0;
@@ -110,92 +110,3 @@
 
     ul {
       padding-left: 20px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="logo">Safari Holiday Childcare</div>
-    <div class="hamburger" id="hamburger">☰</div>
-  </header>
-
-  <div class="overlay" id="overlay"></div>
-
-  <nav class="mobile-menu" id="mobileMenu">
-    <a href="#home" class="menu-link">Home</a>
-    <a href="#about" class="menu-link">About</a>
-    <a href="#services" class="menu-link">Services</a>
-    <a href="#contact" class="menu-link">Contact</a>
-  </nav>
-
-  <main>
-    <section id="home">
-      <h1>Welcome to Safari Holiday Childcare</h1>
-      <p>Safe • Fun • Professional Holiday Care</p>
-    </section>
-
-    <section id="about">
-      <h2>About Us</h2>
-      <p>
-        Safari Holiday Childcare provides a safe, caring, and fun environment
-        for children during school holidays. We focus on learning through play,
-        creativity, and adventure.
-      </p>
-    </section>
-
-    <section id="services">
-      <h2>Our Services</h2>
-      <ul>
-        <li>Holiday Childcare Programs</li>
-        <li>Qualified & Caring Staff</li>
-        <li>Indoor & Outdoor Activities</li>
-        <li>Healthy Meals & Snacks</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: info@safariholidaychildcare.com</p>
-      <p>Phone: +27 00 000 0000</p>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 Safari Holiday Childcare. All rights reserved.
-  </footer>
-
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
-    const links = document.querySelectorAll('.menu-link');
-
-    // Ensure menu is CLOSED on load
-    mobileMenu.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.style.overflow =
-        mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    overlay.addEventListener('click', closeMenu);
-
-    links.forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    function closeMenu() {
-      mobileMenu.classList.remove('active');
-      overlay.
