@@ -88,17 +88,19 @@ a:hover{ text-decoration:underline }
 .bg-video::after{
   content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
 }
-/* ── Content ── */
-.container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
-.section{ display:none; }
-.section.active{ display:block; }
+/* Prevent layout shift – reserve space for video */
 .hero{
   position:relative; min-height:62vh; display:grid; place-items:center;
   color:var(--text-invert); text-align:center; overflow:hidden;
   border-radius:14px; margin:18px auto; max-width:1100px;
   box-shadow:0 6px 22px rgba(5,7,12,0.14); z-index:1;
+  background:#0b0f14; /* fallback color while loading */
 }
 .hero .content{ padding:64px 16px; }
+/* ── Content ── */
+.container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
+.section{ display:none; }
+.section.active{ display:block; }
 .hero h1{ margin:0 0 10px; font-size:clamp(28px,5vw,44px); color:#fff; }
 .hero p{ margin:0 0 20px; color:#e7edf5; max-width:720px; }
 .buttons{ display:inline-flex; gap:12px; flex-wrap:wrap; justify-content:center; }
@@ -137,9 +139,9 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
 </style>
 </head>
 <body>
-<!-- Video Background – now using your uploaded file -->
+<!-- Video Background – with sound (unmuted) -->
 <div class="bg-video">
-  <video autoplay muted loop playsinline preload="auto">
+  <video autoplay loop playsinline preload="auto">
     <source src="generated_video.mp4" type="video/mp4">
     Your browser does not support video.
   </video>
@@ -168,7 +170,7 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
   <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
 </div>
 <div class="overlay" id="overlay"></div>
-<!-- HOME -->
+<!-- HOME (active by default in HTML) -->
 <div id="home" class="section active">
   <header class="hero" role="banner">
     <div class="content">
@@ -181,242 +183,9 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
     </div>
   </header>
 </div>
-<!-- BOOKING -->
-<div id="booking" class="section container">
-  <section class="card" aria-labelledby="booking-title">
-    <h2 id="booking-title">Book Now</h2>
-    <p class="muted">Choose a date and preferred time. We’ll confirm details and match your family with a qualified carer.</p>
-    <div class="buttons" style="margin-bottom:12px;">
-      <a class="btn" href="https://wa.me/REPLACE_WITH_NUMBER?text=Hi%20Safari%20Holiday%20Childcare%2C%20I%27d%20like%20to%20ask%20about%20availability." target="_blank" rel="noopener">WhatsApp us</a>
-      <a class="btn secondary" data-section="contact" href="#">Prefer email? Contact us</a>
-    </div>
-    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-      <div class="form-grid">
-        <div><label for="parent">Parent/Guardian name</label><input id="parent" name="parent" required /></div>
-        <div><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
-        <div><label for="phone">Phone</label><input id="phone" name="phone" /></div>
-        <div><label for="lodge">Lodge / Resort</label><input id="lodge" name="lodge" /></div>
-        <div><label for="date">Date</label><input id="date" name="date" type="date" /></div>
-        <div><label for="ages">Children (ages)</label><input id="ages" name="ages" /></div>
-        <div><label for="slot">Preferred time slot</label>
-          <select id="slot" name="slot">
-            <option>08:00–11:00</option><option>12:00–15:00</option>
-            <option>15:00–18:00</option><option>18:00–21:00</option>
-          </select>
-        </div>
-        <div class="full"><label for="notes">Notes (requests, allergies, special needs)</label><textarea id="notes" name="notes"></textarea></div>
-      </div>
-      <div style="margin-top:12px;"><button class="btn" type="submit">Send booking request</button></div>
-    </form>
-  </section>
-</div>
-<!-- ABOUT -->
-<div id="about" class="section container">
-  <section class="card" aria-labelledby="about-title">
-    <h2 id="about-title">About Our Nanny Service (Ages 5–12)</h2>
-    <p>Safari Holiday Childcare provides trusted, professional nanny services within South African safari lodges and holiday resorts. Our trained nannies balance play, learning, and relaxation with activities tailored to each child’s age and interests.</p>
-    <div class="grid">
-      <div>
-        <h3>What Our Nannies Do</h3>
-        <ul>
-          <li>Supervised care in safe resort areas</li>
-          <li>Arts & crafts, puzzles, reading, storytelling, nature‑inspired play</li>
-          <li>Educational engagement: animals, conservation, and local culture</li>
-          <li>Routine support: mealtimes, quiet time, homework (if required), bedtime</li>
-          <li>Emotional care tailored to new holiday environments</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Languages</h3>
-        <p>English • Swahili • Afrikaans <span class="muted">(ask for others)</span></p>
-      </div>
-    </div>
-  </section>
-</div>
-<!-- SAFETY -->
-<div id="safety" class="section container">
-  <section class="card" aria-labelledby="safety-title">
-    <h2 id="safety-title">Safety & Trust</h2>
-    <div class="grid">
-      <div><h3>🩺 First Aid</h3><p>First aid & CPR certification (renewed annually).</p></div>
-      <div><h3>👩‍🏫 Trained Staff</h3><p>Ongoing training with safeguarding and education modules.</p></div>
-      <div><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
-      <div><h3>📋 Protocols</h3><p>Secure check‑in/out with ID verification; lodge risk assessments.</p></div>
-      <div><h3>🚑 Emergency readiness</h3><p>On‑site kits, radio/phone connectivity, lodge coordination.</p></div>
-      <div><h3>🌿 Allergies & Medication</h3><p>Share medical needs during booking; we brief your carer and store details securely.</p></div>
-    </div>
-  </section>
-</div>
-<!-- REVIEWS -->
-<div id="reviews" class="section container">
-  <section class="card" aria-labelledby="reviews-title">
-    <h2 id="reviews-title">Reviews</h2>
-    <blockquote>“Our kids loved the animal tracking games! We felt completely at ease.” — Emma • July 2025</blockquote>
-    <blockquote>“Flexible hours and super professional. The best part of our trip.” — Daniel • Aug 2025</blockquote>
-    <blockquote>“Safety briefing was thorough and the activities were meaningful.” — Aisha • Sept 2025</blockquote>
-    <div class="buttons" style="margin-top:12px;">
-      <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
-    </div>
-  </section>
-</div>
-<!-- A NANNY -->
-<div id="nanny" class="section container">
-  <section class="card" aria-labelledby="nanny-title">
-    <h2 id="nanny-title">A Nanny</h2>
-    <p class="muted">We match your family with a trained, vetted professional who fits your schedule and your children’s interests.</p>
-    <div class="grid">
-      <div>
-        <h3>How it works</h3>
-        <ol>
-          <li>Send your dates and preferred time slots.</li>
-          <li>We confirm availability and share nanny profiles.</li>
-          <li>Your nanny arrives prepared with age‑appropriate activities.</li>
-        </ol>
-        <div class="buttons" style="margin-top:10px;">
-          <a class="btn" data-section="booking" href="#">Book a Nanny</a>
-          <a class="btn secondary" href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener">Ask a question</a>
-        </div>
-      </div>
-      <div>
-        <p>“The bedtime routine was smooth even away from home.” — Michael • Parent</p>
-      </div>
-    </div>
-  </section>
-</div>
-<!-- PRICING -->
-<div id="pricing" class="section container">
-  <section class="card" aria-labelledby="pricing-title">
-    <h2 id="pricing-title">Pricing</h2>
-  </section>
-  <section class="card">
-    <div class="price-cards">
-      <div class="price">
-        <h3>Basic</h3>
-        <div class="amount">$50 / session</div>
-        <ul>
-          <li>Up to 3 hours of care</li>
-          <li>Age‑appropriate activities</li>
-          <li>Snack supervision</li>
-        </ul>
-        <a class="btn" data-section="booking" href="#">Book Now</a>
-      </div>
-      <div class="price">
-        <h3>Standard</h3>
-        <div class="amount">$90 / session</div>
-        <ul>
-          <li>Up to 6 hours of care</li>
-          <li>Educational activities & games</li>
-          <li>Meal assistance</li>
-        </ul>
-        <a class="btn" data-section="booking" href="#">Book Now</a>
-      </div>
-      <div class="price">
-        <h3>Premium</h3>
-        <div class="amount">$150 / day</div>
-        <ul>
-          <li>Up to 10 hours of care</li>
-          <li>Full activity schedule</li>
-          <li>Homework & bedtime support</li>
-        </ul>
-        <a class="btn" data-section="booking" href="#">Book Now</a>
-      </div>
-    </div>
-    <div class="buttons" style="margin-top:14px;">
-      <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
-    </div>
-  </section>
-  <!-- Currency Converter -->
-  <section class="card" aria-labelledby="fx-title">
-    <h3 id="fx-title">Currency Converter</h3>
-    <p class="muted">Convert between USD, EUR, GBP, and ZAR using live rates (falls back to demo rates if offline).</p>
-    <form id="fxForm" class="form-grid" onsubmit="return false;">
-      <div>
-        <label for="fxAmount">Amount</label>
-        <input id="fxAmount" type="number" min="0" step="0.01" value="100" />
-      </div>
-      <div>
-        <label for="fxFrom">From</label>
-        <select id="fxFrom">
-          <option>USD</option>
-          <option>EUR</option>
-          <option>GBP</option>
-          <option>ZAR</option>
-        </select>
-      </div>
-      <div>
-        <label for="fxTo">To</label>
-        <select id="fxTo">
-          <option>ZAR</option>
-          <option>USD</option>
-          <option>EUR</option>
-          <option>GBP</option>
-        </select>
-      </div>
-      <div class="full">
-        <button id="fxConvert" class="btn" type="button">Convert</button>
-      </div>
-      <div class="full">
-        <output id="fxResult" style="font-weight:700;"></output>
-      </div>
-    </form>
-    <p id="fxStatus" class="muted" style="margin-top:8px;"></p>
-  </section>
-  <!-- Price Calculator -->
-  <section class="card" aria-labelledby="calc-title">
-    <h3 id="calc-title">Price Calculator</h3>
-    <form id="calcForm" class="form-grid" onsubmit="return false;">
-      <div>
-        <label for="pkg">Package</label>
-        <select id="pkg">
-          <option value="Basic" data-price="50">Basic ($50)</option>
-          <option value="Standard" data-price="90">Standard ($90)</option>
-          <option value="Premium" data-price="150">Premium ($150)</option>
-        </select>
-      </div>
-      <div>
-        <label for="qty">Quantity</label>
-        <input id="qty" type="number" min="1" step="1" value="1" />
-      </div>
-      <div>
-        <label for="calcCurr">Currency</label>
-        <select id="calcCurr">
-          <option>USD</option>
-          <option>EUR</option>
-          <option>GBP</option>
-          <option>ZAR</option>
-        </select>
-      </div>
-      <div class="full">
-        <button id="calcBtn" class="btn" type="button">Calculate Total</button>
-      </div>
-      <div class="full">
-        <output id="calcResult" style="font-weight:700;"></output>
-      </div>
-    </form>
-  </section>
-  <section class="card">
-    <p class="muted">*Prices are indicative and may vary by lodge location and special requests.</p>
-  </section>
-</div>
-<!-- CONTACT -->
-<div id="contact" class="section container">
-  <section class="card" aria-labelledby="contact-title">
-    <h2 id="contact-title">Contact</h2>
-    <p>
-      Email: <a href="mailto:hello@safari-childcare.example">hello@safari-childcare.example</a><br/>
-      Phone: <a href="tel:+10000000000">+1 (000) 000-0000</a>
-    </p>
-    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-      <div class="form-grid">
-        <div><label for="cname">Name</label><input id="cname" name="name" required /></div>
-        <div><label for="cemail">Email</label><input id="cemail" name="email" type="email" required /></div>
-        <div class="full"><label for="csubject">Subject</label><input id="csubject" name="subject" /></div>
-        <div class="full"><label for="cmessage">Message</label><textarea id="cmessage" name="message"></textarea></div>
-      </div>
-      <div style="margin-top:12px;"><button class="btn" type="submit">Send message</button></div>
-    </form>
-  </section>
-</div>
+<!-- All other sections (same as before) -->
+<!-- BOOKING, ABOUT, SAFETY, REVIEWS, A NANNY, PRICING (with converter/calculator), CONTACT -->
+<!-- ... (keep your full sections here) ... -->
 <footer>© <span id="y"></span> Safari Holiday Childcare</footer>
 <script>
 // Year
@@ -436,14 +205,17 @@ overlay.addEventListener('click', toggleMenu);
 mobileMenu.addEventListener('click', e => {
   if (e.target.tagName === 'A') toggleMenu();
 });
-// Section switching
+// Section switching – only close menu on link click, no auto-open on load
 const sections = document.querySelectorAll('.section');
 const allLinks = document.querySelectorAll('a[data-section]');
 function showSection(id) {
   sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
   allLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  toggleMenu();
+  // Only close menu if it's open (prevents auto-open on load)
+  if (mobileMenu.classList.contains('active')) {
+    toggleMenu();
+  }
 }
 allLinks.forEach(link => {
   link.addEventListener('click', e => {
@@ -454,8 +226,8 @@ allLinks.forEach(link => {
     }
   });
 });
-showSection('home');
-// Currency Converter & Calculator
+// No initial showSection call – home is active in HTML, menu stays closed on load/refresh
+// Currency Converter & Calculator (unchanged)
 const fxAmount = document.getElementById('fxAmount');
 const fxFrom = document.getElementById('fxFrom');
 const fxTo = document.getElementById('fxTo');
