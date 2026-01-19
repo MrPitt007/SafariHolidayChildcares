@@ -1,92 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safari Holiday Childcare</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safari Holiday Childcare</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0f14;
-  color: white;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-/* Header */
-header {
-  background: black;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    body {
+      background: linear-gradient(135deg, #0b0f14, #111827);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
 
-/* Hide checkbox */
-#menu-toggle {
-  display: none;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+    }
 
-/* Hamburger */
-.menu-icon {
-  font-size: 26px;
-  cursor: pointer;
-}
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-/* Menu CLOSED by default */
-nav {
-  position: fixed;
-  top: 0;
-  right: -260px;
-  width: 260px;
-  height: 100%;
-  background: #111;
-  padding-top: 80px;
-  transition: right 0.3s ease;
-}
+    .hamburger {
+      font-size: 26px;
+      cursor: pointer;
+      user-select: none;
+    }
 
-/* Open ONLY when checked */
-#menu-toggle:checked + nav {
-  right: 0;
-}
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 260px;
+      height: 100vh;
+      background: #0f172a;
+      padding: 80px 20px;
+      transition: right 0.3s ease;
+      z-index: 1100;
+    }
 
-nav a {
-  display: block;
-  padding: 15px 20px;
-  color: white;
-  text-decoration: none;
-}
+    .mobile-menu.active {
+      right: 0;
+    }
 
-nav a:hover {
-  background: #222;
-}
+    .mobile-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      font-size: 18px;
+    }
 
-main {
-  padding: 40px 20px;
-}
-</style>
+    .mobile-menu a:hover {
+      color: #38bdf8;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1050;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    main {
+      padding: 120px 20px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Safari Holiday Childcare</h1>
-  <label for="menu-toggle" class="menu-icon">☰</label>
-</header>
+  <header>
+    <div class="logo">Safari Holiday Childcare</div>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
 
-<input type="checkbox" id="menu-toggle">
+  <div class="overlay" id="overlay"></div>
 
-<nav>
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Contact</a>
-</nav>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="menu-link">Home</a>
+    <a href="#about" class="menu-link">About</a>
+    <a href="#services" class="menu-link">Services</a>
+    <a href="#contact" class="menu-link">Contact</a>
+  </nav>
 
-<main>
-  <h2>Welcome</h2>
-  <p>Safe • Fun • Professional Holiday Care</p>
-</main>
+  <main>
+    <section id="home">
+      <h1>Welcome to Safari Holiday Childcare</h1>
+      <p>Safe • Fun • Professional Holiday Care</p>
+    </section>
 
-</body>
-</html>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        Safari Holiday Childcare provides a safe, caring, and fun environment
+        for children during school holidays. We focus on learning through play,
+        creativity, and adventure.
+      </p>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Holiday Childcare Programs</li>
+        <li>Qualified & Caring Staff</li>
+        <li>Indoor & Outdoor Activities</li>
+        <li>Healthy Meals & Snacks</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: info@safariholidaychildcare.com</p>
+      <p>Phone: +27 00 000 0000</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Safari Holiday Childcare. All rights reserved.
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+    const links = document.querySelectorAll('.menu-link');
+
+    // Ensure menu is CLOSED on load
+    mobileMenu.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow =
+        mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    links.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove('active');
+      overlay.
