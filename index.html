@@ -1,89 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Safari Holiday Childcare</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Safari Holiday Childcare</title>
 
-<style>
-/* === SAME CSS AS YOUR ORIGINAL (UNCHANGED) === */
-:root{
---brand:#0d6efd;
---bg:#0b0f14;
---card:#ffffff;
---text:#0e141b;
---text-invert:#ffffff;
---muted:#576071;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:system-ui;color:var(--text)}
-.nav{position:sticky;top:0;background:rgba(15,18,24,.9);z-index:1000}
-.nav-inner{max-width:1100px;margin:auto;padding:12px 16px;display:flex;justify-content:center;position:relative}
-.brand{color:#fff;font-size:2rem;font-weight:700}
-.hamburger{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
-.hamburger span{height:3px;background:#fff;border-radius:2px;transition:.3s}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
-
-.mobile-menu{position:fixed;top:0;right:-100%;width:80%;height:100%;background:#0f1218;color:#fff;padding:80px 30px;transition:.35s;z-index:1050}
-.mobile-menu.active{right:0}
-.mobile-menu a{display:block;color:#fff;padding:14px;border-radius:8px}
-
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.3s}
-.overlay.active{opacity:1;pointer-events:auto}
-
-.section{display:none}
-.section.active{display:block}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="brand">Safari Holiday Childcare</div>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
+<header class="header">
+  <div class="logo">Safari Holiday Childcare</div>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</header>
+
+<nav id="menu" class="menu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#" data-section="home">Home</a>
-  <a href="#" data-section="about">About</a>
-  <a href="#" data-section="contact">Contact</a>
-</div>
-<div class="overlay" id="overlay"></div>
+<section id="home" class="hero">
+  <h1>Welcome to Safari Holiday Childcare</h1>
+  <p>Safe • Fun • Professional Holiday Care</p>
+</section>
 
-<div id="home" class="section active"><h1>Home</h1></div>
-<div id="about" class="section"><h1>About</h1></div>
-<div id="contact" class="section"><h1>Contact</h1></div>
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <p>
+    Safari Holiday Childcare provides a safe, caring, and fun environment
+    for children during school holidays. We focus on learning through play,
+    creativity, and adventure.
+  </p>
+</section>
 
-<script>
-/* ===== FIXED JAVASCRIPT ===== */
+<section id="services" class="section dark">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Holiday Childcare Programs</li>
+    <li>Qualified & Caring Staff</li>
+    <li>Indoor & Outdoor Activities</li>
+    <li>Healthy Meals & Snacks</li>
+  </ul>
+</section>
 
-// Elements
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-const overlay = document.getElementById('overlay');
-const sections = document.querySelectorAll('.section');
-const menuLinks = document.querySelectorAll('#mobileMenu a[data-section]');
+<section id="contact" class="section">
+  <h2>Contact Us</h2>
+  <p>Email: info@safariholidaychildcare.com</p>
+  <p>Phone: +27 00 000 0000</p>
+</section>
 
-// Open / close menu
-function openMenu(){
-  hamburger.classList.add('active');
-  mobileMenu.classList.add('active');
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+<footer class="footer">
+  <p>© 2026 Safari Holiday Childcare. All rights reserved.</p>
+</footer>
 
-function closeMenu(){
-  hamburger.classList.remove('active');
-  mobileMenu.classList.remove('active');
-  overlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.contains('active'
+<script src="script.js"></script>
+</body>
+</html>
