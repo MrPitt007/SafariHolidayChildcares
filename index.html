@@ -86,7 +86,7 @@ a:hover{ text-decoration:underline }
 .bg-video::after{
   content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
 }
-/* ── Hero – fixed height to stop any shift */
+/* ── Hero – fixed height, no shift */
 .hero{
   position:relative; height:80vh;
   display:grid; place-items:center;
@@ -182,7 +182,7 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
     </div>
   </header>
 </div>
-<!-- Your other sections here (Booking, About, Safety, Reviews, A Nanny, Pricing with converter/calculator, Contact) -->
+<!-- Your other sections (add your full content here) -->
 <footer>© <span id="y"></span> Safari Holiday Childcare</footer>
 <script>
 // Year
@@ -216,7 +216,7 @@ mobileMenu.addEventListener('click', e => {
     enableSound();
   }
 });
-// Section switching – clean and reliable
+// Section switching
 const sections = document.querySelectorAll('.section');
 const allLinks = document.querySelectorAll('a[data-section]');
 function showSection(id) {
@@ -239,9 +239,6 @@ allLinks.forEach(link => {
     }
   });
 });
-// Home active by default
-// Currency & Calculator (keep your full script)
-loadRates();
 </script>
 </body>
 </html>
