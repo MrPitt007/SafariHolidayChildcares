@@ -1,545 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Safari Holiday Childcare</title>
-  <meta name="description" content="Trusted childcare (ages 5–12) for safari lodges and holiday resorts." />
-
-  <style>
-    :root {
-      --brand: #0d6efd;
-      --bg: #0b0f14;
-      --card: #ffffff;
-      --text: #0e141b;
-      --text-invert: #ffffff;
-      --muted: #576071;
-    }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: #fff;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      line-height: 1.5;
-    }
-
-    /* Background slideshow */
-    .bg-slides {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-    }
-    .bg-slides img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      animation: bgfade 32s infinite;
-      transform: scale(1.03);
-    }
-    .bg-slides img:nth-child(1) { animation-delay: 0s; }
-    .bg-slides img:nth-child(2) { animation-delay: 8s; }
-    .bg-slides img:nth-child(3) { animation-delay: 16s; }
-    .bg-slides img:nth-child(4) { animation-delay: 24s; }
-    @keyframes bgfade {
-      0%, 100% { opacity: 0; }
-      10%, 30% { opacity: 1; }
-      40% { opacity: 0; }
-    }
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: -1;
-    }
-
-    /* Nav */
-    .nav {
-      position: sticky;
-      top: 0;
-      background: rgba(15,18,24,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      z-index: 1000;
-      padding: 12px 16px;
-    }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    /* Desktop menu */
-    .menu {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-    .menu a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: 0.2s;
-    }
-    .menu a:hover, .menu a.active {
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      z-index: 1101;
-    }
-    .hamburger span {
-      width: 28px;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: 0.4s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; transform: scale(0); }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0; right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100%;
-      background: rgba(15,18,24,0.98);
-      backdrop-filter: blur(10px);
-      transition: right 0.4s ease;
-      z-index: 1100;
-      padding: 80px 20px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu a {
-      color: white;
-      font-size: 1.2rem;
-      padding: 12px;
-      border-radius: 8px;
-    }
-    .mobile-menu a:hover, .mobile-menu a.active {
-      background: rgba(255,255,255,0.12);
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s;
-      z-index: 1099;
-    }
-    .overlay.active { opacity: 1; pointer-events: auto; }
-
-    /* Content sections */
-    .container { max-width: 1100px; margin: 18px auto; padding: 0 16px 40px; position: relative; z-index: 1; }
-    .section { display: none; }
-    .section.active { display: block; }
-
-    /* Hero (home) */
-    .hero {
-      min-height: 80vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 40px 20px;
-      position: relative;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #e7edf5;
-    }
-    .buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .btn {
-      background: var(--brand);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn.secondary {
-      background: rgba(255,255,255,0.2);
-    }
-
-    /* Cards & grid (your original styling) */
-    .card {
-      background: var(--card);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 6px 22px rgba(5,7,12,0.14);
-      margin-bottom: 24px;
-    }
-    h2 { margin-top: 0; font-size: 1.8rem; }
-    .grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    }
-    .muted { color: var(--muted); }
-
-    .price-cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
-    .price { border: 1px solid #e7eaf0; border-radius: 12px; padding: 16px; }
-    .price h3 { margin: 0 0 6px; }
-    .price ul { padding-left: 18px; margin: 6px 0 14px; }
-    .price .amount { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-
-    .form-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-    .form-grid .full { grid-column: 1 / -1; }
-    label { font-weight: 600; font-size: 14px; }
-    input, select, textarea {
-      width: 100%; padding: 10px 12px; border: 1px solid #d5dbe3; border-radius: 8px; font: inherit;
-    }
-    textarea { min-height: 100px; resize: vertical; }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #d4deea;
-    }
-
-    @media (max-width: 768px) {
-      .menu { display: none; }
-      .hamburger { display: flex; }
-      .form-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Safari Holiday Childcare</title>
+<meta name="description" content="Trusted childcare (ages 5–12) for safari lodges and holiday resorts. First aid certified, safeguarding protocols, flexible hours." />
+<style>
+:root{
+--brand:#0d6efd;
+--bg:#0b0f14;
+--card:#ffffff;
+--text:#0e141b;
+--text-invert:#ffffff;
+--muted:#576071;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0; background:var(--bg); color:var(--text);
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+line-height:1.45;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{ text-decoration:underline }
+/* ── Top Nav ── */
+.nav{
+  position:sticky; top:0;
+  background:rgba(15,18,24,0.90); backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  z-index:1000;
+}
+.nav-inner{
+  max-width:1100px; margin:0 auto; padding:12px 16px;
+  display:flex; align-items:center; justify-content:space-between; color:var(--text-invert);
+}
+.brand{ font-weight:700; letter-spacing:.2px; color:#fff; }
+/* Desktop menu */
+.menu{ display:flex; gap:14px; flex-wrap:wrap; }
+.menu a{
+  color:var(--text-invert); padding:6px 10px; border-radius:6px;
+  transition:background .2s ease;
+}
+.menu a:hover, .menu a:focus{ background:rgba(255,255,255,0.12); }
+.menu a.active{ background:rgba(255,255,255,0.18); }
+/* Hamburger button */
+.hamburger{
+  display:none;
+  flex-direction:column; justify-content:space-between;
+  width:28px; height:20px; cursor:pointer; z-index:1101;
+}
+.hamburger span{
+  width:100%; height:3px; background:white; border-radius:2px;
+  transition:all 0.35s ease;
+}
+.hamburger.active span:nth-child(1){ transform:rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2){ opacity:0; }
+.hamburger.active span:nth-child(3){ transform:rotate(-45deg) translate(7px,-7px); }
+/* Mobile slide-in menu */
+.mobile-menu{
+  position:fixed; top:0; right:-100%;
+  width:80%; max-width:320px; height:100%;
+  background:rgba(15,18,24,0.98); backdrop-filter:blur(10px);
+  color:white; transition:right 0.35s ease;
+  z-index:1050; padding:80px 24px 24px;
+  display:flex; flex-direction:column; gap:8px;
+  overflow-y:auto;
+}
+.mobile-menu.active{ right:0; }
+.mobile-menu a{
+  color:white; font-size:1.15rem; padding:12px 16px; border-radius:8px;
+}
+.mobile-menu a:hover, .mobile-menu a.active{ background:rgba(255,255,255,0.15); }
+/* Overlay when mobile menu open */
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.5); opacity:0; pointer-events:none;
+  transition:opacity 0.35s ease; z-index:1000;
+}
+.overlay.active{ opacity:1; pointer-events:auto; }
+/* ── Your original background slideshow ── */
+.bg-slides{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+}
+.bg-slides::after{
+  content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
+}
+.bg-slides img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0; animation:bgfade 28s infinite;
+  transform:scale(1.03);
+}
+.bg-slides img:nth-child(1){ animation-delay:0s; }
+.bg-slides img:nth-child(2){ animation-delay:7s; }
+.bg-slides img:nth-child(3){ animation-delay:14s; }
+.bg-slides img:nth-child(4){ animation-delay:21s; }
+@keyframes bgfade{
+  0%{opacity:0} 10%,30%{opacity:1} 40%,100%{opacity:0}
+}
+/* ── Content ── */
+.container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
+.section{ display:none; }
+.section.active{ display:block; }
+.hero{
+  position:relative; min-height:62vh; display:grid; place-items:center;
+  color:var(--text-invert); text-align:center; overflow:hidden;
+  border-radius:14px; margin:18px auto; max-width:1100px;
+  box-shadow:0 6px 22px rgba(5,7,12,0.14); z-index:1;
+}
+.hero .content{ padding:64px 16px; }
+.hero h1{ margin:0 0 10px; font-size:clamp(28px,5vw,44px); color:#fff; }
+.hero p{ margin:0 0 20px; color:#e7edf5; max-width:720px; }
+.buttons{ display:inline-flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.btn{
+  display:inline-block; padding:10px 16px; border-radius:8px;
+  background:var(--brand); color:white; font-weight:600; border:none;
+}
+.btn.secondary{ background:rgba(255,255,255,0.14); color:#fff; }
+.btn:hover{ filter:brightness(1.05); text-decoration:none; }
+section.card{
+  background:var(--card); color:var(--text);
+  border-radius:14px; padding:22px; box-shadow:0 6px 22px rgba(5,7,12,0.14);
+  margin-bottom:18px;
+}
+h2{ margin-top:0; }
+.grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.muted{ color:var(--muted); }
+.price-cards{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+.price{ border:1px solid #e7eaf0; border-radius:12px; padding:16px; }
+.price h3{ margin:0 0 6px; }
+.price ul{ padding-left:18px; margin:6px 0 14px; }
+.price .amount{ font-size:22px; font-weight:800; margin-bottom:8px; }
+.testimonials{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.testimonial{
+  background:#f6f9fc; border:1px solid #e7eaf0; border-radius:12px; padding:16px;
+}
+.stars{ color:#f59f00; font-size:18px; }
+.form-grid{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+.form-grid .full{ grid-column:1 / -1; }
+label{ font-weight:600; font-size:14px; }
+input, select, textarea{
+  width:100%; padding:10px 12px; border:1px solid #d5dbe3; border-radius:8px; font:inherit;
+}
+textarea{ min-height:100px; resize:vertical; }
+footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; text-align:center; position:relative; z-index:1; }
+/* Responsive */
+@media (max-width:820px){
+  .menu{ display:none; }
+  .hamburger{ display:flex; }
+}
+@media (max-width:520px){
+  .form-grid{ grid-template-columns:1fr; }
+  .nav-inner{ gap:10px; }
+}
+</style>
 </head>
 <body>
-
-  <!-- Background slideshow - use your own images -->
-  <div class="bg-slides">
-    <img src="kid1.jpg.webp" alt="" />
-    <img src="kid2.jpg.webp" alt="" />
-    <img src="kid3.jpg.png" alt="" />
-    <img src="kid4.jpg.jpg" alt="" />
+<!-- GLOBAL background slideshow -->
+<div class="bg-slides" id="bgSlides" aria-hidden="true">
+  <img src="kid1.jpg.webp" alt="" />
+  <img src="kid2.jpg.webp" alt="" />
+  <img src="kid3.jpg.png" alt="" />
+  <img src="kid4.jpg.jpg" alt="" />
+</div>
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="nav-inner">
+    <div class="brand">Safari Holiday Childcare</div>
+    <!-- Desktop menu -->
+    <div class="menu" id="menu">
+      <a href="#" data-section="home">Home</a>
+      <a href="#" data-section="booking">Book Now</a>
+      <a href="#" data-section="about">About</a>
+      <a href="#" data-section="safety">Safety & Trust</a>
+      <a href="#" data-section="reviews">Reviews</a>
+      <a href="#" data-section="nanny">A Nanny</a>
+      <a href="#" data-section="pricing">Pricing</a>
+      <a href="#" data-section="contact">Contact</a>
+      <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
-  <div class="bg-overlay"></div>
-
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="brand">Safari Holiday Childcare</div>
-
-      <div class="menu" id="menu">
-        <a href="#" data-section="home">Home</a>
-        <a href="#" data-section="booking">Book Now</a>
-        <a href="#" data-section="about">About</a>
-        <a href="#" data-section="safety">Safety & Trust</a>
-        <a href="#" data-section="reviews">Reviews</a>
-        <a href="#" data-section="nanny">A Nanny</a>
-        <a href="#" data-section="pricing">Pricing</a>
-        <a href="#" data-section="contact">Contact</a>
-        <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#" data-section="home">Home</a>
-    <a href="#" data-section="booking">Book Now</a>
-    <a href="#" data-section="about">About</a>
-    <a href="#" data-section="safety">Safety & Trust</a>
-    <a href="#" data-section="reviews">Reviews</a>
-    <a href="#" data-section="nanny">A Nanny</a>
-    <a href="#" data-section="pricing">Pricing</a>
-    <a href="#" data-section="contact">Contact</a>
-    <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-
-  <div class="overlay" id="overlay"></div>
-
-  <!-- HOME -->
-  <section id="home" class="section active hero">
-    <div>
-      <h1>Trusted Nannies for Safari Lodges (Ages 5–12)</h1>
-      <p>Enjoy game drives or spa time while your children are safe, engaged, and smiling with our trained, vetted childcare professionals.</p>
-      <div class="buttons">
-        <a class="btn" data-section="booking" href="#">Book a Session</a>
-        <a class="btn secondary" data-section="safety" href="#">See Safety Measures</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- All other sections (Booking, About, Safety, Reviews, A Nanny, Contact) go here - same as your original -->
-  <!-- For brevity, I'm showing Safety as example - paste your full original sections -->
-
-  <section id="safety" class="section container">
-    <div class="card">
-      <h2>Safety & Trust</h2>
-      <div class="grid">
-        <div><h3>🩺 First Aid</h3><p>First aid & CPR certification (renewed annually).</p></div>
-        <div><h3>👩‍🏫 Trained Staff</h3><p>Ongoing training with safeguarding and education modules.</p></div>
-        <div><h3>🛡️ Safeguarding</h3><p>Enhanced background checks and supervised protocols.</p></div>
-        <div><h3>📋 Protocols</h3><p>Secure check-in/out with ID verification; lodge risk assessments.</p></div>
-        <div><h3>🚑 Emergency readiness</h3><p>On-site kits, radio/phone connectivity, lodge coordination.</p></div>
-        <div><h3>🌿 Allergies & Medication</h3><p>Share medical needs during booking; we brief your carer and store details securely.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING with full price cards + Currency Converter + Price Calculator -->
-  <section id="pricing" class="section container">
-    <div class="card">
-      <h2>Pricing</h2>
-    </div>
-
-    <div class="card">
-      <div class="price-cards">
-        <div class="price">
-          <h3>Basic</h3>
-          <div class="amount">$50 / session</div>
-          <ul>
-            <li>Up to 3 hours of care</li>
-            <li>Age-appropriate activities</li>
-            <li>Snack supervision</li>
-          </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
-        </div>
-        <div class="price">
-          <h3>Standard</h3>
-          <div class="amount">$90 / session</div>
-          <ul>
-            <li>Up to 6 hours of care</li>
-            <li>Educational activities & games</li>
-            <li>Meal assistance</li>
-          </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
-        </div>
-        <div class="price">
-          <h3>Premium</h3>
-          <div class="amount">$150 / day</div>
-          <ul>
-            <li>Up to 10 hours of care</li>
-            <li>Full activity schedule</li>
-            <li>Homework & bedtime support</li>
-          </ul>
-          <a class="btn" data-section="booking" href="#">Book Now</a>
-        </div>
-      </div>
-
-      <div class="buttons" style="margin-top:14px;">
-        <a class="btn" data-section="nanny" href="#">Hiring a Nanny</a>
-      </div>
-    </div>
-
-    <!-- Currency Converter -->
-    <div class="card">
-      <h3>Currency Converter</h3>
-      <p class="muted">Convert between USD, EUR, GBP, and ZAR using live rates (falls back to demo rates if offline).</p>
-      <form id="fxForm" class="form-grid" onsubmit="return false;">
-        <div>
-          <label for="fxAmount">Amount</label>
-          <input id="fxAmount" type="number" min="0" step="0.01" value="100" />
-        </div>
-        <div>
-          <label for="fxFrom">From</label>
-          <select id="fxFrom">
-            <option>USD</option><option>EUR</option><option>GBP</option><option>ZAR</option>
-          </select>
-        </div>
-        <div>
-          <label for="fxTo">To</label>
-          <select id="fxTo">
-            <option>ZAR</option><option>USD</option><option>EUR</option><option>GBP</option>
-          </select>
-        </div>
-        <div class="full">
-          <button id="fxConvert" class="btn" type="button">Convert</button>
-        </div>
-        <div class="full">
-          <output id="fxResult" style="font-weight:700;"></output>
-        </div>
-      </form>
-      <p id="fxStatus" class="muted" style="margin-top:8px;"></p>
-    </div>
-
-    <!-- Price Calculator -->
-    <div class="card">
-      <h3>Price Calculator</h3>
-      <form id="calcForm" class="form-grid" onsubmit="return false;">
-        <div>
-          <label for="pkg">Package</label>
-          <select id="pkg">
-            <option value="Basic" data-price="50">Basic ($50)</option>
-            <option value="Standard" data-price="90">Standard ($90)</option>
-            <option value="Premium" data-price="150">Premium ($150)</option>
-          </select>
-        </div>
-        <div>
-          <label for="qty">Quantity</label>
-          <input id="qty" type="number" min="1" step="1" value="1" />
-        </div>
-        <div>
-          <label for="calcCurr">Currency</label>
-          <select id="calcCurr">
-            <option>USD</option><option>EUR</option><option>GBP</option><option>ZAR</option>
-          </select>
-        </div>
-        <div class="full">
-          <button id="calcBtn" class="btn" type="button">Calculate Total</button>
-        </div>
-        <div class="full">
-          <output id="calcResult" style="font-weight:700;"></output>
-        </div>
-      </form>
-    </div>
-
-    <div class="card">
-      <p class="muted">*Prices are indicative and may vary by lodge location and special requests.</p>
-    </div>
-  </section>
-
-  <!-- Paste your other sections (Booking, About, Reviews, A Nanny, Contact) here with class="section container" and id -->
-
-  <footer>© <span id="y"></span> Safari Holiday Childcare</footer>
-
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Hamburger toggle
-    const ham = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
-
-    function toggleMenu() {
-      ham.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    }
-
-    ham.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
-    mobileMenu.addEventListener('click', e => {
-      if (e.target.tagName === 'A') toggleMenu();
-    });
-
-    // Section switching
-    const sections = document.querySelectorAll('.section');
-    const links = document.querySelectorAll('a[data-section]');
-
-    function showSection(id) {
-      sections.forEach(s => s.classList.toggle('active', s.id === id));
-      links.forEach(l => l.classList.toggle('active', l.dataset.section === id));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      toggleMenu();
-    }
-
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        showSection(link.dataset.section);
-      });
-    });
-
-    // Default to home
-    showSection('home');
-
-    // Currency Converter & Calculator (your original script)
-    const fxAmount = document.getElementById('fxAmount');
-    const fxFrom = document.getElementById('fxFrom');
-    const fxTo = document.getElementById('fxTo');
-    const fxBtn = document.getElementById('fxConvert');
-    const fxOut = document.getElementById('fxResult');
-    const fxStatus = document.getElementById('fxStatus');
-
-    const calcPkg = document.getElementById('pkg');
-    const calcQty = document.getElementById('qty');
-    const calcCurr = document.getElementById('calcCurr');
-    const calcBtn = document.getElementById('calcBtn');
-    const calcOut = document.getElementById('calcResult');
-
-    let fxRates = null;
-
-    function fmt(n, curr) {
-      try { return new Intl.NumberFormat(undefined, { style: 'currency', currency: curr }).format(n); }
-      catch { return `${curr} ${n.toFixed(2)}`; }
-    }
-
-    async function loadRates() {
-      try {
-        const res = await fetch('https://open.er-api.com/v6/latest/USD', {cache:'no-store'});
-        const data = await res.json();
-        const r = data.rates || {};
-        fxRates = { USD:1, EUR:r.EUR, GBP:r.GBP, ZAR:r.ZAR };
-        fxStatus.textContent = `Live rates loaded. Last update: ${new Date(data.time_last_update_utc).toLocaleString()}`;
-      } catch {
-        fxRates = { USD:1, EUR:0.92, GBP:0.80, ZAR:18.00 };
-        fxStatus.textContent = 'Using demo rates (offline).';
-      }
-    }
-
-    function convert(amount, from, to) {
-      if (!fxRates || !fxRates[from] || !fxRates[to]) return null;
-      const inUSD = amount / fxRates[from];
-      return inUSD * fxRates[to];
-    }
-
-    fxBtn.addEventListener('click', () => {
-      const amt = parseFloat(fxAmount.value || '0');
-      const from = fxFrom.value;
-      const to = fxTo.value;
-      if (isNaN(amt) || amt < 0) { fxOut.textContent = 'Enter a valid amount.'; return; }
-      const result = convert(amt, from, to);
-      if (result === null) { fxOut.textContent = 'Rates not available yet.'; return; }
-      fxOut.textContent = `${fmt(amt, from)} = ${fmt(result, to)}`;
-    });
-
-    calcBtn.addEventListener('click', () => {
-      const sel = calcPkg.selectedOptions[0];
-      const price = parseFloat(sel.dataset.price || '0');
-      const qty = Math.max(1, parseInt(calcQty.value || '1', 10));
-      const curr = calcCurr.value;
-      const baseUSD = price * qty;
-      const total = convert(baseUSD, 'USD', curr);
-      if (total === null) { calcOut.textContent = 'Rates not available yet.'; return; }
-      calcOut.innerHTML = `Package: <b>${sel.value}</b> × <b>${qty}</b> = ${fmt(total, curr)} (from ${fmt(baseUSD,'USD')})`;
-    });
-
-    loadRates();
-  </script>
-</body>
-</html>
+</nav>
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" data-section="home">Home</a>
+  <a href="#" data-section="booking">Book Now</a>
+  <a href="#" data-section="about">About</a>
+  <a href="#" data-section="safety">Safety & Trust</a>
+  <a href="#" data-section="reviews">Reviews</a>
+  <a href="#" data-section="nanny">A Nanny</a>
+  <a href="#" data-section="pricing">Pricing</a>
+  <a href="#" data-section="contact">Contact</a>
+  <a href="https://wa.me/REPLACE_WITH_NUMBER" target="_blank" rel
