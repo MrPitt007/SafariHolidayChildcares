@@ -1,60 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Safari Holiday Childcare</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safari Holiday Childcare</title>
 
-  <link rel="stylesheet" href="style.css">
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BODY */
+body {
+  background-color: #0b0f14;
+  color: #ffffff;
+}
+
+/* HEADER */
+header {
+  background: #000;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 18px;
+}
+
+/* MENU ICON */
+.menu-icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* NAV MENU */
+nav {
+  display: none;
+  flex-direction: column;
+  background: #111;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  border-top: 1px solid #222;
+}
+
+nav a:hover {
+  background: #1c1c1c;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #0b0f14, #020407);
+}
+
+.hero h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #cccccc;
+}
+
+/* SECTIONS */
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+section h3 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+section p, li {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
 
-<header class="header">
-  <div class="logo">Safari Holiday Childcare</div>
+<header>
+  <h1>Safari Holiday Childcare</h1>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </header>
 
-<nav id="menu" class="menu">
-  <a href="#home" onclick="toggleMenu()">Home</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
-</nav>
-
-<section id="home" class="hero">
-  <h1>Welcome to Safari Holiday Childcare</h1>
-  <p>Safe • Fun • Professional Holiday Care</p>
-</section>
-
-<section id="about" class="section">
-  <h2>About Us</h2>
-  <p>
-    Safari Holiday Childcare provides a safe, caring, and fun environment
-    for children during school holidays. We focus on learning through play,
-    creativity, and adventure.
-  </p>
-</section>
-
-<section id="services" class="section dark">
-  <h2>Our Services</h2>
-  <ul>
-    <li>Holiday Childcare Programs</li>
-    <li>Qualified & Caring Staff</li>
-    <li>Indoor & Outdoor Activities</li>
-    <li>Healthy Meals & Snacks</li>
-  </ul>
-</section>
-
-<section id="contact" class="section">
-  <h2>Contact Us</h2>
-  <p>Email: info@safariholidaychildcare.com</p>
-  <p>Phone: +27 00 000 0000</p>
-</section>
-
-<footer class="footer">
-  <p>© 2026 Safari Holiday Childcare. All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
+<nav id="menu">
+  <a href="#home" onclick="toggleMenu()">Home</
