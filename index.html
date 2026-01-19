@@ -2,334 +2,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Safari Holiday Childcare</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safari Holiday Childcare</title>
+  <meta name="description" content="Trusted childcare (ages 5–12) for safari lodges and holiday resorts. First aid certified, safeguarding protocols, flexible hours." />
+  <style>
+    :root{
+      --brand:#0d6efd;
+      --bg:#0b0f14;
+      --card:#ffffff;
+      --text:#0e141b;
+      --text-invert:#ffffff;
+      --muted:#576071;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      line-height:1.45;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{ text-decoration:underline }
 
-<style>
-/* RESET */
-body, h1, p, ul, li, a {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    /* --- Top Nav --- */
+    .nav{ position:sticky; top:0;
+      background:rgba(15,18,24,0.90); backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      z-index:1000;
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; padding:12px 16px;
+      display:flex; align-items:center; justify-content:space-between; color:var(--text-invert);
+      position:relative; z-index:2;
+      gap:12px;
+    }
+    .brand{ font-weight:700; letter-spacing:.2px; color:#fff; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #e8ecf2;
-}
+    .menu{ display:flex; gap:14px; flex-wrap:wrap; }
+    .menu a{ color:var(--text-invert); padding:6px 10px; border-radius:6px; transition:background .2s ease; }
+    .menu a:hover, .menu a:focus{ background:rgba(255,255,255,0.12); }
+    .menu a.active{ background:rgba(255,255,255,0.18); }
 
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #111;
- -size: 18px;
-  font-weight: bold;
-}
+    /* Hamburger button (hidden on desktop) */
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:0;
+      color:#fff;
+      font-size:28px;
+      line-height:1;
+      padding:6px 10px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .menu-toggle:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
 
-/* DESKTOP MENU */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+    /* --- FULL-SCREEN BACKGROUND SLIDESHOW (runs on every section) --- */
+    .bg-slides{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+    }
+    .bg-slides::after{
+      /* soft dark overlay for text legibility */
+      content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
+    }
+    .bg-slides img{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; opacity:0; animation:bgfade 28s infinite;
+      transform:scale(1.03);
+    }
+    /* 4 images → ~7s each (28s total) */
+    .bg-slides img:nth-child(1){ animation-delay:0s; }
+    .bg-slides img:nth-child(2){ animation-delay:7s; }
+    .bg-slides img:nth-child(3){ animation-delay:14s; }
+    .bg-slides img:nth-child(4){ animation-delay:21s; }
+    @keyframes bgfade{
+      0%{opacity:0}
+      10%, 30%{opacity:1}
+      40%, 100%{opacity:0}
+    }
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 15px;
-}
+    /* --- Sections / cards (only one visible at any time) --- */
+    .container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
+    .section{ display:none; }
+    .section.active{ display:block; }
 
-/* HAMBURGER BUTTON */
-.menu-toggle {
-  display: none;
-  font-size: 30px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+    /* --- Home hero block --- */
+    .hero{
+      position:relative; min-height:62vh; display:grid; place-items:center;
+      color:var(--text-invert); text-align:center; overflow:hidden;
+      border-radius:14px; margin:18px auto; max-width:1100px;
+      box-shadow:0 6px 22px rgba(5,7,12,0.14);
+      z-index:1;
+    }
+    .hero .content{ padding:64px 16px; }
+    .hero h1{ margin:0 0 10px; font-size:clamp(28px,5vw,44px); color:#fff; }
+    .hero p{ margin:0 0 20px; color:#e7edf5; max-width:720px; }
+    .buttons{ display:inline-flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .btn{
+      display:inline-block; padding:10px 16px; border-radius:8px;
+      background:var(--brand); color:white; font-weight:600; border:none;
+    }
+    .btn.secondary{ background:rgba(255,255,255,0.14); color:#fff; }
+    .btn:hover{ filter:brightness(1.05); text-decoration:none; }
 
-@media (max-width: 768px) {
-  /* Hide desktop menu */
-  .nav-links {
-    position: absolute;
-    top: 65px;
-    right: 0;
-    background: #111;
-    width: 220px;
-    flex-direction: column;
-    display: none;
-  }
+    /* --- Cards/blocks --- */
+    section.card{
+      background:var(--card); color:var(--text);
+      border-radius:14px; padding:22px; box-shadow:0 6px 22px rgba(5,7,12,0.14);
+      margin-bottom:18px;
+    }
+    h2{ margin-top:0; }
+    .grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .muted{ color:var(--muted); }
 
-  .nav-links li {
-    padding: 12px 20px;
-    border-bottom: 1px solid #222;
-  }
+    /* --- Pricing cards --- */
+    .price-cards{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+    .price{ border:1px solid #e7eaf0; border-radius:12px; padding:16px; }
+    .price h3{ margin:0 0 6px; }
+    .price ul{ padding-left:18px; margin:6px 0 14px; }
+    .price .amount{ font-size:22px; font-weight:800; margin-bottom:8px; }
 
-  .menu-toggle {
-    display: block;
-  }
-
-  /* Show menu when active */
-  .nav-links.active {
-    display: block;
-  }
-}
-
-/* MAIN CONTENT BOX */
-.container {
-  background: #111;
-  color: white;
-  width: 90%;
-  margin: 20px auto;
-  padding: 40px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.buttons {
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 16px;
-  margin-right: 10px;
-}
-
-.blue { background: #007bff; color: white; }
-.gray { background: #333; color: white; }
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #333;
-  font-size: 14px;
-}
-</style>
-
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="logo">Safari Holiday Childcare</div>
-
-  <button class="menu-toggle" id="menuToggle">☰</button>
-
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Book Now</a></li>
-    <li><a href="#">About</a></li>
-    <li><Reviews</a></li>
-    <li>#A Nanny</a></li>
-    <li>#Pricing</a></li>
-    <li>#Contact</a></li>
-    <li>#WhatsAppAbsolutely, Pieter — here is a **complete**, clean, copy‑and‑paste‑ready **FULL WEBSITE TEMPLATE** with a working **mobile hamburger dropdown menu**, using only HTML/CSS/JS.
-
-You can paste this into **index.html** and replace the text + links with your real content.
-
----
-
-# ✅ **FULL WEBSITE CODE (Copy & Paste Ready)**
-
-> ✔ Mobile hamburger menu  
-> ✔ Clean styling  
-> ✔ No frameworks  
-> ✔ Works on all phones  
-> ✔ Matches the layout style in your screenshot  
-
----
-
-## **💻 Full HTML + CSS + JS – All in One File**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Safari Holiday Childcare</title>
-
-<style>
-/* ------------------------- */
-/* NAVIGATION BAR STYLING    */
-/* ------------------------- */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f3f3;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #0f0f0f;
-  padding: 15px 20px;
-  color: white;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 34px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Desktop menu */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-}
-
-/* ------------------------- */
-/* MOBILE MENU               */
-/* ------------------------- */
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 65px;
-    right: 0;
-    background: #111;
-    width: 220px;
-    flex-direction: column;
-    padding: 10px 0;
-    display: none;
-  }
-
-  .nav-links li {
-    padding: 12px 20px;
-    border-bottom: 1px solid #222;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
-/* ------------------------- */
-/* PAGE CONTENT              */
-/* ------------------------- */
-
-.hero {
-  max-width: 600px;
-  background: #111;
-  margin: 40px auto;
-  padding: 30px;
-  border-radius: 12px;
-  color: white;
-  text-align: center;
-}
-
-.hero h1 {
-  margin-bottom: 15px;
-}
-
-.hero p {
-  margin-bottom: 25px;
-  color: #ccc;
-}
-
-.hero button {
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 5px;
-  font-size: 15px;
-}
-
-.btn-primary {
-  background: #007bff;
-  color: white;
-}
-
-.btn-secondary {
-  background: #333;
-  color: white;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 0;
-  color: #555;
-}
-</style>
-</head>
-
-<body>
-
-<!-- ------------------------- -->
-<!-- NAVIGATION BAR -->
-<!-- ------------------------- -->
-<nav class="navbar">
-  <div class="logo">Safari Holiday Childcare</div>
-
-  <button class="menu-toggle" id="menuToggle">☰</button>
-
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Book Now</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Safety & Trust</a></li>
-    <li><a href="#">Reviews</a></li>
-    <li><a href="#">i>
-    <li>#WhatsApp</a></li>
-  </ul>
-</nav>
-
-<!-- ------------------------- -->
-<!-- HERO SECTION -->
-<!-- ------------------------- -->
-<div class="hero">
-  <h1>Trusted Nannies for Safari Lodges (Ages 5–12)</h1>
-
-  <p>
-    Enjoy game drives or spa time while your children are safe, engaged, and smiling
-    with our trained, vetted childcare professionals.
-  </p class="btn-primary">Book a Session</button>
-  <button class="btn-secondary">See Safety Measures</button>
-</div>
-
-<footer>
-  © 2026 Safari Holiday Childcare
-</footer>
-
-<!-- ------------------------- -->
-<!-- MOBILE MENU SCRIPT -->
-<!-- ------------------------- -->
-<script>
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
- html>
+    /* --- Testimonials --- */
+    .testimonials{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .testimonial{
+      background:#f6f9fc; border:1px solid #e7eaf0; border-radius:12px; padding:16px;
