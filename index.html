@@ -86,15 +86,15 @@ a:hover{ text-decoration:underline }
 .bg-video::after{
   content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
 }
-/* ── Hero – fixed height to prevent shift */
+/* ── Hero – fixed to prevent any shift */
 .hero{
-  position:relative; height:80vh; min-height:600px; /* fixed height for stability */
+  position:relative; height:80vh; /* fixed height */
   display:grid; place-items:center;
   color:var(--text-invert); text-align:center; overflow:hidden;
   border-radius:14px; margin:18px auto; max-width:1100px;
   box-shadow:0 6px 22px rgba(5,7,12,0.14); z-index:1;
 }
-.hero .content{ padding:64px 16px; max-width:800px; }
+.hero .content{ padding:32px 16px; max-width:800px; }
 /* ── Content ── */
 .container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
 .section{ display:none; }
@@ -133,14 +133,14 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
 @media (max-width:520px){
   .form-grid{ grid-template-columns:1fr; }
   .brand { font-size:1.8rem; }
-  .hero { height:70vh; min-height:500px; }
+  .hero { height:70vh; }
 }
 </style>
 </head>
 <body>
-<!-- Video Background – muted for reliable autoplay (browsers block sound on autoplay) -->
+<!-- Video Background – sound enabled (will play after first user interaction) -->
 <div class="bg-video">
-  <video autoplay muted loop playsinline preload="auto">
+  <video loop playsinline preload="auto" id="bgVideo">
     <source src="generated_video.mp4" type="video/mp4">
     Your browser does not support video.
   </video>
@@ -182,17 +182,20 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
     </div>
   </header>
 </div>
-<!-- All other sections – keep your full content -->
-<!-- BOOKING -->
-<div id="booking" class="section container">
-  <!-- Your full booking form -->
-</div>
-<!-- ABOUT, SAFETY, REVIEWS, A NANNY, PRICING (with converter/calculator), CONTACT -->
-<!-- Keep exactly as in previous working versions -->
+<!-- Your other sections (Booking, About, Safety, Reviews, A Nanny, Pricing with converter/calculator, Contact) -->
 <footer>© <span id="y"></span> Safari Holiday Childcare</footer>
 <script>
 // Year
 document.getElementById('y').textContent = new Date().getFullYear();
+// Video with sound – play on first user interaction
+const video = document.getElementById('bgVideo');
+let hasInteracted = false;
+function startVideoWithSound() {
+  if (!hasInteracted) {
+    hasInteracted = true;
+    video.play().catch(() => {}); // play with sound after interaction
+  }
+}
 // Hamburger toggle
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -202,24 +205,28 @@ function toggleMenu() {
   mobileMenu.classList.toggle('active');
   overlay.classList.toggle('active');
   document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  startVideoWithSound(); // enable sound on first menu open
 }
 hamburger.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
 mobileMenu.addEventListener('click', e => {
-  if (e.target.tagName === 'A') toggleMenu();
+  if (e.target.tagName === 'A') {
+    toggleMenu();
+    startVideoWithSound();
+  }
 });
-// Section switching – robust
+// Section switching – fixed
 const sections = document.querySelectorAll('.section');
 const allLinks = document.querySelectorAll('a[data-section]');
 function showSection(id) {
   sections.forEach(sec => sec.classList.remove('active'));
-  sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
   allLinks.forEach(link => link.classList.remove('active'));
-  allLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+  allLinks.forEach(link => {
+    if (link.dataset.section === id) link.classList.add('active');
+  });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (mobileMenu.classList.contains('active')) {
-    toggleMenu();
-  }
 }
 allLinks.forEach(link => {
   link.addEventListener('click', e => {
@@ -228,10 +235,11 @@ allLinks.forEach(link => {
     if (sectionId && document.getElementById(sectionId)) {
       showSection(sectionId);
     }
+    startVideoWithSound(); // enable sound on button click
   });
 });
-// Home active by default
-// Currency & Calculator script (full from previous)
+// Initial home active
+// Currency & Calculator (keep your full script)
 loadRates();
 </script>
 </body>
