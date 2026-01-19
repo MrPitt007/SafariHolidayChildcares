@@ -88,19 +88,6 @@ a:hover{ text-decoration:underline }
 .bg-video::after{
   content:""; position:absolute; inset:0; background:rgba(8,12,18,0.45);
 }
-/* Fallback images if video fails to load */
-.bg-fallback{
-  position:fixed; inset:0; z-index:-1; pointer-events:none; display:none;
-}
-.bg-fallback.active { display:block; }
-.bg-fallback img{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; opacity:0; animation:bgfade 28s infinite;
-}
-.bg-fallback img:nth-child(1){ animation-delay:0s; }
-.bg-fallback img:nth-child(2){ animation-delay:7s; }
-.bg-fallback img:nth-child(3){ animation-delay:14s; }
-.bg-fallback img:nth-child(4){ animation-delay:21s; }
 /* ── Content ── */
 .container{ max-width:1100px; margin:18px auto; padding:0 16px 24px; position:relative; z-index:1; }
 .section{ display:none; }
@@ -150,19 +137,12 @@ footer{ max-width:1100px; margin:32px auto; color:#d4deea; padding:0 16px 40px; 
 </style>
 </head>
 <body>
-<!-- Video Background with fallback images -->
+<!-- Video Background – now using your uploaded file -->
 <div class="bg-video">
   <video autoplay muted loop playsinline preload="auto">
-    <source src="https://assets.grok.com/users/7444c1ad-e0ad-4d4f-b851-803a8c2772f6/generated/7d8158ea-f7db-4de9-8f72-6b2ae81c894a/generated_video.mp4?cache=1" type="video/mp4">
+    <source src="generated_video.mp4" type="video/mp4">
     Your browser does not support video.
   </video>
-</div>
-<!-- Fallback slideshow if video fails -->
-<div class="bg-fallback">
-  <img src="kid1.jpg.webp" alt="" />
-  <img src="kid2.jpg.webp" alt="" />
-  <img src="kid3.jpg.png" alt="" />
-  <img src="kid4.jpg.jpg" alt="" />
 </div>
 <!-- Navigation -->
 <nav class="nav" role="navigation" aria-label="Main">
@@ -475,15 +455,6 @@ allLinks.forEach(link => {
   });
 });
 showSection('home');
-// Video fallback if not playing
-const video = document.querySelector('.bg-video video');
-const fallback = document.querySelector('.bg-fallback');
-video.addEventListener('error', () => {
-  fallback.classList.add('active');
-});
-video.addEventListener('suspend', () => {
-  fallback.classList.add('active');
-});
 // Currency Converter & Calculator
 const fxAmount = document.getElementById('fxAmount');
 const fxFrom = document.getElementById('fxFrom');
